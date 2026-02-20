@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TVP102 — Film Production Resource Database</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<!--
+╔══════════════════════════════════════════════════════════════════╗
+║          TVP102 RESOURCE DATABASE — INSTRUCTOR GUIDE             ║
+║  How to add a new resource (no coding needed):                   ║
+║                                                                  ║
+║  1. Find the RESOURCES array below (search: const RESOURCES)     ║
+║  2. Copy one of the existing objects as a template               ║
+║  3. Paste it anywhere in the list (before the final ]; )         ║
+║  4. Fill in: title, url, source, description, category, badge    ║
+║                                                                  ║
+║  CATEGORY options:                                               ║
+║    "academic"       Academic & Library Guides                    ║
+║    "preproduction"  Pre-Production                               ║
+║    "visual"         Visual Reference & Cinematography            ║
+║    "lighting"       Lighting                                     ║
+║    "directing"      Directing & Performance                      ║
+║    "sound"          Sound & Music                                ║
+║    "postproduction" Post-Production                              ║
+║    "community"      Community & Ongoing Learning                 ║
+║    "notion"         Notion & Digital Workspaces                  ║
+║                                                                  ║
+║  BADGE options:                                                  ║
+║    "FREE"  "FREE TIER"  "ACADEMIC"  "TOOL"  "PAID"  "COMMUNITY" ║
+╚══════════════════════════════════════════════════════════════════╝
+-->
+
+<style>
+  :root {
+    --ink: #111111;
+    --paper: #F5F0E8;
+    --cream: #EDE7D5;
+    --rust: #C04A2A;
+    --gold: #B8900A;
+    --navy: #1A2B4A;
+    --sage: #4A6741;
+    --sage-light: #DDE8DB;
+    --slate: #3D4F5C;
+    --muted: #7A7060;
+    --border: rgba(17,17,17,0.12);
+    --card-bg: #FDFAF4;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--paper); font-family: 'DM Sans', sans-serif; color: var(--ink); min-height: 100vh; }
+
+  header {
+    background: var(--navy); padding: 52px 60px 44px;
+    position: relative; overflow: hidden;
+  }
+  header::before {
+    content: ''; position: absolute; top: -60px; right: -60px;
+    width: 340px; height: 340px; border: 60px solid rgba(184,144,10,0.14);
+    border-radius: 50%; pointer-events: none;
+  }
+  header::after {
+    content: ''; position: absolute; bottom: -80px; left: 220px;
+    width: 260px; height: 260px; border: 40px solid rgba(192,74,42,0.1);
+    border-radius: 50%; pointer-events: none;
+  }
+  .header-eyebrow {
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 16px;
+    display: flex; align-items: center; gap: 10px; position: relative; z-index: 1;
+  }
+  .header-eyebrow::before { content: ''; display: inline-block; width: 28px; height: 2px; background: var(--gold); }
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(34px, 5vw, 56px); font-weight: 900; color: #FDFAF4;
+    line-height: 1.05; margin-bottom: 14px; position: relative; z-index: 1;
+  }
+  header h1 em { font-style: normal; color: var(--rust); }
+  .header-sub {
+    font-size: 15px; color: rgba(253,250,244,0.6); font-weight: 300;
+    max-width: 580px; line-height: 1.65; position: relative; z-index: 1;
+  }
+  .header-chips { display: flex; gap: 24px; margin-top: 28px; flex-wrap: wrap; position: relative; z-index: 1; }
+  .header-chips span { font-family: 'DM Mono', monospace; font-size: 11px; color: rgba(253,250,244,0.42); letter-spacing: 0.1em; }
+  .header-chips strong { color: rgba(253,250,244,0.78); }
+  .big-count {
+    position: absolute; top: 44px; right: 60px; z-index: 1; text-align: right;
+    font-family: 'DM Mono', monospace; font-size: 11px; color: rgba(253,250,244,0.3); letter-spacing: 0.1em;
+  }
+  .big-count em { display: block; font-size: 52px; font-weight: 500; color: rgba(253,250,244,0.08); line-height: 1; font-style: normal; }
+
+  .controls {
+    background: var(--cream); border-bottom: 1px solid var(--border);
+    padding: 16px 60px; display: flex; gap: 8px; align-items: center;
+    flex-wrap: wrap; position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 16px rgba(17,17,17,0.06);
+  }
+  .filter-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-right: 2px; }
+  .filter-btn {
+    font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.05em;
+    padding: 5px 12px; border-radius: 3px; border: 1.5px solid var(--border);
+    background: var(--card-bg); color: var(--slate); cursor: pointer; transition: all 0.15s; white-space: nowrap;
+  }
+  .filter-btn:hover { border-color: var(--rust); color: var(--rust); }
+  .filter-btn.active { background: var(--navy); color: #FDFAF4; border-color: var(--navy); }
+  .search-wrap { margin-left: auto; position: relative; }
+  .search-wrap input {
+    font-family: 'DM Sans', sans-serif; font-size: 13px;
+    padding: 7px 14px 7px 34px; border: 1.5px solid var(--border);
+    border-radius: 3px; background: var(--card-bg); color: var(--ink); width: 230px; transition: border 0.15s; outline: none;
+  }
+  .search-wrap input::placeholder { color: var(--muted); }
+  .search-wrap input:focus { border-color: var(--navy); }
+  .search-wrap svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--muted); }
+
+  .results-bar { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); padding: 14px 60px 0; letter-spacing: 0.08em; min-height: 32px; }
+
+  .grid-container { padding: 8px 60px 80px; max-width: 1440px; margin: 0 auto; }
+
+  .section-block { margin-bottom: 8px; }
+  .section-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 16px; margin-top: 48px; padding-bottom: 12px; border-bottom: 2px solid var(--ink);
+  }
+  .section-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .section-header h2 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; }
+  .section-sub { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.1em; }
+
+  .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 13px; }
+
+  .card {
+    background: var(--card-bg); border: 1.5px solid var(--border); border-radius: 4px;
+    padding: 19px 21px 17px; transition: all 0.18s; display: flex; flex-direction: column; gap: 9px;
+  }
+  .card:hover { border-color: var(--ink); transform: translateY(-2px); box-shadow: 4px 4px 0 var(--ink); }
+  .card-meta { display: flex; align-items: center; gap: 8px; }
+  .card-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .card-source { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  .card-badge {
+    margin-left: auto; font-family: 'DM Mono', monospace; font-size: 9px;
+    letter-spacing: 0.1em; padding: 2px 7px; border-radius: 2px; font-weight: 500; white-space: nowrap;
+  }
+  .b-FREE,.b-free { background: var(--sage-light); color: var(--sage); }
+  .b-FREE-TIER,.b-free-tier { background: #E8F0E8; color: var(--sage); }
+  .b-ACADEMIC,.b-academic { background: #DDE4F0; color: var(--navy); }
+  .b-TOOL,.b-tool { background: #F0EAD6; color: var(--gold); }
+  .b-PAID,.b-paid { background: #EEEEEE; color: #555555; }
+  .b-COMMUNITY,.b-community { background: #F0E0DA; color: var(--rust); }
+  .card h3 { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; line-height: 1.3; }
+  .card p { font-size: 13px; line-height: 1.65; color: var(--slate); flex-grow: 1; }
+  .card-foot {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: 4px; padding-top: 10px; border-top: 1px solid var(--border);
+  }
+  .card-url { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 170px; }
+  .card-link {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--rust); text-decoration: none; padding: 4px 9px;
+    border: 1px solid var(--rust); border-radius: 2px; transition: all 0.15s; flex-shrink: 0;
+  }
+  .card-link:hover { background: var(--rust); color: white; }
+
+  .card.hidden { display: none !important; }
+  .section-block.all-hidden { display: none !important; }
+  .no-results { text-align: center; padding: 80px 0; font-family: 'Playfair Display', serif; font-size: 22px; color: var(--muted); display: none; }
+
+  footer {
+    background: var(--ink); color: rgba(253,250,244,0.45);
+    padding: 26px 60px; display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap;
+  }
+  footer span { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; }
+  footer strong { color: rgba(253,250,244,0.78); }
+
+  @media (max-width: 700px) {
+    header, .controls, .grid-container, footer, .results-bar { padding-left: 20px; padding-right: 20px; }
+    .big-count { display: none; }
+    .search-wrap { margin-left: 0; width: 100%; }
+    .search-wrap input { width: 100%; }
+    header { padding-top: 36px; padding-bottom: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<script>
+// ════════════════════════════════════════════════════════════
+// RESOURCE DATABASE — Edit this array to add/remove resources
+// ════════════════════════════════════════════════════════════
+const RESOURCES = [
+
+  // ── ACADEMIC ──────────────────────────────────────────────
+  { category:"academic", badge:"ACADEMIC", source:"Cornell University",
+    title:"Basic Video Production Guide",
+    url:"https://guides.library.cornell.edu/videobasics/home",
+    description:"Cornell Library's complete video production guide covering pre-production, script writing, storyboarding, capturing video, sound, copyright, and editing in Premiere and iMovie. The gold standard of free academic production guides — also the foundation Toronto Metropolitan's guide is built on." },
+
+  { category:"academic", badge:"ACADEMIC", source:"Cornell University",
+    title:"Pre-Production & Storyboarding (Cornell)",
+    url:"https://guides.library.cornell.edu/videobasics/preproduction",
+    description:"The dedicated pre-production chapter from Cornell's guide. Covers script writing, storyboarding tools, capturing video planning, 360° video, finding and remixing footage, and copyright. Direct link to the section most relevant for TVP102 students." },
+
+  { category:"academic", badge:"ACADEMIC", source:"Toronto Metropolitan University",
+    title:"Basic Video Production (TMU)",
+    url:"https://learn.library.torontomu.ca/videop/welcome",
+    description:"Built on Cornell's guide with TMU library updates. Adds sections on 360° video, privacy in free apps, and remote Adobe access. A useful parallel resource — assign alongside the Cornell version for a broader academic perspective." },
+
+  { category:"academic", badge:"ACADEMIC", source:"University of Toronto",
+    title:"Cinema Studies: Filmmaking Resources",
+    url:"https://guides.library.utoronto.ca/cinema/filmmaking",
+    description:"UofT Libraries' master filmmaking guide covering producing, directing, cinematography, acting, and post-production with curated books and digital resources. Includes subject headings for library database searching — the academic anchor for TVP102." },
+
+  { category:"academic", badge:"ACADEMIC", source:"University of Toronto",
+    title:"Cinema Studies: Screenwriting Resources",
+    url:"https://guides.library.utoronto.ca/cinema/screenwriting",
+    description:"Dedicated screenwriting guide from UofT Libraries with recommended reading, subject headings for database searches, and script software guidance. Good starting point for the script development week of TVP102." },
+
+  { category:"academic", badge:"ACADEMIC", source:"Vassar College",
+    title:"Storyboard Guide for Film Majors",
+    url:"https://pages.vassar.edu/film-majors/pre-production/story-board/",
+    description:"Vassar Film department's storyboard resource page — panel templates, examples, and guidance written for undergraduate film students. A clean academic benchmark to show students what a storyboard is expected to look like at university level." },
+
+  { category:"academic", badge:"ACADEMIC", source:"Cornell University",
+    title:"Performing & Media Arts — Film Courses",
+    url:"https://pma.cornell.edu/courses",
+    description:"Cornell PMA department course listings including Narrative Film, Documentary Fundamentals, and Media Production Lab. Useful for curriculum benchmarking and showing students how a top US program structures its film education." },
+
+  { category:"academic", badge:"FREE", source:"New York Film Academy",
+    title:"Cinematography — The Ultimate Guide",
+    url:"https://www.nyfa.edu/student-resources/cinematography-the-ultimate-guide-2022-edition/",
+    description:"NYFA's comprehensive free guide covering the DP role, tools, techniques, and career path. Well structured for intermediate students — explains the relationship between director, DP, and department heads in clear, practical terms." },
+
+  // ── PRE-PRODUCTION ────────────────────────────────────────
+  { category:"preproduction", badge:"FREE", source:"StudioBinder",
+    title:"Free Shot List Template (PDF + Google Sheets)",
+    url:"https://www.studiobinder.com/download-free-shot-list-template/",
+    description:"Industry-standard downloadable shot list with auto-calculating time formulas in Google Sheets. Used on professional productions worldwide. Assign this as the required shot list format for TVP102 — pairs with the Shot List Guide below." },
+
+  { category:"preproduction", badge:"FREE", source:"StudioBinder",
+    title:"Ultimate Guide: What is a Shot List?",
+    url:"https://www.studiobinder.com/blog/what-is-a-shot-list-example/",
+    description:"Comprehensive written and visual guide to creating shot lists with examples from real productions. Explains how directors, DPs, and 1st ADs each use the document differently. Required reading before production week begins." },
+
+  { category:"preproduction", badge:"FREE", source:"Boords",
+    title:"Free Printable Storyboard Templates (PDF)",
+    url:"https://boords.com/storyboard-template",
+    description:"Ten blank storyboard panel layouts as ready-to-print PDFs. Multiple formats: 4-up, 6-up, widescreen. The fastest solution for students who sketch by hand. Print a stack and put them in the production folder for every shoot day." },
+
+  { category:"preproduction", badge:"FREE", source:"StudioBinder",
+    title:"Best Storyboard Software Comparison",
+    url:"https://www.studiobinder.com/blog/best-storyboard-software/",
+    description:"Side-by-side comparison of free and paid digital storyboard tools: StoryboardThat, FrameForge, Canva, Milanote, and others. Helps students choose the right tool for their skill level before the storyboarding week." },
+
+  { category:"preproduction", badge:"FREE", source:"StudioBinder",
+    title:"Ultimate Pre-Production Checklist",
+    url:"https://www.studiobinder.com/blog/ultimate-pre-production-checklist/",
+    description:"The gold-standard industry pre-production planning checklist. Every phase from script lock through shoot day readiness, with explanations of why each step matters. Pair with the TVP102 Production Bible checklist section." },
+
+  { category:"preproduction", badge:"FREE", source:"StudioBinder",
+    title:"Script Breakdown Sheet (Free Template)",
+    url:"https://www.studiobinder.com/blog/script-breakdown-sheet/",
+    description:"Walkthrough of how to break down a screenplay into production elements with free PDF template. Covers colour-coding conventions (cast, props, wardrobe, VFX) and how to transfer data to a shooting schedule." },
+
+  { category:"preproduction", badge:"FREE", source:"SetHero",
+    title:"12 Essentials of Film Pre-Production (Free Bundle)",
+    url:"https://sethero.com/blog/the-12-essentials-of-film-pre-production-paperwork-free-template-download/",
+    description:"Free template pack covering every key production document: shot list, storyboard, call sheet, talent release, location agreement, breakdown sheet, and more. Download once and use on every TVP102 shoot." },
+
+  { category:"preproduction", badge:"FREE", source:"StudioBinder",
+    title:"Free Call Sheet Template + Guide",
+    url:"https://www.studiobinder.com/blog/call-sheet-template/",
+    description:"Free downloadable call sheet template with full guide on how 1st ADs build call times from the shooting schedule. Covers all mandatory fields including safety, locations, department call times, and emergency contacts." },
+
+  { category:"preproduction", badge:"FREE", source:"Boords",
+    title:"Pre-Production Process — Step by Step",
+    url:"https://boords.com/blog/pre-production-guide",
+    description:"Clear sequential guide to the full pre-production workflow written in plain English. Good for students who want a narrative explanation of the process rather than a checklist. Covers development through shoot day readiness." },
+
+  { category:"preproduction", badge:"FREE TIER", source:"Celtx",
+    title:"Celtx — Free Browser-Based Screenwriting",
+    url:"https://www.celtx.com",
+    description:"Auto-formatting screenwriting software that runs in the browser with no download required. Free tier handles all student script needs. The most accessible starting point for script formatting in TVP102." },
+
+  { category:"preproduction", badge:"FREE TIER", source:"WriterDuet",
+    title:"WriterDuet — Collaborative Screenplay Writing",
+    url:"https://writerduet.com",
+    description:"Real-time collaborative screenwriting platform — ideal for co-writing projects or in-class workshops. Handles formatting automatically. Free tier covers most student needs." },
+
+  { category:"preproduction", badge:"FREE", source:"IMSDb",
+    title:"Internet Movie Script Database",
+    url:"https://www.imsdb.com",
+    description:"Read produced screenplays from hundreds of feature films for free. Essential for studying script format, scene description style, and dialogue. Assign specific scripts to read alongside films in the TVP102 screening program." },
+
+  { category:"preproduction", badge:"FREE TIER", source:"Milanote",
+    title:"Film Pre-Production Plan Template",
+    url:"https://milanote.com/templates/filmmaking/pre-production-plan",
+    description:"Visual digital workspace combining moodboard, storyboard, shot list, and checklist in one board. Good for directors who think visually. Excellent for sharing visual references with DP and production designer." },
+
+  // ── VISUAL REFERENCE ──────────────────────────────────────
+  { category:"visual", badge:"FREE", source:"Film-Grab",
+    title:"Film-Grab — Movie Frame Archive",
+    url:"https://film-grab.com",
+    description:"Extensive archive of high-quality film frames organised by movie title A–Z. The go-to resource when students want to study the cinematography of a specific film. Depth of catalogue is exceptional — most major films and many art-house titles are covered." },
+
+  { category:"visual", badge:"FREE", source:"Shot.Cafe",
+    title:"Shot.Cafe — Tagged Cinematography Database",
+    url:"https://shot.cafe",
+    description:"Over 21,000 shots from 179 films with 100,000+ tags and a unique RGB Parade for each shot. Built by a working cinematographer. One of the most analytically useful frame databases — excellent for colour grade research and moodboard creation." },
+
+  { category:"visual", badge:"PAID", source:"ShotDeck",
+    title:"ShotDeck — Professional Film Stills Search",
+    url:"https://shotdeck.com",
+    description:"Founded by Oscar-nominated cinematographer Lawrence Sher. Millions of searchable HD film stills filterable by lighting, angle, colour, mood, and era. Used on Joker and other major productions. Free limited access — excellent for moodboard creation." },
+
+  { category:"visual", badge:"FREE", source:"Screenmusings",
+    title:"Screenmusings — Film Stills Sorted by Colour",
+    url:"https://screenmusings.org",
+    description:"Premium-quality film stills gallery with ~300 films tagged by 4,096 colour bases. Unique colour-first browsing lets you study how colour interacts with mood. Exceptionally good for production design and colour grade planning." },
+
+  { category:"visual", badge:"FREE", source:"StudioBinder",
+    title:"Ultimate Guide to Camera Shots (Illustrated)",
+    url:"https://www.studiobinder.com/blog/ultimate-guide-to-camera-shots/",
+    description:"Visual guide to all shot sizes and types with real film stills as examples. Covers ECU through EWS, OTS, POV, insert shots, and more. The single best illustrated reference for students learning shot vocabulary for their shot list." },
+
+  { category:"visual", badge:"FREE", source:"StudioBinder",
+    title:"7 Types of Camera Movement (with Film Examples)",
+    url:"https://www.studiobinder.com/blog/7-types-of-camera-movement/",
+    description:"Illustrated guide to every camera movement type — static, pan, tilt, dolly, crane, handheld, Steadicam — with film examples explaining when and why to use each. Required reading for DPs and camera operators before production week." },
+
+  { category:"visual", badge:"FREE", source:"NFB Canada",
+    title:"National Film Board of Canada — Free Short Films",
+    url:"https://www.nfb.ca",
+    description:"Free streaming archive of award-winning short films, documentaries, and animation. Invaluable for studying short-form narrative structure and visual storytelling. Assign specific films as case studies for TVP102 screenings." },
+
+  // ── LIGHTING ──────────────────────────────────────────────
+  { category:"lighting", badge:"FREE", source:"StudioBinder",
+    title:"Film Lighting — The Ultimate Guide",
+    url:"https://www.studiobinder.com/blog/film-lighting/",
+    description:"Comprehensive free guide covering light strength, colour temperature, the exposure triangle, and how lighting choices serve storytelling. Clear explanations with film examples. The best single free lighting overview for intermediate students." },
+
+  { category:"lighting", badge:"FREE", source:"No Film School",
+    title:"13 Film Lighting Techniques Every Filmmaker Should Know",
+    url:"https://nofilmschool.com/lighting-techniques-in-film",
+    description:"Practical breakdown of key lighting techniques — three-point lighting, natural light, bounce, side lighting, chiaroscuro — with film stills and plain-language explanations. Good introduction to lighting vocabulary for students new to the craft of lighting." },
+
+  { category:"lighting", badge:"FREE", source:"Class Central / YouTube",
+    title:"Free Lighting Tutorials Playlist",
+    url:"https://www.classcentral.com/course/youtube-lighting-tutorials-53738",
+    description:"Curated playlist of free YouTube lighting tutorials covering interview lighting, film noir setups, Hollywood lighting on a budget, natural light cinematography, and night cinematography. Entirely free — good companion to written guides." },
+
+  { category:"lighting", badge:"PAID", source:"Neil Oseman / Udemy",
+    title:"Cinematic Lighting — On-Location Course",
+    url:"https://www.udemy.com/course/cinematic-lighting/",
+    description:"Advanced video course shot entirely on location with real actors and crew. Four modules: Day Exterior, Day Interior, Night Interior, Night Exterior. Shows the reality of independent film lighting — time pressure, weather, limited gear. Very well reviewed." },
+
+  // ── DIRECTING & PERFORMANCE ────────────────────────────────
+  { category:"directing", badge:"FREE", source:"ActionCutPrint / MovieMaker",
+    title:"Directing Actors — Judith Weston (Free PDF Article)",
+    url:"https://actioncutprint.com/files/DirectingActor-JudithWeston.pdf",
+    description:"Free PDF article by Judith Weston — the world's leading directing-actors coach, whose students include Iñárritu, Ava DuVernay, and Taika Waititi. A compact, essential introduction to her methodology: trust, avoiding 'result direction', and script analysis. Required reading for TVP102 directors." },
+
+  { category:"directing", badge:"PAID", source:"Sundance Institute",
+    title:"Directing Actors Masterclass — Judith Weston",
+    url:"https://collab.sundance.org/catalog/Master-Class-Directing-Actors-with-Judith-Weston-Video",
+    description:"Three-hour recorded masterclass from Sundance Collab covering building director-actor trust, scene breakdown, casting preparation, and rehearsal best practices. One of the most valuable directing resources available online." },
+
+  { category:"directing", badge:"FREE", source:"Filmmaker IQ",
+    title:"Directing Actors for Camera",
+    url:"https://www.filmmakeriq.com/lessons/directing-actors/",
+    description:"In-depth free tutorial on the director-actor relationship specifically for narrative film. Covers the difference between stage and screen acting, how to give usable notes, and practical techniques for authentic performances from non-professionals." },
+
+  { category:"directing", badge:"FREE", source:"StudioBinder",
+    title:"What is Coverage in Film?",
+    url:"https://www.studiobinder.com/blog/coverage-in-film/",
+    description:"Essential guide to shooting coverage — master shot, singles, OTS, inserts — and how directors plan coverage during pre-production. Understanding coverage is one of the most important narrative directing skills for TVP102 students." },
+
+  // ── SOUND & MUSIC ─────────────────────────────────────────
+  { category:"sound", badge:"FREE", source:"Free Music Archive",
+    title:"Free Music Archive (FMA)",
+    url:"https://freemusicarchive.org",
+    description:"Community-driven platform with a vast Creative Commons music library. Filter by genre, mood, and licence type. One of the most reliable free music sources for student films — always check the specific licence per track before festival submission." },
+
+  { category:"sound", badge:"FREE", source:"Moby Gratis",
+    title:"Moby Gratis — Free Music for Indie Filmmakers",
+    url:"https://mobygratis.com",
+    description:"Artist Moby's 150+ tracks made freely available for independent filmmakers, students, and non-profits. Simple online application. Wide range of cinematic styles. Specifically designed for this use case — one of the best-curated free film music resources." },
+
+  { category:"sound", badge:"FREE", source:"Incompetech",
+    title:"Incompetech — Kevin MacLeod's Royalty-Free Library",
+    url:"https://incompetech.com/music/royalty-free/music.html",
+    description:"Kevin MacLeod's extensive catalogue searchable by feel, genre, tempo, and energy. The most widely used free music library in independent film. Attribution required. A true institution for student productions — an extraordinary breadth of styles." },
+
+  { category:"sound", badge:"FREE", source:"YouTube",
+    title:"YouTube Audio Library",
+    url:"https://www.youtube.com/audiolibrary",
+    description:"Google's free music and sound effects library, pre-cleared for YouTube. Searchable by genre, mood, instrument, and duration. An excellent source of ambient sound effects for post-production. Some tracks require attribution — check each one." },
+
+  { category:"sound", badge:"FREE", source:"Freesound",
+    title:"Freesound — Sound Effects Community Library",
+    url:"https://freesound.org",
+    description:"Community-driven sound effects database with hundreds of thousands of clips. The essential source for foley, ambiences, spot sound effects, and location atmospheres in post-production. Free account required. Search by keyword, duration, and licence." },
+
+  { category:"sound", badge:"FREE", source:"ccMixter",
+    title:"ccMixter — Creative Commons Music",
+    url:"https://ccmixter.org",
+    description:"Community platform for sharing and remixing Creative Commons music. Good source for ambient and atmospheric tracks not found on mainstream libraries. Attribution usually required — always check before use in a festival submission." },
+
+  // ── POST-PRODUCTION ────────────────────────────────────────
+  { category:"postproduction", badge:"ACADEMIC", source:"University of Toronto",
+    title:"Adobe Premiere Pro Tutorial Guide (UofT)",
+    url:"https://guides.library.utoronto.ca/cinema/adobepremiere",
+    description:"Curated Premiere tutorials from UofT Libraries covering basic assembly through advanced editing workflows. Officially maintained and updated regularly. Use alongside Cornell's post-production chapter for comprehensive editing resources." },
+
+  { category:"postproduction", badge:"ACADEMIC", source:"Cornell University",
+    title:"Post-Production Resources (Cornell)",
+    url:"https://guides.library.cornell.edu/videobasics/postproduction",
+    description:"Cornell's post-production chapter covering editing in iMovie, Premiere, and other NLEs. Includes resources for effects, transitions, and delivery. Covers the full post workflow as part of their Basic Video Production guide." },
+
+  { category:"postproduction", badge:"FREE", source:"Blackmagic Design",
+    title:"DaVinci Resolve — Free Professional NLE",
+    url:"https://www.blackmagicdesign.com/products/davinciresolve",
+    description:"Industry-standard editing, colour grading, audio mixing, and VFX platform — completely free. Used on major Hollywood features. The free version exceeds Premiere Pro's capabilities for most student work. No subscription, no watermarks." },
+
+  { category:"postproduction", badge:"FREE", source:"StudioBinder",
+    title:"Post-Production Checklist",
+    url:"https://www.studiobinder.com/blog/post-production-checklist/",
+    description:"Step-by-step post-production checklist from ingest through export. Covers editing, colour, sound, and delivery with explanations at each stage. Use alongside the TVP102 Production Bible post-production section." },
+
+  { category:"postproduction", badge:"FREE", source:"Internet Archive",
+    title:"In the Blink of an Eye — Walter Murch",
+    url:"https://archive.org/details/intheblinkofaneye",
+    description:"Walter Murch's classic essay on the theory and practice of film editing — arguably the most important short book ever written on the subject. Available via the Internet Archive's digital lending library. Assign as companion reading to the editing phase." },
+
+  // ── COMMUNITY & LEARNING ──────────────────────────────────
+  { category:"community", badge:"FREE", source:"No Film School",
+    title:"No Film School",
+    url:"https://nofilmschool.com",
+    description:"The go-to editorial resource for working indie filmmakers and serious film students. Covers gear, technique, industry news, screenwriting, and directing. Vast article archive searchable by specialisation — a genuine supplement to formal education." },
+
+  { category:"community", badge:"FREE", source:"Filmmaker IQ",
+    title:"Filmmaker IQ — Technical Film Education",
+    url:"https://www.filmmakeriq.com",
+    description:"In-depth technical tutorials and historical essays on all aspects of filmmaking. Covers camera technology, colour science, editing history, and technique at a depth rarely found for free. Excellent for students who want to understand the why behind technical decisions." },
+
+  { category:"community", badge:"COMMUNITY", source:"Reddit",
+    title:"r/Filmmakers",
+    url:"https://reddit.com/r/Filmmakers",
+    description:"The main filmmaking subreddit. Large active community for questions, critique, gear advice, and behind-the-scenes discussion. Good for students to ask production questions and see how working filmmakers solve real problems. Read the FAQ first." },
+
+  { category:"community", badge:"COMMUNITY", source:"Reddit",
+    title:"r/Cinematography",
+    url:"https://reddit.com/r/Cinematography",
+    description:"Focused community for cinematographers — lighting, framing, lenses, and visual storytelling. Higher signal-to-noise ratio than r/Filmmakers for technical questions. Students can share frames for critique from working DPs." },
+
+  { category:"community", badge:"COMMUNITY", source:"Reddit",
+    title:"r/Screenwriting",
+    url:"https://reddit.com/r/Screenwriting",
+    description:"Active screenwriting community for script feedback, craft discussion, and industry questions. Students can post loglines or pages for critique from a large audience. Strong culture of constructive feedback — a useful supplement to in-class workshops." },
+
+  { category:"community", badge:"COMMUNITY", source:"Reddit",
+    title:"r/Editors",
+    url:"https://reddit.com/r/Editors",
+    description:"Community for video editors at all levels. Useful for post-production troubleshooting, NLE workflow questions, and feedback on cuts. Active discussion around Premiere, Final Cut, and DaVinci Resolve." },
+
+  // ── NOTION & DIGITAL WORKSPACES ───────────────────────────
+  { category:"notion", badge:"FREE", source:"Notion Marketplace",
+    title:"Pre-Production Movie Plan (Student Template)",
+    url:"https://www.notion.com/templates/pre-production-movie-plan",
+    description:"A free Notion template built specifically for student filmmakers. Covers brainstorming, task tracking, script versions, storyboard scenes, shot planning, and shoot scheduling — all in one clean dashboard. The most TVP102-appropriate starting point on the Notion marketplace." },
+
+  { category:"notion", badge:"FREE", source:"Notion Marketplace",
+    title:"Shot List Template",
+    url:"https://www.notion.com/templates/shot-list",
+    description:"Simple, clean Notion shot list template designed for film and TV production. Predefined fields for scene number, shot number, location, description, camera angle, lens, frame, lighting, sound, time of day, and status. Collaborative in real-time — the whole group can update it from their phones on set." },
+
+  { category:"notion", badge:"FREE", source:"Notion Marketplace",
+    title:"Moodboard + Storyboard + Shot List (Combined)",
+    url:"https://www.notion.com/templates/moodboard-351",
+    description:"A creative Notion template combining a visual moodboard with detailed storyboard and shot planning in one workspace. Excellent for the visual planning phase — directors can build their reference board and shot plan side by side. Good for sharing with DP before shooting." },
+
+  { category:"notion", badge:"FREE", source:"Notion Marketplace",
+    title:"Film Making Template by Ferdinand",
+    url:"https://www.notion.com/templates/film-making",
+    description:"A full production office inside Notion. Includes scene breakdown with shot lists and storyboards, two location databases (scouting and chosen), a shared production calendar, cast and crew databases linked to scenes, and individual department pages. One of the most complete free film production workspaces available." },
+
+  { category:"notion", badge:"FREE", source:"NotionApps",
+    title:"16 Best Notion Templates for Filmmaking (Curated List)",
+    url:"https://www.notionapps.com/blog/best-notion-templates-film-making-2025",
+    description:"Curated roundup of the best Notion film production templates as of 2025. Covers solo filmmaker decks, full production management systems, EPK templates, and collaboration hubs. Good starting point for finding the right template for different student project sizes." },
+
+  { category:"notion", badge:"FREE", source:"Mod Musings",
+    title:"Video Production Template (by Matthew Encina)",
+    url:"https://www.modmusings.com/video-production-template",
+    description:"Built by a creative director with 20+ years in TV and film production. Covers ideation, research, script writing, shot list, and performance tracking in one guided Notion workspace. Developed from real TV/film industry workflows and adapted for independent filmmakers. Highly practical." }
+
+]; // ← END OF RESOURCES — add new entries above this line
+
+// ════════════════════════════════════════════════════════════
+// SECTION DEFINITIONS
+// ════════════════════════════════════════════════════════════
+const SECTIONS = [
+  { id:"academic",       label:"Academic & Library Guides",          color:"#1A2B4A", sub:"University-maintained resources" },
+  { id:"preproduction",  label:"Pre-Production",                     color:"#C04A2A", sub:"Planning, scripting, shot lists, storyboards" },
+  { id:"visual",         label:"Visual Reference & Cinematography",  color:"#B8900A", sub:"Film frames, shot analysis, composition" },
+  { id:"lighting",       label:"Lighting",                           color:"#7C4A0A", sub:"Techniques, tutorials, and theory" },
+  { id:"directing",      label:"Directing & Performance",            color:"#3D6B5C", sub:"Working with actors, coverage, scene direction" },
+  { id:"sound",          label:"Sound & Music",                      color:"#4A6741", sub:"Royalty-free music and sound effects" },
+  { id:"postproduction", label:"Post-Production & Editing",          color:"#3D4F5C", sub:"Editing guides, colour, delivery" },
+  { id:"community",      label:"Community & Ongoing Learning",       color:"#7A7060", sub:"Blogs, forums, and industry news" },
+  { id:"notion",         label:"Notion & Digital Workspaces",         color:"#6B4F8A", sub:"Templates for organising your production in Notion" }
+];
+</script>
+
+<header>
+  <div class="header-eyebrow">University of Bergen · TVP102</div>
+  <h1>Film Production<br><em>Resource Database</em></h1>
+  <p class="header-sub">A curated, searchable collection of academic guides, production tools, visual references, sound assets, and community resources for short narrative film students.</p>
+  <div class="header-chips">
+    <span><strong>Course:</strong> TVP102 · Short Narrative Fiction</span>
+    <span><strong>Level:</strong> Intermediate</span>
+    <span><strong>Resources:</strong> <strong id="total-count">—</strong></span>
+  </div>
+  <div class="big-count"><em id="big-num">—</em>resources</div>
+</header>
+
+<div class="controls" id="controls">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  <div class="search-wrap">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" id="search-input" placeholder="Search resources…">
+  </div>
+</div>
+
+<div class="results-bar" id="results-bar"></div>
+<div class="grid-container" id="grid"></div>
+<div class="no-results" id="no-results">No resources match your search or filter.</div>
+
+<footer>
+  <span><strong>TVP102</strong> · University of Bergen · Dept. of Information Science and Media Studies</span>
+  <span>Short Narrative Film · <strong id="footer-count">—</strong> curated resources</span>
+</footer>
+
+<script>
+const total = RESOURCES.length;
+document.getElementById('total-count').textContent = total;
+document.getElementById('big-num').textContent = total;
+document.getElementById('footer-count').textContent = total;
+
+// Inject category filter buttons
+const controls = document.getElementById('controls');
+const searchWrap = controls.querySelector('.search-wrap');
+SECTIONS.forEach(s => {
+  const n = RESOURCES.filter(r => r.category === s.id).length;
+  if (!n) return;
+  const btn = document.createElement('button');
+  btn.className = 'filter-btn';
+  btn.dataset.filter = s.id;
+  btn.textContent = s.label + ' (' + n + ')';
+  controls.insertBefore(btn, searchWrap);
+});
+
+// Build cards
+const grid = document.getElementById('grid');
+SECTIONS.forEach(s => {
+  const items = RESOURCES.filter(r => r.category === s.id);
+  if (!items.length) return;
+  const block = document.createElement('div');
+  block.className = 'section-block';
+  block.dataset.section = s.id;
+  const header = document.createElement('div');
+  header.className = 'section-header';
+  header.innerHTML = '<span class="section-dot" style="background:' + s.color + '"></span><h2>' + s.label + '</h2><span class="section-sub">' + s.sub + '</span>';
+  block.appendChild(header);
+  const cg = document.createElement('div');
+  cg.className = 'cards-grid';
+  items.forEach(r => {
+    const urlDisplay = r.url.replace(/^https?:\/\//, '').replace(/\/$/, '').split('/')[0];
+    const badgeClass = 'b-' + r.badge.replace(/\s+/g, '-');
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.dataset.category = r.category;
+    card.dataset.search = [r.title, r.source, r.description, r.category, r.badge].join(' ').toLowerCase();
+    card.innerHTML =
+      '<div class="card-meta">' +
+        '<span class="card-dot" style="background:' + s.color + '"></span>' +
+        '<span class="card-source">' + r.source + '</span>' +
+        '<span class="card-badge ' + badgeClass + '">' + r.badge + '</span>' +
+      '</div>' +
+      '<h3>' + r.title + '</h3>' +
+      '<p>' + r.description + '</p>' +
+      '<div class="card-foot">' +
+        '<span class="card-url">' + urlDisplay + '</span>' +
+        '<a class="card-link" href="' + r.url + '" target="_blank" rel="noopener">Visit ↗</a>' +
+      '</div>';
+    cg.appendChild(card);
+  });
+  block.appendChild(cg);
+  grid.appendChild(block);
+});
+
+// Filter + search
+let activeFilter = 'all', searchQuery = '';
+function applyFilters() {
+  let visible = 0;
+  document.querySelectorAll('.card').forEach(c => {
+    const ok = (activeFilter === 'all' || c.dataset.category === activeFilter) &&
+               (searchQuery === '' || c.dataset.search.includes(searchQuery));
+    c.classList.toggle('hidden', !ok);
+    if (ok) visible++;
+  });
+  document.querySelectorAll('.section-block').forEach(b => {
+    b.classList.toggle('all-hidden', !b.querySelectorAll('.card:not(.hidden)').length);
+  });
+  document.getElementById('no-results').style.display = visible ? 'none' : 'block';
+  document.getElementById('results-bar').textContent =
+    (searchQuery || activeFilter !== 'all') ? 'Showing ' + visible + ' of ' + total + ' resources' : '';
+}
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter = btn.dataset.filter;
+    applyFilters();
+  });
+});
+document.getElementById('search-input').addEventListener('input', e => {
+  searchQuery = e.target.value.toLowerCase().trim();
+  applyFilters();
+});
+</script>
+</body>
+</html>
