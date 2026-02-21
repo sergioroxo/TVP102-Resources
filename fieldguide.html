@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>TVP102 — Field Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0D0D0D;
+    --surface: #161616;
+    --surface2: #1E1E1E;
+    --border: rgba(255,255,255,0.08);
+    --border-bright: rgba(255,255,255,0.18);
+    --amber: #F5A623;
+    --amber-dim: rgba(245,166,35,0.12);
+    --amber-mid: rgba(245,166,35,0.3);
+    --red: #E03C2A;
+    --green: #4AAF6A;
+    --blue: #4A8FD4;
+    --purple: #9B6FD4;
+    --text: #F0EDE8;
+    --text-dim: rgba(240,237,232,0.5);
+    --text-muted: rgba(240,237,232,0.3);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  .site-header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 20px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+  }
+  .header-left { display: flex; flex-direction: column; gap: 2px; }
+  .header-course {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amber);
+  }
+  .header-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 0.06em;
+    color: var(--text);
+    line-height: 1;
+  }
+  .header-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: var(--amber-dim);
+    border: 1px solid var(--amber-mid);
+    color: var(--amber);
+    padding: 4px 10px;
+    border-radius: 2px;
+  }
+  .back-link {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.15s;
+  }
+  .back-link:hover { color: var(--amber); }
+
+  /* ── TABS ── */
+  .tabs-bar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 4px;
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    position: sticky;
+    top: 69px;
+    z-index: 190;
+    gap: 2px;
+  }
+  .tabs-bar::-webkit-scrollbar { display: none; }
+
+  .tab-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 12px 14px 10px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s;
+    flex-shrink: 0;
+  }
+  .tab-btn:hover { color: var(--text-dim); }
+  .tab-btn.active { color: var(--amber); border-bottom-color: var(--amber); }
+
+  /* ── PANELS ── */
+  .panel { display: none; padding: 20px 16px 80px; max-width: 900px; margin: 0 auto; }
+  .panel.active { display: block; }
+
+  /* ── SECTION TITLE ── */
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 0.08em;
+    color: var(--text);
+    margin-bottom: 4px;
+    line-height: 1;
+  }
+  .section-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+  }
+
+  /* ── SHOT CARD ── */
+  .shot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+  .shot-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 14px 14px 12px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.15s;
+  }
+  .shot-card:hover { border-color: var(--border-bright); }
+  .shot-card::before {
+    content: attr(data-abbr);
+    position: absolute;
+    bottom: -4px; right: 6px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    color: rgba(245,166,35,0.06);
+    letter-spacing: 0.04em;
+    pointer-events: none;
+    line-height: 1;
+  }
+  .shot-abbr {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.06em;
+    color: var(--amber);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .shot-name {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text);
+    display: block;
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .shot-desc {
+    font-size: 11px;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+  .shot-frame {
+    width: 100%;
+    height: 52px;
+    margin-bottom: 10px;
+    border-radius: 2px;
+    overflow: hidden;
+    background: var(--surface2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    position: relative;
+  }
+  /* SVG frame diagrams */
+  .shot-frame svg { width: 100%; height: 100%; }
+
+  /* ── MOVEMENT CARD ── */
+  .movement-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 28px; }
+  .movement-row {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    transition: border-color 0.15s;
+  }
+  .movement-row:hover { border-color: var(--border-bright); }
+  .movement-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 0.06em;
+    color: var(--amber);
+    min-width: 110px;
+    flex-shrink: 0;
+    line-height: 1.1;
+  }
+  .movement-desc { font-size: 12px; color: var(--text-dim); line-height: 1.55; }
+  .movement-tip {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-top: 4px;
+    font-style: italic;
+  }
+
+  /* ── ROLES TABLE ── */
+  .roles-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 24px; }
+  .role-row {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 11px 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .role-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+  .role-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text);
+    letter-spacing: 0.05em;
+    min-width: 160px;
+    flex-shrink: 0;
+  }
+  .role-desc { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
+  .dept-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin: 18px 0 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ── COMMANDS ── */
+  .commands-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .command-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .command-word {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 0.06em;
+    min-width: 100px;
+    flex-shrink: 0;
+    line-height: 1.1;
+  }
+  .command-def { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
+
+  /* ── EXPOSURE ── */
+  .exposure-trio {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .exp-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 16px 14px;
+    text-align: center;
+  }
+  .exp-icon {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    line-height: 1;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .exp-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--amber);
+    display: block;
+    margin-bottom: 8px;
+  }
+  .exp-rule {
+    font-size: 11px;
+    color: var(--text-dim);
+    line-height: 1.55;
+  }
+  .exp-example {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--amber);
+    margin-top: 6px;
+    display: block;
+  }
+
+  .formula-box {
+    background: var(--surface);
+    border: 1px solid var(--amber-mid);
+    border-radius: 4px;
+    padding: 14px 16px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .formula-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .formula-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.06em;
+    color: var(--amber);
+  }
+
+  /* ── LIGHTING ── */
+  .light-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .light-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 14px;
+  }
+  .light-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+  .light-desc { font-size: 12px; color: var(--text-dim); line-height: 1.55; }
+
+  /* ── CONTINUITY CHECKLIST ── */
+  .check-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 24px; }
+  .check-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 11px 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+    transition: border-color 0.15s;
+    user-select: none;
+  }
+  .check-item:hover { border-color: var(--border-bright); }
+  .check-item.checked { border-color: var(--green); background: rgba(74,175,106,0.06); }
+  .check-box {
+    width: 18px; height: 18px;
+    border: 1.5px solid var(--border-bright);
+    border-radius: 3px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    transition: all 0.15s;
+  }
+  .check-item.checked .check-box {
+    background: var(--green);
+    border-color: var(--green);
+    color: white;
+  }
+  .check-text { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
+  .check-text strong { color: var(--text); font-weight: 500; }
+  .reset-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    padding: 6px 14px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.15s;
+    margin-bottom: 16px;
+  }
+  .reset-btn:hover { border-color: var(--red); color: var(--red); }
+
+  /* ── COLOUR TEMP ── */
+  .kelvin-bar {
+    height: 32px;
+    border-radius: 4px;
+    background: linear-gradient(to right, #ff8c00, #ffb347, #fff5e0, #fff, #e8f4ff, #c8e0ff, #a0c4ff);
+    margin-bottom: 8px;
+    position: relative;
+  }
+  .kelvin-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .kelvin-label { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--text-muted); text-align: center; }
+  .kelvin-label span { display: block; color: var(--text-dim); font-size: 10px; }
+
+  /* ── UTILITY ── */
+  .subhead {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+    margin-top: 24px;
+  }
+  .info-box {
+    background: var(--amber-dim);
+    border: 1px solid var(--amber-mid);
+    border-radius: 4px;
+    padding: 12px 14px;
+    margin-bottom: 16px;
+  }
+  .info-box p { font-size: 12px; color: var(--text-dim); line-height: 1.6; }
+  .info-box strong { color: var(--amber); }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    padding: 4px 10px;
+    border-radius: 2px;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+  }
+
+  /* ── ASPECT RATIO CARDS ── */
+  .ratio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px; margin-bottom: 20px; }
+  .ratio-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 12px;
+    text-align: center;
+  }
+  .ratio-visual {
+    background: var(--surface2);
+    border: 1px solid var(--border-bright);
+    margin: 0 auto 8px;
+    border-radius: 1px;
+  }
+  .ratio-label { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 0.06em; color: var(--amber); display: block; }
+  .ratio-desc { font-size: 10px; color: var(--text-muted); line-height: 1.4; margin-top: 2px; }
+
+  @media (max-width: 480px) {
+    .exposure-trio { grid-template-columns: 1fr; }
+    .shot-grid { grid-template-columns: repeat(2, 1fr); }
+    .role-title { min-width: 120px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-left">
+    <span class="header-course">TVP102 · UiB</span>
+    <span class="header-title">Field Guide</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <span class="header-badge">On-Set Cheat Sheet</span>
+    <a class="back-link" href="index.html">← Resources</a>
+  </div>
+</header>
+
+<nav class="tabs-bar" id="tabs-bar">
+  <button class="tab-btn active" data-tab="shots">Shot Sizes</button>
+  <button class="tab-btn" data-tab="movement">Movement</button>
+  <button class="tab-btn" data-tab="roles">Roles</button>
+  <button class="tab-btn" data-tab="commands">Commands</button>
+  <button class="tab-btn" data-tab="exposure">Exposure</button>
+  <button class="tab-btn" data-tab="lighting">Lighting</button>
+  <button class="tab-btn" data-tab="continuity">Continuity</button>
+  <button class="tab-btn" data-tab="formats">Formats</button>
+</nav>
+
+<!-- ═══════════════════════════════════════ SHOTS ══ -->
+<div class="panel active" id="panel-shots">
+  <div class="section-title">Shot Sizes</div>
+  <div class="section-sub">Standard framing — use these terms on your shot list and on set</div>
+
+  <div class="shot-grid">
+    <div class="shot-card" data-abbr="EWS">
+      <div class="shot-frame">
+        <svg viewBox="0 0 120 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="120" height="52" fill="#1a1a1a"/>
+          <rect x="54" y="28" width="12" height="14" rx="1" fill="#333"/>
+          <ellipse cx="60" cy="25" rx="5" ry="5" fill="#333"/>
+          <rect x="0" y="38" width="120" height="14" fill="#222"/>
+          <rect x="0" y="0" width="120" height="18" fill="#1E2A3A"/>
+        </svg>
+      </div>
+      <span class="shot-abbr">EWS</span>
+      <span class="shot-name">Extreme Wide Shot</span>
+      <span class="shot-desc">Subject tiny in landscape. Establishes place, scale, isolation.</span>
+    </div>
+
+    <div class="shot-card" data-abbr="WS">
+      <div class="shot-frame">
+        <svg viewBox="0 0 120 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="120" height="52" fill="#1a1a1a"/>
+          <rect x="46" y="12" width="28" height="30" rx="1" fill="#2a2a2a"/>
+          <ellipse cx="60" cy="16" rx="8" ry="8" fill="#333"/>
+          <rect x="50" y="24" width="20" height="18" fill="#2e2e2e"/>
+        </svg>
+      </div>
+      <span class="shot-abbr">WS</span>
+      <span class="shot-name">Wide / Full Shot</span>
+      <span class="shot-desc">Full body with space around. Shows subject in environment.</span>
+    </div>
+
+    <div class="shot-card" data-abbr="MLS">
+      <div class="shot-frame">
+        <svg viewBox="0 0 120 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="120" height="52" fill="#1a1a1a"/>
+          <rect x="42" y="8" width="36" height="44" rx="1" fill="#2a2a2a"/>
+          <ellipse cx="60" cy="13" rx="10" ry="10" fill="#3a3a3a"/>
+          <rect x="46" y="23" width="28" height="29" fill="#303030"/>
+        </svg>
+      </div>
+      <span class="shot-abbr">MLS</span>
+      <span class="shot-name">Medium Long Shot</span>
+      <span class="shot-desc">Knees to top of head. Character and some environment.</span>
+    </div>
+
+    <div class="shot-card" data-abbr="MS">
+      <div class="shot-frame">
+        <svg viewBox="0 0 120 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="120" height="52" fill="#1a1a1a"/>
+          <rect x="36" y="0" width="48" height="52" rx="1" fill="#2a2a2a"/>
+          <ellipse cx="60" cy="10" rx="13" ry="12" fill="#3a3a3a"/>
+          <rect x="40" y="20" width="40" height="32" fill="#303030"/>
+        </svg>
+      </div>
+      <span class="shot-abbr">MS</span>
+      <span class="shot-name">Medium Shot</span>
+      <span class="shot-desc">Waist to top of head. Most common dialogue shot.</span>
+    </div>
+
+    <div class="shot-card" data-abbr="MCU">
+      <div class="shot-frame">
+        <svg viewBox="0 0 120 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="120" height="52" fill="#1a1a1a"/>
+          <rect x="24" y="-6" width="72" height="58" rx="1" fill="#2a2a2a"/>
+          <ellipse cx="60" cy="8" rx="18" ry="17" fill="#3a3a3a"/>
+          <rect x="28" y="22" width="64" height="36" fill="#303030"/>
+        </svg>
+      </div>
+      <span class="shot-abbr">MCU</span>
+      <span class="shot-name">Medium Close-Up</span>
+      <span class="shot-desc">Chest to top of head. Conversational intimacy.</span>
+    </div>
+
+    <div class="shot-card" data-abbr="CU">
+      <div class="shot-frame">
+        <svg viewBox="0 0 120 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="120" height="52" fill="#1a1a1a"/>
+          <ellipse cx="60" cy="20" rx="34" ry="32" fill="#2e2e2e"/>
+          <ellipse cx="48" cy="20" rx="6" ry="7" fill="#3d3d3d"/>
+          <ellipse cx="72" cy="20" rx="6" ry="7" fill="#3d3d3d"/>
+          <rect x="48" y="33" width="24" height="5" rx="2" fill="#3a3a3a"/>
+        </svg>
+      </div>
+      <span class="shot-abbr">CU</span>
+      <span class="shot-name">Close-Up</span>
+      <span class="shot-desc">Face fills frame. Emotion and reaction.</span>
+    </div>
+
+    <div class="shot-card" data-abbr="ECU">
+      <div class="shot-frame">
+        <svg viewBox="0 0 120 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="120" height="52" fill="#1a1a1a"/>
+          <ellipse cx="60" cy="26" rx="50" ry="42" fill="#2e2e2e"/>
+          <ellipse cx="60" cy="26" rx="22" ry="22" fill="#3a3a3a"/>
+          <ellipse cx="60" cy="26" rx="10" ry="10" fill="#222"/>
+          <ellipse cx="65" cy="22" rx="3" ry="3" fill="#555"/>
+        </svg>
+      </div>
+      <span class="shot-abbr">ECU</span>
+      <span class="shot-name">Extreme Close-Up</span>
+      <span class="shot-desc">Single feature: eyes, hands, mouth. Intensity and detail.</span>
+    </div>
+
+    <div class="shot-card" data-abbr="OTS">
+      <div class="shot-frame">
+        <svg viewBox="0 0 120 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="120" height="52" fill="#1a1a1a"/>
+          <rect x="0" y="20" width="38" height="32" rx="1" fill="#222" opacity="0.9"/>
+          <ellipse cx="18" cy="18" rx="14" ry="13" fill="#252525"/>
+          <ellipse cx="80" cy="20" rx="24" ry="22" fill="#2e2e2e"/>
+          <ellipse cx="72" cy="18" rx="5" ry="6" fill="#3a3a3a"/>
+          <ellipse cx="88" cy="18" rx="5" ry="6" fill="#3a3a3a"/>
+          <rect x="66" y="30" width="28" height="4" rx="2" fill="#3a3a3a"/>
+        </svg>
+      </div>
+      <span class="shot-abbr">OTS</span>
+      <span class="shot-name">Over-the-Shoulder</span>
+      <span class="shot-desc">Camera behind one character looking at another.</span>
+    </div>
+
+    <div class="shot-card" data-abbr="POV">
+      <div class="shot-frame">
+        <svg viewBox="0 0 120 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="120" height="52" fill="#1a1a1a"/>
+          <ellipse cx="60" cy="26" rx="55" ry="30" fill="#1E2A3A" opacity="0.6"/>
+          <ellipse cx="60" cy="26" rx="24" ry="22" fill="#2e2e2e"/>
+          <ellipse cx="52" cy="24" rx="5" ry="6" fill="#3a3a3a"/>
+          <ellipse cx="68" cy="24" rx="5" ry="6" fill="#3a3a3a"/>
+          <path d="M40 46 Q60 36 80 46" stroke="#333" stroke-width="3" fill="none"/>
+        </svg>
+      </div>
+      <span class="shot-abbr">POV</span>
+      <span class="shot-name">Point of View</span>
+      <span class="shot-desc">Camera = character's exact eyeline. Subjective.</span>
+    </div>
+
+    <div class="shot-card" data-abbr="INS">
+      <div class="shot-frame">
+        <svg viewBox="0 0 120 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="120" height="52" fill="#1a1a1a"/>
+          <rect x="30" y="12" width="60" height="30" rx="3" fill="#2e2e2e"/>
+          <rect x="38" y="18" width="44" height="18" rx="2" fill="#1a2a3a"/>
+          <rect x="42" y="22" width="16" height="2" rx="1" fill="#4A8FD4" opacity="0.6"/>
+          <rect x="42" y="27" width="28" height="2" rx="1" fill="#333"/>
+        </svg>
+      </div>
+      <span class="shot-abbr">INS</span>
+      <span class="shot-name">Insert Shot</span>
+      <span class="shot-desc">Close-up of object carrying story information.</span>
+    </div>
+
+    <div class="shot-card" data-abbr="2S">
+      <div class="shot-frame">
+        <svg viewBox="0 0 120 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="120" height="52" fill="#1a1a1a"/>
+          <ellipse cx="38" cy="18" rx="12" ry="11" fill="#2e2e2e"/>
+          <rect x="28" y="28" width="20" height="24" fill="#2a2a2a"/>
+          <ellipse cx="82" cy="18" rx="12" ry="11" fill="#2e2e2e"/>
+          <rect x="72" y="28" width="20" height="24" fill="#2a2a2a"/>
+        </svg>
+      </div>
+      <span class="shot-abbr">2S</span>
+      <span class="shot-name">Two-Shot</span>
+      <span class="shot-desc">Two subjects in frame. Relationship and dynamic.</span>
+    </div>
+
+    <div class="shot-card" data-abbr="EST">
+      <div class="shot-frame">
+        <svg viewBox="0 0 120 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="120" height="52" fill="#1E2A3A"/>
+          <rect x="0" y="34" width="120" height="18" fill="#1a2010"/>
+          <rect x="20" y="14" width="14" height="22" fill="#2a3a2a"/>
+          <rect x="42" y="8" width="20" height="28" fill="#2a3a2a"/>
+          <rect x="70" y="18" width="12" height="18" fill="#2a3a2a"/>
+          <rect x="90" y="12" width="16" height="24" fill="#2a3a2a"/>
+          <circle cx="30" cy="12" r="5" fill="#F5A623" opacity="0.4"/>
+        </svg>
+      </div>
+      <span class="shot-abbr">EST</span>
+      <span class="shot-name">Establishing Shot</span>
+      <span class="shot-desc">Opens a scene. Shows where and when we are.</span>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <p><strong>The 180° Rule:</strong> Draw an imaginary line through your two subjects. Keep the camera on one side of this line for the entire scene. Crossing it disorients the viewer spatially — this is a continuity error, not a style choice.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ MOVEMENT ══ -->
+<div class="panel" id="panel-movement">
+  <div class="section-title">Camera Movement</div>
+  <div class="section-sub">Note movement type on every shot in your shot list</div>
+
+  <div class="movement-list">
+    <div class="movement-row">
+      <span class="movement-name">STATIC</span>
+      <div>
+        <div class="movement-desc">Camera locked off on tripod. No movement at all. The dominant shot type in professional cinema — stillness is power, not laziness.</div>
+        <div class="movement-tip">↳ Default choice. Always ask: does this shot need to move?</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name">PAN</span>
+      <div>
+        <div class="movement-desc">Camera head rotates horizontally left or right on a fixed tripod. Follows action, reveals space, connects subjects. Camera does not translate — it pivots.</div>
+        <div class="movement-tip">↳ Pan speed matters enormously. Too fast = whip pan. Too slow = uncomfortable.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name">TILT</span>
+      <div>
+        <div class="movement-desc">Camera head rotates vertically up or down on a fixed tripod. Reveals scale (tilt up a building), follows action vertically, creates dread or awe.</div>
+        <div class="movement-tip">↳ Often combined with other movements — tilt + pan simultaneously.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name">DOLLY</span>
+      <div>
+        <div class="movement-desc">Camera physically moves through space on a wheeled cart along tracks. Moving the entire camera toward (push in) or away (pull out) from subject. Creates parallax — background shifts relative to foreground.</div>
+        <div class="movement-tip">↳ Zoom changes focal length. Dolly changes perspective. Not the same thing.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name">TRACK</span>
+      <div>
+        <div class="movement-desc">Camera moves laterally alongside a moving subject — parallel tracking. Keeps subject in frame while background flows past. Feeling of accompaniment, momentum.</div>
+        <div class="movement-tip">↳ Tracking shots require laid track or a very smooth floor. Plan ahead.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name">HANDHELD</span>
+      <div>
+        <div class="movement-desc">Operator holds camera without stabilisation. Introduces organic wobble, energy, urgency, or unease. The camera becomes a participant in the scene, not an observer.</div>
+        <div class="movement-tip">↳ Intentional handheld ≠ accidentally shaky. Decide before you pick it up.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name">STEADICAM</span>
+      <div>
+        <div class="movement-desc">Camera mounted on a spring-loaded vest rig worn by the operator. Smooth, gliding movement that follows action through complex spaces. Neither locked-off static nor unstable handheld — its own distinct vocabulary.</div>
+        <div class="movement-tip">↳ Requires specialist operator. Don't improvise this on shoot day.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name">CRANE / JIB</span>
+      <div>
+        <div class="movement-desc">Camera elevated on a counterbalanced arm. Reveals environment from above, suggests scale, provides God's-eye view. Often used at the end of a scene to pull away from characters.</div>
+        <div class="movement-tip">↳ Even a simple jib arm creates dramatic elevation changes in small spaces.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name">WHIP PAN</span>
+      <div>
+        <div class="movement-desc">An extremely fast pan that blurs the frame during movement. Used as a transition between scenes or to suggest rapid disorientation. Edgar Wright uses it extensively for comedic and rhythmic effect.</div>
+        <div class="movement-tip">↳ Match direction of blur when cutting to a reverse whip pan in editing.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name">DUTCH ANGLE</span>
+      <div>
+        <div class="movement-desc">Camera tilted on its longitudinal axis — the horizon is diagonal in frame. Suggests psychological unease, instability, moral ambiguity. A stylistic choice, not a correctable error.</div>
+        <div class="movement-tip">↳ Use sparingly — it draws attention to itself. Earn it with context.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ ROLES ══ -->
+<div class="panel" id="panel-roles">
+  <div class="section-title">On-Set Roles</div>
+  <div class="section-sub">Who does what — and who answers to whom</div>
+
+  <div class="info-box">
+    <p><strong>Chain of command:</strong> On a TVP102 set, every crew member takes direction from their department head. Don't give notes across departments — that's the Director and 1st AD's job. If something is wrong, tell your department head first.</p>
+  </div>
+
+  <div class="dept-label">DIRECTION</div>
+  <div class="roles-list">
+    <div class="role-row">
+      <span class="role-dot" style="background:#F5A623"></span>
+      <span class="role-title">Director</span>
+      <span class="role-desc">Overall creative authority. Communicates vision to all departments. Gives direction to actors. The only person who says "Cut" (or delegates this to 1st AD).</span>
+    </div>
+    <div class="role-row">
+      <span class="role-dot" style="background:#F5A623"></span>
+      <span class="role-title">1st AD</span>
+      <span class="role-desc">Runs the floor day-to-day. Calls "Action", "Cut", "Rolling". Manages schedule, safety, and communication between departments. If the Director is the creative brain, the 1st AD is the operational spine.</span>
+    </div>
+  </div>
+
+  <div class="dept-label">PRODUCTION</div>
+  <div class="roles-list">
+    <div class="role-row">
+      <span class="role-dot" style="background:#4A8FD4"></span>
+      <span class="role-title">Producer</span>
+      <span class="role-desc">Manages logistics, budget, and schedule off-camera. Problem-solves before problems reach the set. Produces the call sheet with the 1st AD.</span>
+    </div>
+    <div class="role-row">
+      <span class="role-dot" style="background:#4A8FD4"></span>
+      <span class="role-title">Script Supervisor</span>
+      <span class="role-desc">Monitors continuity shot-to-shot. Logs completed takes, circle takes, and timing. The editor's best friend — their notes are what the edit room works from.</span>
+    </div>
+  </div>
+
+  <div class="dept-label">CAMERA</div>
+  <div class="roles-list">
+    <div class="role-row">
+      <span class="role-dot" style="background:#E03C2A"></span>
+      <span class="role-title">DP / DoP</span>
+      <span class="role-desc">Director of Photography. Responsible for all visual and lighting decisions. Translates the director's vision into specific shots, lighting setups, and lens choices.</span>
+    </div>
+    <div class="role-row">
+      <span class="role-dot" style="background:#E03C2A"></span>
+      <span class="role-title">Camera Operator</span>
+      <span class="role-desc">Physically operates the camera during takes under the DP's guidance. On small productions, the DP often also operates.</span>
+    </div>
+    <div class="role-row">
+      <span class="role-dot" style="background:#E03C2A"></span>
+      <span class="role-title">1st AC (Focus Puller)</span>
+      <span class="role-desc">Manages focus during shots, measures actor distances, and maintains the camera. One of the most technically demanding on-set roles.</span>
+    </div>
+    <div class="role-row">
+      <span class="role-dot" style="background:#E03C2A"></span>
+      <span class="role-title">DIT / Data Wrangler</span>
+      <span class="role-desc">Manages all media cards and file backup during shooting. Never leave a shoot day without two copies of the footage on separate drives.</span>
+    </div>
+  </div>
+
+  <div class="dept-label">LIGHTING & GRIP</div>
+  <div class="roles-list">
+    <div class="role-row">
+      <span class="role-dot" style="background:#F5A623"></span>
+      <span class="role-title">Gaffer</span>
+      <span class="role-desc">Chief electrician. Executes the DP's lighting plan. Responsible for all electrical safety on set.</span>
+    </div>
+    <div class="role-row">
+      <span class="role-dot" style="background:#F5A623"></span>
+      <span class="role-title">Key Grip</span>
+      <span class="role-desc">Manages all non-electrical physical support: dolly tracks, rigging, camera mounts, reflectors, flags. Works closely with the Gaffer.</span>
+    </div>
+  </div>
+
+  <div class="dept-label">SOUND</div>
+  <div class="roles-list">
+    <div class="role-row">
+      <span class="role-dot" style="background:#4AAF6A"></span>
+      <span class="role-title">Sound Recordist / Mixer</span>
+      <span class="role-desc">Captures all on-set audio. Monitors dialogue and ambient levels. Sets recording levels and manages the audio recording device.</span>
+    </div>
+    <div class="role-row">
+      <span class="role-dot" style="background:#4AAF6A"></span>
+      <span class="role-title">Boom Operator</span>
+      <span class="role-desc">Holds and positions the boom microphone to capture dialogue as close as possible without entering frame. A skilled boom op is invisible but invaluable.</span>
+    </div>
+  </div>
+
+  <div class="dept-label">ART DEPARTMENT</div>
+  <div class="roles-list">
+    <div class="role-row">
+      <span class="role-dot" style="background:#9B6FD4"></span>
+      <span class="role-title">Production Designer</span>
+      <span class="role-desc">Responsible for the entire visual world of the film: sets, props, dressing. Works from the director's vision and the DP's lighting plan.</span>
+    </div>
+    <div class="role-row">
+      <span class="role-dot" style="background:#9B6FD4"></span>
+      <span class="role-title">Costume Designer</span>
+      <span class="role-desc">All wardrobe decisions. Maintains costume continuity between scenes — especially critical when scenes are shot out of order.</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ COMMANDS ══ -->
+<div class="panel" id="panel-commands">
+  <div class="section-title">Set Commands</div>
+  <div class="section-sub">The language of the floor — know these before day one</div>
+
+  <div class="subhead">Shooting Sequence</div>
+  <div class="commands-grid">
+    <div class="command-card">
+      <span class="command-word" style="color:#4A8FD4">QUIET ON SET</span>
+      <span class="command-def">Called by 1st AD before a take. All talking, phones, and movement stops immediately.</span>
+    </div>
+    <div class="command-card">
+      <span class="command-word" style="color:#4A8FD4">TURNOVER / ROLL</span>
+      <span class="command-def">1st AD tells camera and sound to begin recording. Both must confirm before action is called.</span>
+    </div>
+    <div class="command-card">
+      <span class="command-word" style="color:#F5A623">ROLLING</span>
+      <span class="command-def">Camera operator confirms the camera is recording. "Rolling" = camera is running.</span>
+    </div>
+    <div class="command-card">
+      <span class="command-word" style="color:#F5A623">SPEED</span>
+      <span class="command-def">Sound Recordist confirms audio is recording. Comes after "Rolling", before "Action".</span>
+    </div>
+    <div class="command-card">
+      <span class="command-word" style="color:#4AAF6A">MARK IT</span>
+      <span class="command-def">Clapperboard is hit in front of camera to create a sync point for picture and sound in post.</span>
+    </div>
+    <div class="command-card">
+      <span class="command-word" style="color:#4AAF6A">ACTION</span>
+      <span class="command-def">Director (or 1st AD at director's instruction) calls this. Actors begin the scene. Not before.</span>
+    </div>
+    <div class="command-card">
+      <span class="command-word" style="color:#E03C2A">CUT</span>
+      <span class="command-def">Director ends the take. No one moves until this is called. Camera and sound keep running until "Cut".</span>
+    </div>
+    <div class="command-card">
+      <span class="command-word" style="color:#E03C2A">CHECK THE GATE</span>
+      <span class="command-def">After the last take of a setup, the 1st AC inspects the camera for dust or debris. Nothing moves until this is cleared.</span>
+    </div>
+    <div class="command-card">
+      <span class="command-word" style="color:#9B6FD4">MOVING ON</span>
+      <span class="command-def">1st AD confirms the gate is good and the shot is complete. Crew begins striking and setting up the next shot.</span>
+    </div>
+    <div class="command-card">
+      <span class="command-word" style="color:#9B6FD4">BACK TO ONE</span>
+      <span class="command-def">Reset. Actors return to their starting positions. Crew resets props and continuity to the top of the scene.</span>
+    </div>
+  </div>
+
+  <div class="subhead">Useful Terms</div>
+  <div class="commands-grid">
+    <div class="command-card">
+      <span class="command-word" style="color:var(--text-dim)">STICKS UP</span>
+      <span class="command-def">Camera is on the tripod. As opposed to handheld or on a rig.</span>
+    </div>
+    <div class="command-card">
+      <span class="command-word" style="color:var(--text-dim)">HOT POINTS</span>
+      <span class="command-def">Warning called when carrying something with extended ends (lighting stand, dolly track) through a crowd.</span>
+    </div>
+    <div class="command-card">
+      <span class="command-word" style="color:var(--text-dim)">TALENT</span>
+      <span class="command-def">On-set shorthand for the actors / performers.</span>
+    </div>
+    <div class="command-card">
+      <span class="command-word" style="color:var(--text-dim)">CRAFTY</span>
+      <span class="command-def">Craft services — the food and drinks table. A very serious priority on any set.</span>
+    </div>
+    <div class="command-card">
+      <span class="command-word" style="color:var(--text-dim)">MARTINI</span>
+      <span class="command-def">The last shot of the day. Named for what comes next.</span>
+    </div>
+    <div class="command-card">
+      <span class="command-word" style="color:var(--text-dim)">ABBY SINGER</span>
+      <span class="command-def">The second-to-last shot of the day. Named after a real production manager.</span>
+    </div>
+    <div class="command-card">
+      <span class="command-word" style="color:var(--text-dim)">ROOM TONE</span>
+      <span class="command-def">Record 30–60 seconds of silence at the end of every location. The sound of the room at rest. Essential for dialogue editing.</span>
+    </div>
+    <div class="command-card">
+      <span class="command-word" style="color:var(--text-dim)">WILD TRACK</span>
+      <span class="command-def">Sound recorded without picture rolling — dialogue, effects, or ambience captured for use in post.</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ EXPOSURE ══ -->
+<div class="panel" id="panel-exposure">
+  <div class="section-title">Exposure</div>
+  <div class="section-sub">The three variables that control how light hits your sensor</div>
+
+  <div class="exposure-trio">
+    <div class="exp-card">
+      <span class="exp-icon" style="color:#F5A623">ISO</span>
+      <span class="exp-label">Sensor Sensitivity</span>
+      <span class="exp-rule">Higher ISO = more light sensitivity = more digital noise/grain. Always shoot at your camera's base ISO when possible.</span>
+      <span class="exp-example">Base ISO: 800 typical<br>Safe range: 100–3200</span>
+    </div>
+    <div class="exp-card">
+      <span class="exp-icon" style="color:#4A8FD4">f/</span>
+      <span class="exp-label">Aperture</span>
+      <span class="exp-rule">Low f-stop (f/1.8) = wide open = shallow depth of field + more light. High f-stop (f/11) = narrow = deep focus + less light.</span>
+      <span class="exp-example">Shallow DOF: f/1.4–f/2.8<br>Deep focus: f/8–f/16</span>
+    </div>
+    <div class="exp-card">
+      <span class="exp-icon" style="color:#4AAF6A">1/</span>
+      <span class="exp-label">Shutter Speed</span>
+      <span class="exp-rule">Controls duration of exposure and motion blur. The 180° rule: shutter speed = 2× frame rate for natural-looking motion.</span>
+      <span class="exp-example">24fps → 1/48s (use 1/50)<br>25fps → 1/50s</span>
+    </div>
+  </div>
+
+  <div class="formula-box">
+    <div class="formula-label">The 180° Shutter Rule</div>
+    <div class="formula-text">Shutter Speed = Frame Rate × 2</div>
+    <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--text-muted);margin-top:6px;">Shooting at 25fps? Set shutter to 1/50. Shooting at 24fps? Set to 1/48 (or 1/50). This gives natural motion blur — the look of cinema.</div>
+  </div>
+
+  <div class="subhead">Colour Temperature (Kelvin)</div>
+  <div class="kelvin-bar"></div>
+  <div class="kelvin-labels">
+    <div class="kelvin-label"><span>1800K</span>Candle</div>
+    <div class="kelvin-label"><span>3200K</span>Tungsten</div>
+    <div class="kelvin-label"><span>4000K</span>Fluorescent</div>
+    <div class="kelvin-label"><span>5500K</span>Daylight</div>
+    <div class="kelvin-label"><span>6500K</span>Overcast</div>
+    <div class="kelvin-label"><span>8000K</span>Shade</div>
+  </div>
+
+  <div class="info-box">
+    <p><strong>White balance tip:</strong> Set manually, never auto — auto WB drifts between takes and creates continuity problems in the colour grade. Shoot a grey card or white card at the start of each lighting setup and use it to correct in post.</p>
+  </div>
+
+  <div class="subhead">Depth of Field Factors</div>
+  <div class="movement-list">
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:15px;min-width:100px;">APERTURE</span>
+      <span class="movement-desc">Wider aperture (lower f-stop) = shallower DOF. Most direct control over background blur.</span>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:15px;min-width:100px;">FOCAL LENGTH</span>
+      <span class="movement-desc">Longer lens (85mm, 135mm) = shallower DOF. Wide lens (24mm) = deeper DOF at same f-stop.</span>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:15px;min-width:100px;">DISTANCE</span>
+      <span class="movement-desc">Closer subject to camera = shallower DOF. Move in before reaching for a wider aperture.</span>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:15px;min-width:100px;">SENSOR SIZE</span>
+      <span class="movement-desc">Full-frame sensors produce shallower DOF than crop sensors at equivalent settings.</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ LIGHTING ══ -->
+<div class="panel" id="panel-lighting">
+  <div class="section-title">Lighting</div>
+  <div class="section-sub">Types, positions, and practical setups</div>
+
+  <div class="subhead">Three-Point Lighting</div>
+  <div class="info-box">
+    <p>The foundation of narrative lighting. Not a formula to follow blindly — a starting point to understand and then break deliberately. <strong>Key → Fill → Back/Rim.</strong> Master this and you can light anything.</p>
+  </div>
+
+  <div class="light-grid">
+    <div class="light-card">
+      <div class="light-name" style="color:#F5A623">KEY LIGHT</div>
+      <div class="light-desc">Primary light source. Determines the direction and mood of the scene. Usually 45° to one side and slightly above the subject. The dominant light.</div>
+    </div>
+    <div class="light-card">
+      <div class="light-name" style="color:#4A8FD4">FILL LIGHT</div>
+      <div class="light-desc">Softens the shadow created by the key. Placed on the opposite side, lower intensity. Controls contrast ratio — how dark the shadow side is.</div>
+    </div>
+    <div class="light-card">
+      <div class="light-name" style="color:#4AAF6A">BACK / RIM LIGHT</div>
+      <div class="light-desc">Behind and above the subject, aimed at their shoulders and hair. Separates them from the background. Creates depth. Often the most cinematic of the three.</div>
+    </div>
+    <div class="light-card">
+      <div class="light-name" style="color:#9B6FD4">PRACTICAL</div>
+      <div class="light-desc">A light source visible in frame — a lamp, a window, a screen. Also used to mean any on-set light motivated by a visible source in the scene world.</div>
+    </div>
+    <div class="light-card">
+      <div class="light-name" style="color:var(--text-dim)">BOUNCE</div>
+      <div class="light-desc">Light reflected off a white card, foam board, or reflector. Softer, more diffuse than direct light. Free and available — a bounce board changes everything.</div>
+    </div>
+    <div class="light-card">
+      <div class="light-name" style="color:var(--text-dim)">NEGATIVE FILL</div>
+      <div class="light-desc">A black card placed to subtract light from the shadow side of a face, increasing contrast. Darkens without adding a light source.</div>
+    </div>
+  </div>
+
+  <div class="subhead">Light Quality</div>
+  <div class="movement-list">
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:15px;min-width:90px;">HARD LIGHT</span>
+      <div>
+        <div class="movement-desc">Small, direct source creates sharp-edged shadows. Dramatic, high-contrast. Direct sun, bare bulb, undiffused LED.</div>
+        <div class="movement-tip">↳ Use for tension, intensity, noir. Unflattering on skin at close range.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:15px;min-width:90px;">SOFT LIGHT</span>
+      <div>
+        <div class="movement-desc">Large or diffused source wraps around subject, creates gradual shadows. Flattering, gentle. Overcast sky, light through diffusion, bounced light.</div>
+        <div class="movement-tip">↳ Larger the source relative to subject = softer the light.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subhead">Contrast Ratio</div>
+  <div class="info-box">
+    <p>The ratio between key and fill light. <strong>1:1</strong> = flat, even (news broadcast). <strong>2:1</strong> = gentle modelling. <strong>4:1</strong> = dramatic narrative look. <strong>8:1+</strong> = noir / high contrast. Know your ratio before you light.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ CONTINUITY ══ -->
+<div class="panel" id="panel-continuity">
+  <div class="section-title">Continuity Checklist</div>
+  <div class="section-sub">Check these between every take — tap to mark as done, reset between setups</div>
+
+  <button class="reset-btn" id="reset-checks">↺ Reset all</button>
+
+  <div class="subhead">Costume & Props</div>
+  <div class="check-list" id="check-list">
+    <div class="check-item" data-id="1">
+      <span class="check-box"></span>
+      <span class="check-text"><strong>Clothing position</strong> — collar, buttons, jacket lapels, sleeves. Are they exactly as they were at the start of the scene?</span>
+    </div>
+    <div class="check-item" data-id="2">
+      <span class="check-box"></span>
+      <span class="check-text"><strong>Hair</strong> — loose strands, parting, position of any accessories. Check against last shot's reference photo.</span>
+    </div>
+    <div class="check-item" data-id="3">
+      <span class="check-box"></span>
+      <span class="check-text"><strong>Props in hand</strong> — which hand, how held, level of any drink in a glass, state of any food item.</span>
+    </div>
+    <div class="check-item" data-id="4">
+      <span class="check-box"></span>
+      <span class="check-text"><strong>Props on set</strong> — position of every object in frame. Take a reference photo before every setup change.</span>
+    </div>
+    <div class="check-item" data-id="5">
+      <span class="check-box"></span>
+      <span class="check-text"><strong>Jewellery & accessories</strong> — rings, watches, glasses, earrings. These disappear between takes more often than anything else.</span>
+    </div>
+  </div>
+
+  <div class="subhead">Performance</div>
+  <div class="check-list">
+    <div class="check-item" data-id="6">
+      <span class="check-box"></span>
+      <span class="check-text"><strong>Action matches</strong> — if cutting mid-action (picking up a cup, turning to look), the action must match from both angles precisely.</span>
+    </div>
+    <div class="check-item" data-id="7">
+      <span class="check-box"></span>
+      <span class="check-text"><strong>Eyeline</strong> — actors must look at the same point in space across angles. Mark an eyeline target if needed.</span>
+    </div>
+    <div class="check-item" data-id="8">
+      <span class="check-box"></span>
+      <span class="check-text"><strong>180° rule respected</strong> — all camera positions on the same side of the action line throughout the scene.</span>
+    </div>
+  </div>
+
+  <div class="subhead">Technical</div>
+  <div class="check-list">
+    <div class="check-item" data-id="9">
+      <span class="check-box"></span>
+      <span class="check-text"><strong>Exposure locked</strong> — if shooting near a window, block light changes or use manual exposure to prevent flicker between takes.</span>
+    </div>
+    <div class="check-item" data-id="10">
+      <span class="check-box"></span>
+      <span class="check-text"><strong>White balance set manually</strong> — auto WB drifts. Set a fixed value at the start of each lighting setup.</span>
+    </div>
+    <div class="check-item" data-id="11">
+      <span class="check-box"></span>
+      <span class="check-text"><strong>Sound speed confirmed</strong> — "Speed" called before every "Action". Never start a take without audio rolling.</span>
+    </div>
+    <div class="check-item" data-id="12">
+      <span class="check-box"></span>
+      <span class="check-text"><strong>Clapper board updated</strong> — scene number, shot number, and take number correct before every take.</span>
+    </div>
+    <div class="check-item" data-id="13">
+      <span class="check-box"></span>
+      <span class="check-text"><strong>Media card capacity</strong> — check remaining recording time before a long take. Back up completed cards before they're reused.</span>
+    </div>
+  </div>
+
+  <div class="subhead">End of Setup</div>
+  <div class="check-list">
+    <div class="check-item" data-id="14">
+      <span class="check-box"></span>
+      <span class="check-text"><strong>Check the gate</strong> — 1st AC inspects camera before moving on. Never strike a setup before this is done.</span>
+    </div>
+    <div class="check-item" data-id="15">
+      <span class="check-box"></span>
+      <span class="check-text"><strong>Reference photo taken</strong> — script supervisor or continuity photographs actors and set before any changes.</span>
+    </div>
+    <div class="check-item" data-id="16">
+      <span class="check-box"></span>
+      <span class="check-text"><strong>Script supervisor notes updated</strong> — take numbers, circle takes, timing, and any continuity notes logged before moving on.</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ FORMATS ══ -->
+<div class="panel" id="panel-formats">
+  <div class="section-title">Formats & Specs</div>
+  <div class="section-sub">Aspect ratios, frame rates, and delivery specifications</div>
+
+  <div class="subhead">Aspect Ratios</div>
+  <div class="ratio-grid">
+    <div class="ratio-card">
+      <div class="ratio-visual" style="width:80px;height:45px;"></div>
+      <span class="ratio-label">1.78:1</span>
+      <span class="ratio-desc">16:9 — Standard HD television and streaming. Most cameras' default.</span>
+    </div>
+    <div class="ratio-card">
+      <div class="ratio-visual" style="width:88px;height:46px;"></div>
+      <span class="ratio-label">1.85:1</span>
+      <span class="ratio-desc">Flat — Standard US theatrical widescreen. Very common for short films.</span>
+    </div>
+    <div class="ratio-card">
+      <div class="ratio-visual" style="width:96px;height:41px;"></div>
+      <span class="ratio-label">2.39:1</span>
+      <span class="ratio-desc">Scope / Anamorphic — Ultra-wide cinematic. Dramatic, epic, expansive.</span>
+    </div>
+    <div class="ratio-card">
+      <div class="ratio-visual" style="width:67px;height:50px;"></div>
+      <span class="ratio-label">4:3</span>
+      <span class="ratio-desc">Academy — Vintage feel. Used stylistically by Wes Anderson, others.</span>
+    </div>
+    <div class="ratio-card">
+      <div class="ratio-visual" style="width:54px;height:54px;"></div>
+      <span class="ratio-label">1:1</span>
+      <span class="ratio-desc">Square — Uncommon. Strong stylistic statement. Instagram-native.</span>
+    </div>
+    <div class="ratio-card">
+      <div class="ratio-visual" style="width:42px;height:54px;"></div>
+      <span class="ratio-label">9:16</span>
+      <span class="ratio-desc">Vertical — Mobile-native. Occasionally used for vertical film formats.</span>
+    </div>
+  </div>
+
+  <div class="subhead">Frame Rates</div>
+  <div class="movement-list">
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:18px;min-width:80px;">24 fps</span>
+      <span class="movement-desc">The cinematic standard. The motion blur and cadence of 24fps is what audiences associate with "film". Used by default for narrative short films worldwide.</span>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:18px;min-width:80px;">25 fps</span>
+      <span class="movement-desc">European broadcast standard (PAL). Very close to 24fps visually. Set shutter to 1/50. The correct default for TVP102 films intended for Norwegian broadcast or streaming.</span>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:18px;min-width:80px;">30 fps</span>
+      <span class="movement-desc">US broadcast standard (NTSC). Looks slightly more "video" than 24/25fps. Used for news, sports, some web content.</span>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:18px;min-width:80px;">48–120 fps</span>
+      <span class="movement-desc">High frame rates. Used for slow-motion playback. Record at 60fps or 120fps to play back at 25fps for 2.4× or 4.8× slow motion respectively.</span>
+    </div>
+  </div>
+
+  <div class="subhead">Codec & Delivery Quick Reference</div>
+  <div class="movement-list">
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:14px;min-width:110px;">H.264 / H.265</span>
+      <span class="movement-desc">Compressed delivery codecs. Small file sizes, widely compatible. Use for online submission, streaming delivery, and any format where file size matters.</span>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:14px;min-width:110px;">ProRes 422</span>
+      <span class="movement-desc">Apple's editing and delivery codec. Large files but excellent quality. Use for intermediate editing or when delivering to a broadcast platform.</span>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:14px;min-width:110px;">RAW</span>
+      <span class="movement-desc">Unprocessed sensor data. Maximum post-production flexibility but very large files. Requires more processing power in the edit. Used when colour grade is a priority.</span>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:14px;min-width:110px;">DCP</span>
+      <span class="movement-desc">Digital Cinema Package — the format used for theatrical projection. If submitting to a film festival with cinema screening, you may need to create a DCP from your master file.</span>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <p><strong>TVP102 delivery note:</strong> Unless specified otherwise by your supervisor, deliver your exam film as an H.264 .mp4 at 1920×1080 (1080p), 25fps, with stereo audio at -3dB peak. Keep your original project files and master export until after grades are confirmed.</p>
+  </div>
+</div>
+
+<script>
+  // ── TABS ──────────────────────────────────────────────────
+  const tabs = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.panel');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  // ── CONTINUITY CHECKLIST ──────────────────────────────────
+  document.querySelectorAll('.check-item').forEach(item => {
+    item.addEventListener('click', () => {
+      item.classList.toggle('checked');
+      item.querySelector('.check-box').textContent = item.classList.contains('checked') ? '✓' : '';
+    });
+  });
+
+  document.getElementById('reset-checks').addEventListener('click', () => {
+    document.querySelectorAll('.check-item').forEach(item => {
+      item.classList.remove('checked');
+      item.querySelector('.check-box').textContent = '';
+    });
+  });
+</script>
+</body>
+</html>
