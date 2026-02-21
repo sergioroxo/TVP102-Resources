@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,6 +28,10 @@
 ║    "postproduction" Post-Production                              ║
 ║    "community"      Community & Ongoing Learning                 ║
 ║    "notion"         Notion & Digital Workspaces                  ║
+║    "software"       Open Source & Free Software                  ║
+║    "stock"          Stock Footage & Inclusive Media              ║
+║    "video"          Video Essays & YouTube Channels             ║
+║    "youtube"        Video Essays & YouTube Channels              ║
 ║                                                                  ║
 ║  BADGE options:                                                  ║
 ║    "FREE"  "FREE TIER"  "ACADEMIC"  "TOOL"  "PAID"  "COMMUNITY" ║
@@ -173,12 +178,106 @@
   footer span { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; }
   footer strong { color: rgba(253,250,244,0.78); }
 
+  /* ── MODE TOGGLE ── */
+  .mode-bar {
+    background: var(--ink); display: flex; justify-content: center;
+    gap: 0; border-bottom: 3px solid var(--rust);
+  }
+  .mode-btn {
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; padding: 14px 36px; border: none; cursor: pointer;
+    background: transparent; color: rgba(253,250,244,0.4); transition: all 0.2s;
+    position: relative;
+  }
+  .mode-btn.active { color: #FDFAF4; background: var(--rust); }
+  .mode-btn:hover:not(.active) { color: rgba(253,250,244,0.75); }
+
+  /* ── QUICK REFERENCE PANEL ── */
+  #ref-panel { display: none; max-width: 1100px; margin: 0 auto; padding: 40px 60px 80px; }
+  #ref-panel.visible { display: block; }
+
+  .ref-tabs { display: flex; gap: 0; flex-wrap: wrap; border-bottom: 2px solid var(--ink); margin-bottom: 36px; }
+  .ref-tab {
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 12px 22px; border: none; background: transparent; color: var(--muted);
+    cursor: pointer; transition: all 0.15s; border-bottom: 3px solid transparent; margin-bottom: -2px;
+  }
+  .ref-tab:hover { color: var(--ink); }
+  .ref-tab.active { color: var(--rust); border-bottom-color: var(--rust); font-weight: 500; }
+
+  .ref-pane { display: none; }
+  .ref-pane.visible { display: block; }
+
+  .ref-pane h3 {
+    font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700;
+    color: var(--ink); margin: 36px 0 14px; padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .ref-pane h3:first-child { margin-top: 0; }
+
+  .ref-pane p {
+    font-size: 13px; line-height: 1.7; color: var(--slate); margin-bottom: 20px; max-width: 680px;
+  }
+
+  /* Reference tables */
+  .ref-table { width: 100%; border-collapse: collapse; margin-bottom: 32px; font-size: 13px; }
+  .ref-table thead tr { background: var(--navy); }
+  .ref-table thead th {
+    font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: #FDFAF4; padding: 11px 16px; text-align: left; font-weight: 500;
+  }
+  .ref-table tbody tr:nth-child(odd) { background: var(--card-bg); }
+  .ref-table tbody tr:nth-child(even) { background: var(--cream); }
+  .ref-table tbody tr:hover { background: #E8E0D0; }
+  .ref-table td { padding: 10px 16px; vertical-align: top; line-height: 1.55; border-bottom: 1px solid var(--border); }
+  .ref-table td:first-child { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; white-space: nowrap; color: var(--ink); }
+  .ref-table td.abbr { color: var(--rust); font-weight: 700; font-size: 12px; }
+  .ref-table td:last-child { color: var(--slate); }
+
+  /* Checklist */
+  .checklist { list-style: none; margin-bottom: 28px; }
+  .checklist-group { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin: 28px 0 10px; display: block; }
+  .checklist li {
+    display: flex; align-items: flex-start; gap: 12px; padding: 9px 14px;
+    border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.5; color: var(--slate);
+    cursor: pointer; transition: background 0.1s; border-radius: 2px;
+  }
+  .checklist li:hover { background: var(--cream); }
+  .checklist li.checked { color: var(--muted); text-decoration: line-through; }
+  .check-box {
+    width: 18px; height: 18px; border: 2px solid var(--border); border-radius: 3px;
+    flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s;
+  }
+  .checklist li.checked .check-box { background: var(--sage); border-color: var(--sage); }
+  .check-box::after { content: '✓'; font-size: 11px; color: white; display: none; }
+  .checklist li.checked .check-box::after { display: block; }
+  .checklist li strong { color: var(--ink); font-weight: 600; }
+  .checklist li.checked strong { color: var(--muted); }
+
+  /* Glossary */
+  .glossary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 32px; }
+  .gloss-item { background: var(--card-bg); border: 1.5px solid var(--border); border-radius: 3px; padding: 12px 16px; }
+  .gloss-term { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; color: var(--navy); margin-bottom: 4px; letter-spacing: 0.05em; }
+  .gloss-def { font-size: 12px; line-height: 1.6; color: var(--slate); }
+
+  .ref-note {
+    background: #EDE7D5; border-left: 3px solid var(--gold); padding: 14px 18px;
+    border-radius: 0 3px 3px 0; font-size: 13px; color: var(--slate); line-height: 1.65;
+    margin-bottom: 24px;
+  }
+  .ref-note strong { color: var(--ink); }
+
   @media (max-width: 700px) {
     header, .controls, .grid-container, footer, .results-bar { padding-left: 20px; padding-right: 20px; }
     .big-count { display: none; }
     .search-wrap { margin-left: 0; width: 100%; }
     .search-wrap input { width: 100%; }
     header { padding-top: 36px; padding-bottom: 32px; }
+    #ref-panel { padding: 28px 20px 60px; }
+    .glossary-grid { grid-template-columns: 1fr; }
+    .ref-tab { padding: 10px 14px; font-size: 10px; }
+    .mode-btn { padding: 12px 22px; }
   }
 </style>
 </head>
@@ -492,7 +591,130 @@ const RESOURCES = [
   { category:"notion", badge:"FREE", source:"Mod Musings",
     title:"Video Production Template (by Matthew Encina)",
     url:"https://www.modmusings.com/video-production-template",
-    description:"Built by a creative director with 20+ years in TV and film production. Covers ideation, research, script writing, shot list, and performance tracking in one guided Notion workspace. Developed from real TV/film industry workflows and adapted for independent filmmakers. Highly practical." }
+    description:"Built by a creative director with 20+ years in TV and film production. Covers ideation, research, script writing, shot list, and performance tracking in one guided Notion workspace. Developed from real TV/film industry workflows and adapted for independent filmmakers. Highly practical." },
+
+  // ── OPEN SOURCE & FREE SOFTWARE ───────────────────────────
+  { category:"software", badge:"FREE", source:"Blackmagic Design",
+    title:"DaVinci Resolve (Free) — Editing, Colour & Audio",
+    url:"https://www.blackmagicdesign.com/products/davinciresolve",
+    description:"The industry standard for colour grading on major productions, and completely free. Handles editing, colour correction, audio mixing (Fairlight), and VFX (Fusion) in one application. No watermarks, no subscription. Strongly recommended over Premiere for TVP102 — the free version has more than students will ever need." },
+
+  { category:"software", badge:"FREE", source:"Kdenlive",
+    title:"Kdenlive — Open Source Video Editor",
+    url:"https://kdenlive.org",
+    description:"Free, open source, multi-platform NLE (Linux, Mac, Windows) built on the KDE framework. Supports multi-track editing, colour correction, audio mixing, keyframes, and a wide range of effects. One of the most mature and capable open source editors available — a strong alternative if students cannot access Premiere or Resolve." },
+
+  { category:"software", badge:"FREE", source:"OpenShot",
+    title:"OpenShot — Beginner-Friendly Open Source Editor",
+    url:"https://www.openshot.org",
+    description:"Free, award-winning open source video editor for Linux, Mac, and Windows. Simpler interface than Kdenlive or Resolve — ideal for students who need a gentle entry point to non-linear editing. Supports unlimited tracks, 3D animated titles, slow motion, and most major formats." },
+
+  { category:"software", badge:"FREE", source:"Shotcut",
+    title:"Shotcut — Cross-Platform Open Source Editor",
+    url:"https://shotcut.org",
+    description:"Free, open source, cross-platform video editor. One of the few open source editors with Apple Silicon (M1/M2 Mac) support. No import required — native timeline editing. Supports 4K, a wide range of audio/video formats, and advanced colour filters. Good middle ground between OpenShot and Kdenlive in complexity." },
+
+  { category:"software", badge:"FREE", source:"Audacity",
+    title:"Audacity — Free Audio Editor & Recorder",
+    url:"https://www.audacityteam.org",
+    description:"The most widely used free, open source audio editor. Excellent for dialogue editing, room tone repair, noise reduction, and basic sound design for student films. Available for Mac, Windows, and Linux. If students don't have access to Premiere's audio tools, Audacity handles most post-production audio tasks." },
+
+  { category:"software", badge:"FREE", source:"Blender Foundation",
+    title:"Blender — Free 3D, VFX & Compositing Suite",
+    url:"https://www.blender.org",
+    description:"Free, fully open source 3D creation suite. Primarily used for 3D animation and VFX, but its compositor and video sequence editor are capable tools for advanced students working with visual effects or motion graphics in their short films. Licensed under GPL — completely free for any use, including commercial." },
+
+  { category:"software", badge:"FREE", source:"OBS Project",
+    title:"OBS Studio — Free Screen Recording & Streaming",
+    url:"https://obsproject.com",
+    description:"Free, open source screen recording and live streaming software. Useful for TVP102 students recording interviews via video call, capturing reference footage, or recording tutorial demonstrations. Available on Mac, Windows, and Linux. Widely used in the industry for remote production capture." },
+
+  { category:"software", badge:"FREE", source:"Handbrake",
+    title:"Handbrake — Free Video Transcoder",
+    url:"https://handbrake.fr",
+    description:"Free, open source video transcoder for Mac, Windows, and Linux. Essential for converting camera footage into edit-friendly formats, compressing files for delivery, or converting between codecs without quality loss. Every film student should have this installed — it solves codec problems that stump beginners." },
+
+  { category:"software", badge:"FREE", source:"Fountain.io",
+    title:"Fountain — Open Source Screenplay Markup",
+    url:"https://fountain.io",
+    description:"Open source plain-text markup language that converts simple text files into properly formatted screenplays. Write in any text editor — no proprietary software needed. Supported by apps like Highland 2, Slugline, and many others. Great for students who want scriptwriting without software lock-in." },
+
+  // ── STOCK FOOTAGE & INCLUSIVE MEDIA ───────────────────────
+  { category:"stock", badge:"FREE", source:"VICE / Broadly",
+    title:"The Gender Spectrum Collection",
+    url:"https://genderspectrum.vice.com",
+    description:"The essential free stock photo library for trans and nonbinary representation in media. Over 180 images of trans and non-binary models shot by photographer Zackary Drucker, available under a Creative Commons licence. Goes beyond clichés — shows trans and nonbinary people in everyday life: at work, in relationships, at home. Required awareness for any TVP102 student creating films with diverse representation." },
+
+  { category:"stock", badge:"FREE", source:"Pexels",
+    title:"Pexels — Free Stock Video & Photo",
+    url:"https://www.pexels.com",
+    description:"Completely free stock video and photography platform. No attribution required for most content. Large library including diverse representation across race, body type, age, and identity. Good source for B-roll, establishing shots, and reference footage. All content is licensed under the Pexels Licence for free use." },
+
+  { category:"stock", badge:"FREE", source:"Mixkit",
+    title:"Mixkit — Free Stock Video including LGBTQIA+",
+    url:"https://mixkit.co/free-stock-video/lgbtqia/",
+    description:"Free 4K and HD stock footage library with a dedicated LGBTQIA+ section. No watermarks, free to download and use. Good source for diverse representation footage when students need cutaways or reference material that doesn't rely on tired stock clichés." },
+
+  { category:"stock", badge:"FREE", source:"Coverr",
+    title:"Coverr — Free Cinematic Stock Footage",
+    url:"https://coverr.co",
+    description:"Curated library of free, high-quality cinematic stock footage with a more thoughtful aesthetic than most stock sites. Good for establishing shots, atmospheric B-roll, and location reference. No attribution required. Regularly updated with new footage across diverse subjects and locations." },
+
+  { category:"stock", badge:"FREE", source:"Pixabay",
+    title:"Pixabay — Free Images, Video & Music",
+    url:"https://pixabay.com",
+    description:"Large community-driven library of free images, video footage, and music released under the Pixabay licence (no attribution required for most content). Useful as a fallback when Pexels doesn't have what students need. Broad coverage of subjects, locations, and demographics." },
+
+  // ── VIDEO ESSAYS & YOUTUBE CHANNELS ──────────────────────
+  { category:"youtube", badge:"FREE", source:"YouTube",
+    title:"Every Frame a Painting",
+    url:"https://www.youtube.com/@everyframeapainting",
+    description:"The channel that defined the video essay form for filmmakers. Tony Zhou and Taylor Ramos dissect the visual grammar of filmmakers including Kurosawa, the Coen Brothers, Edgar Wright, and Martin Scorsese. Inactive since 2016 but every video remains essential — especially 'Edgar Wright – How to Do Visual Comedy' and 'The Spielberg Oner'. Assign individual episodes alongside relevant screenings." },
+
+  { category:"youtube", badge:"FREE", source:"YouTube",
+    title:"Lessons from the Screenplay",
+    url:"https://www.youtube.com/@LessonsFromTheScreenplay",
+    description:"Michael Tucker breaks down produced screenplays to teach story craft — scene construction, dialogue, tone, character. One of the clearest channels for connecting script analysis to what ends up on screen. Particularly strong episodes: The Devil Wears Prada (first ten pages), No Country for Old Men (tension), Arrival (non-linear structure). Essential for TVP102 script development week." },
+
+  { category:"youtube", badge:"FREE", source:"YouTube",
+    title:"Now You See It",
+    url:"https://www.youtube.com/@NowYouSeeIt",
+    description:"Film analysis channel that deconstructs how narrative, cinematography, editing, and performance work together to create meaning. Concise, well-structured essays that give students analytical vocabulary for discussing their own filmmaking choices. Good pre-screening viewing before group discussions." },
+
+  { category:"youtube", badge:"FREE", source:"YouTube",
+    title:"Thomas Flight",
+    url:"https://www.youtube.com/@ThomasFlight",
+    description:"Elegant, precise video essays on visual storytelling, directorial style, and film language. Strong episodes on what makes a 'good' film, colour in cinema, and how modern cinematography has evolved. Particularly good for production design and visual language discussions in TVP102." },
+
+  { category:"youtube", badge:"FREE", source:"YouTube",
+    title:"D4Darious",
+    url:"https://www.youtube.com/@D4Darious",
+    description:"Darious Britt's channel is the most honest and practically useful filmmaking channel on YouTube for independent short film. Covers the full production process from an indie filmmaker's perspective — including failure, budget constraints, and what film school doesn't teach. Highly recommended for TVP102 students who feel intimidated by their first shoot." },
+
+  { category:"youtube", badge:"FREE", source:"YouTube",
+    title:"StudioBinder (YouTube Channel)",
+    url:"https://www.youtube.com/@StudioBinder",
+    description:"The video companion to the StudioBinder blog. Clear, well-produced tutorials on every aspect of filmmaking — shot types, directing techniques, storyboarding, lighting setups, screenwriting. Pairs directly with the written guides already in this database. Good for students who learn better from video than reading." },
+
+  { category:"youtube", badge:"FREE", source:"YouTube",
+    title:"Corridor Crew",
+    url:"https://www.youtube.com/@CorridorCrew",
+    description:"Professional VFX artists react to and break down visual effects in film and television. Excellent for understanding how the images students see in films are actually constructed — lighting, compositing, camera trickery, and practical vs digital effects. Entertaining and genuinely educational. Builds critical visual awareness." },
+
+  { category:"youtube", badge:"FREE", source:"YouTube / TIFF",
+    title:"TIFF — Toronto International Film Festival",
+    url:"https://www.youtube.com/@TIFF_NET",
+    description:"The official TIFF YouTube channel. Features filmmaker Q&As, director masterclasses, in-depth interviews, and panel discussions from one of the world's most important film festivals. Rich archive of working directors discussing their process. Particularly valuable: the 'In Conversation With…' masterclass series." },
+
+  { category:"youtube", badge:"FREE", source:"YouTube",
+    title:"Nerdwriter1",
+    url:"https://www.youtube.com/@Nerdwriter1",
+    description:"Evan Puschak's essayistic video channel ranges across art, philosophy, and cinema. His film-related essays are among the most thoughtful on YouTube — particularly strong on the relationship between framing, music, and emotional effect. Good for broadening students' cultural and analytical vocabulary beyond technical filmmaking." },
+
+  { category:"youtube", badge:"FREE", source:"YouTube",
+    title:"Film Riot",
+    url:"https://www.youtube.com/@filmriot",
+    description:"Long-running practical filmmaking channel covering cinematography effects, visual effects, post-production techniques, and behind-the-scenes production. Over a decade of content aimed at independent filmmakers working with limited gear. Particularly strong for students wanting to go beyond the basics of shooting and editing." }
 
 ]; // ← END OF RESOURCES — add new entries above this line
 
@@ -508,7 +730,10 @@ const SECTIONS = [
   { id:"sound",          label:"Sound & Music",                      color:"#4A6741", sub:"Royalty-free music and sound effects" },
   { id:"postproduction", label:"Post-Production & Editing",          color:"#3D4F5C", sub:"Editing guides, colour, delivery" },
   { id:"community",      label:"Community & Ongoing Learning",       color:"#7A7060", sub:"Blogs, forums, and industry news" },
-  { id:"notion",         label:"Notion & Digital Workspaces",         color:"#6B4F8A", sub:"Templates for organising your production in Notion" }
+  { id:"notion",         label:"Notion & Digital Workspaces",        color:"#6B4F8A", sub:"Templates for organising your production in Notion" },
+  { id:"software",       label:"Open Source & Free Software",        color:"#2A6B5C", sub:"Free tools for every stage of production" },
+  { id:"stock",          label:"Stock Footage & Inclusive Media",    color:"#8A3A5C", sub:"Free footage, diverse & representative resources" },
+  { id:"youtube",        label:"Video Essays & YouTube",             color:"#CC0000", sub:"Essential channels and essays for film students" }
 ];
 </script>
 
@@ -524,7 +749,254 @@ const SECTIONS = [
   <div class="big-count"><em id="big-num">—</em>resources</div>
 </header>
 
-<div class="controls" id="controls">
+<!-- ── MODE TOGGLE ── -->
+<div class="mode-bar">
+  <button class="mode-btn active" id="mode-resources">📂 Resources</button>
+  <button class="mode-btn" id="mode-reference">📋 Quick Reference</button>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!--  QUICK REFERENCE PANEL                                    -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div id="ref-panel">
+
+  <div class="ref-tabs">
+    <button class="ref-tab active" data-tab="shots">🎬 Shot Types</button>
+    <button class="ref-tab" data-tab="movement">📷 Camera Movement</button>
+    <button class="ref-tab" data-tab="roles">🎭 On-Set Roles</button>
+    <button class="ref-tab" data-tab="preprod">✅ Pre-Production Checklist</button>
+    <button class="ref-tab" data-tab="postprod">✂️ Post-Production Checklist</button>
+    <button class="ref-tab" data-tab="glossary">📖 Glossary</button>
+  </div>
+
+  <!-- ── SHOT TYPES ── -->
+  <div class="ref-pane visible" id="tab-shots">
+    <p>Standard shot sizes used in shot lists, storyboards, and on-set communication. Every crew member uses this vocabulary — knowing it fluently is one of the most important early skills in filmmaking.</p>
+    <div class="ref-note"><strong>Tip:</strong> Shot size is always relative to the human body. When in doubt, describe what is cut off — "waist up" is a Medium Shot, "chest up" is a Medium Close-Up.</div>
+    <table class="ref-table">
+      <thead><tr><th>Shot Name</th><th>Abbr.</th><th>What it shows</th><th>When to use it</th></tr></thead>
+      <tbody>
+        <tr><td>Extreme Wide Shot</td><td class="abbr">EWS</td><td>Subject tiny in large landscape</td><td>Establishing place, scale, isolation, grand reveals</td></tr>
+        <tr><td>Wide Shot / Full Shot</td><td class="abbr">WS / FS</td><td>Entire body with space around</td><td>Full character in environment — action, entrances, exits</td></tr>
+        <tr><td>Medium Long Shot</td><td class="abbr">MLS</td><td>Knees to top of head</td><td>Character and surroundings together — walking, light action</td></tr>
+        <tr><td>Medium Shot</td><td class="abbr">MS</td><td>Waist to top of head</td><td>The workhorse — most dialogue and action coverage</td></tr>
+        <tr><td>Medium Close-Up</td><td class="abbr">MCU</td><td>Chest / shoulders to top of head</td><td>Conversational intimacy — standard TV dialogue shot</td></tr>
+        <tr><td>Close-Up</td><td class="abbr">CU</td><td>Face fills the frame</td><td>Emotion, reaction, key story beats</td></tr>
+        <tr><td>Extreme Close-Up</td><td class="abbr">ECU</td><td>Single feature: eyes, mouth, hands</td><td>Intense emotion, detail, stylistic emphasis</td></tr>
+        <tr><td>Over-the-Shoulder</td><td class="abbr">OTS</td><td>Camera behind one character, looking at other</td><td>Dialogue coverage — shows relationship and space between characters</td></tr>
+        <tr><td>Point of View</td><td class="abbr">POV</td><td>Camera is the character's exact eyeline</td><td>Subjective experience — what a character sees</td></tr>
+        <tr><td>Insert Shot</td><td class="abbr">INS</td><td>Close-up of object or narrative detail</td><td>Directing audience attention to story information</td></tr>
+        <tr><td>Cutaway</td><td class="abbr">CA</td><td>Shot of something other than main action</td><td>Context, reaction, time jumps, edit flexibility</td></tr>
+        <tr><td>Two-Shot</td><td class="abbr">2S</td><td>Two people in frame together</td><td>Dialogue — shows both characters without cutting</td></tr>
+      </tbody>
+    </table>
+    <h3>Composition Principles</h3>
+    <table class="ref-table">
+      <thead><tr><th>Rule</th><th>What it means</th></tr></thead>
+      <tbody>
+        <tr><td>Rule of Thirds</td><td>Divide frame into 3×3 grid. Place subjects at intersections, not dead centre. Creates dynamic, balanced compositions.</td></tr>
+        <tr><td>Leading Room</td><td>Leave space in the direction a subject is looking or moving. Without it, the frame feels cramped.</td></tr>
+        <tr><td>Headroom</td><td>The space between the top of a subject's head and the top of frame. Too much looks wrong. Too little feels claustrophobic.</td></tr>
+        <tr><td>180° Rule</td><td>Keep camera on one side of an imaginary line between two characters. Crossing the line reverses screen direction and disorients the viewer.</td></tr>
+        <tr><td>Depth</td><td>Layer foreground, midground, background to create three-dimensionality. Flat compositions lack visual interest.</td></tr>
+        <tr><td>Dutch Angle</td><td>Camera tilted on its axis. Use sparingly — signals unease, disorientation, or stylisation.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── CAMERA MOVEMENT ── -->
+  <div class="ref-pane" id="tab-movement">
+    <p>Camera movement communicates meaning. Every movement should be motivated — by story, emotion, or character. Unmotivated movement draws attention to itself and breaks immersion.</p>
+    <div class="ref-note"><strong>Rule of thumb:</strong> When in doubt, stay STATIC. A locked-off camera is almost always the right choice. Movement should feel earned.</div>
+    <table class="ref-table">
+      <thead><tr><th>Movement</th><th>How it works</th><th>What it communicates</th></tr></thead>
+      <tbody>
+        <tr><td>STATIC</td><td>Camera locked on tripod, no movement</td><td>Stability, objectivity, control. The dominant shot in most films.</td></tr>
+        <tr><td>PAN</td><td>Camera rotates horizontally on fixed axis (left–right)</td><td>Reveals space, follows action, connects two elements in a scene</td></tr>
+        <tr><td>TILT</td><td>Camera rotates vertically on fixed axis (up–down)</td><td>Reveals height, scale — establishing power dynamics or grandeur</td></tr>
+        <tr><td>TRACK / DOLLY</td><td>Camera moves physically through space (parallel to subject)</td><td>Travels with characters, creates intimacy and movement energy</td></tr>
+        <tr><td>PUSH IN</td><td>Camera moves toward subject on dolly or slider</td><td>Intensification, revelation, increasing pressure or significance</td></tr>
+        <tr><td>PULL OUT</td><td>Camera moves away from subject</td><td>Isolation, distance, loss — character becoming small in the world</td></tr>
+        <tr><td>HANDHELD</td><td>Operator holds camera without stabilisation</td><td>Energy, chaos, naturalism, urgency — use deliberately</td></tr>
+        <tr><td>STEADICAM</td><td>Camera on stabilised body rig</td><td>Smooth gliding movement — follows action fluidly without shake</td></tr>
+        <tr><td>CRANE / JIB</td><td>Camera elevated on a mechanical arm</td><td>Reveals scale, perspective, environment — grand or god-like viewpoint</td></tr>
+        <tr><td>AERIAL / DRONE</td><td>Camera lifted by drone or helicopter</td><td>Extreme scale, geography, visual spectacle</td></tr>
+      </tbody>
+    </table>
+    <h3>Exposure Triangle — Quick Reference</h3>
+    <p>Three settings control exposure on any camera. All three interact — changing one affects the others.</p>
+    <table class="ref-table">
+      <thead><tr><th>Setting</th><th>Controls</th><th>Student rule of thumb</th></tr></thead>
+      <tbody>
+        <tr><td>ISO</td><td>Sensor sensitivity to light</td><td>Shoot at your camera's base ISO (usually 400–800). Higher ISO = more noise/grain.</td></tr>
+        <tr><td>Aperture (f-stop)</td><td>Size of the iris opening</td><td>Low f-stop (f/1.8) = wide open = shallow depth of field + more light. High f-stop (f/11) = deep focus + less light.</td></tr>
+        <tr><td>Shutter Speed</td><td>Duration of each frame's exposure</td><td>Use 2× your frame rate: shooting at 25fps → use 1/50 shutter. This gives natural motion blur.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── ON-SET ROLES ── -->
+  <div class="ref-pane" id="tab-roles">
+    <p>Film sets operate on a clear chain of command. In TVP102, students rotate through these roles — but every shoot should have someone assigned to each key position. Knowing who is responsible for what prevents confusion and keeps things safe.</p>
+    <div class="ref-note"><strong>Important:</strong> On set, address concerns through your department head — not directly across departments. Questions about lighting go to the Gaffer or DP, not directly to the Director during a take.</div>
+    <h3>Creative & Direction</h3>
+    <table class="ref-table">
+      <thead><tr><th>Role</th><th>Responsible for</th></tr></thead>
+      <tbody>
+        <tr><td>Director</td><td>Overall creative vision. Communicates to all departments. Only person who gives direction to actors. Final word on all creative decisions.</td></tr>
+        <tr><td>Director of Photography (DP / DoP)</td><td>All visual and lighting decisions. Works in direct partnership with the Director. Responsible for every frame.</td></tr>
+        <tr><td>Camera Operator</td><td>Physically operates the camera during takes. Follows the DP's guidance. Reports to the DP, not the Director directly.</td></tr>
+      </tbody>
+    </table>
+    <h3>Production Management</h3>
+    <table class="ref-table">
+      <thead><tr><th>Role</th><th>Responsible for</th></tr></thead>
+      <tbody>
+        <tr><td>Producer</td><td>Logistics, budget, and schedule. Solves problems off-camera. Keeps the production on track. Does not give creative direction.</td></tr>
+        <tr><td>1st Assistant Director (1st AD)</td><td>Runs the set day-to-day. Manages schedule, calls "Quiet on set", "Rolling", "Action", and "Cut" at Director's request. Safety is 1st AD's responsibility.</td></tr>
+        <tr><td>Script Supervisor (Continuity)</td><td>Monitors continuity shot-to-shot. Logs completed takes and notes best takes. Keeps script notes for editing.</td></tr>
+      </tbody>
+    </table>
+    <h3>Technical Departments</h3>
+    <table class="ref-table">
+      <thead><tr><th>Role</th><th>Responsible for</th></tr></thead>
+      <tbody>
+        <tr><td>Gaffer</td><td>Chief lighting technician. Executes the DP's lighting plan with the electrical department.</td></tr>
+        <tr><td>Sound Recordist / Mixer</td><td>Captures and monitors all on-set audio. Manages recording equipment and levels. Reports any sound problems immediately.</td></tr>
+        <tr><td>Boom Operator</td><td>Holds the boom microphone as close as possible to actors without entering frame. Reports to the Sound Recordist.</td></tr>
+        <tr><td>Data Wrangler / DIT</td><td>Manages all memory cards, backups, and file organisation during shooting. Never let a card go missing.</td></tr>
+      </tbody>
+    </table>
+    <h3>Art Department</h3>
+    <table class="ref-table">
+      <thead><tr><th>Role</th><th>Responsible for</th></tr></thead>
+      <tbody>
+        <tr><td>Production Designer / Art Director</td><td>The visual world of the film: sets, props, dressing, colours. Works with Director and DP from pre-production.</td></tr>
+        <tr><td>Costume Designer</td><td>All wardrobe decisions. Maintains costume continuity between scenes — critical when shooting out of order.</td></tr>
+        <tr><td>Hair & Makeup</td><td>All hair and makeup continuity. First department called each shoot day — sets the look from which everything else follows.</td></tr>
+      </tbody>
+    </table>
+    <h3>On-Set Language — Commands Everyone Must Know</h3>
+    <table class="ref-table">
+      <thead><tr><th>Command</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td>"Quiet on set"</td><td>Called by 1st AD — everyone stops talking immediately. No movement, no phones.</td></tr>
+        <tr><td>"Rolling"</td><td>Camera is now recording. Do not move, speak, or enter frame.</td></tr>
+        <tr><td>"Speed"</td><td>Sound is now recording and levels are good.</td></tr>
+        <tr><td>"Action"</td><td>Scene begins. Called by Director (sometimes 1st AD on Director's instruction).</td></tr>
+        <tr><td>"Cut"</td><td>Scene ends. Wait for "Cut" before moving — never cut yourself.</td></tr>
+        <tr><td>"Check the gate"</td><td>DP inspects camera for debris after the last take of a setup before moving on.</td></tr>
+        <tr><td>"Moving on"</td><td>Current setup is complete. Crew begins striking and setting up the next shot.</td></tr>
+        <tr><td>"Wrap"</td><td>End of shooting for the day — or for the whole production.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── PRE-PRODUCTION CHECKLIST ── -->
+  <div class="ref-pane" id="tab-preprod">
+    <p>Work through this checklist before your first day of shooting. Every item should be <em>confirmed</em>, not assumed. A missing call sheet or unsigned location agreement can shut down a production day.</p>
+    <div class="ref-note"><strong>Print this out</strong> and pin it to your production folder. Check items off physically — it prevents things slipping through.</div>
+    <ul class="checklist" id="checklist-pre">
+      <span class="checklist-group">Script & Story</span>
+      <li><div class="check-box"></div><div><strong>Script locked</strong> — no more story changes after this point</div></li>
+      <li><div class="check-box"></div><div>Script formatted correctly in screenwriting software (Celtx, WriterDuet)</div></li>
+      <li><div class="check-box"></div><div>Script breakdown completed — all elements tagged and colour-coded by scene</div></li>
+      <li><div class="check-box"></div><div>One-page treatment written and approved by supervisor</div></li>
+      <li><div class="check-box"></div><div>Logline finalised</div></li>
+      <span class="checklist-group">Visual Planning</span>
+      <li><div class="check-box"></div><div><strong>Storyboard completed</strong> for all key scenes</div></li>
+      <li><div class="check-box"></div><div>Shot list completed for every scene in the script</div></li>
+      <li><div class="check-box"></div><div>Shot list shared and approved by DP and 1st AD</div></li>
+      <li><div class="check-box"></div><div>Coverage plan confirmed (master + coverage for every dialogue scene)</div></li>
+      <li><div class="check-box"></div><div>Moodboard / visual references compiled and shared with DP and Art Dept.</div></li>
+      <span class="checklist-group">Logistics</span>
+      <li><div class="check-box"></div><div><strong>Shooting schedule drafted and approved</strong> by all department heads</div></li>
+      <li><div class="check-box"></div><div>Call sheets prepared for each shooting day</div></li>
+      <li><div class="check-box"></div><div>All locations confirmed and agreements signed</div></li>
+      <li><div class="check-box"></div><div>Location recce (technical scout) conducted for each location</div></li>
+      <li><div class="check-box"></div><div>Equipment list finalised and all bookings confirmed</div></li>
+      <li><div class="check-box"></div><div>Crew list finalised — roles assigned and confirmed with each person</div></li>
+      <li><div class="check-box"></div><div>Cast confirmed — release forms signed by all</div></li>
+      <li><div class="check-box"></div><div>Transport and parking arranged for all shoot days</div></li>
+      <li><div class="check-box"></div><div>Catering / meals planned for shoot days</div></li>
+      <li><div class="check-box"></div><div>Emergency contact list distributed to all crew</div></li>
+      <span class="checklist-group">Sound & Technical</span>
+      <li><div class="check-box"></div><div>Sound plan confirmed: dialogue, ambient, music, SFX strategy</div></li>
+      <li><div class="check-box"></div><div>Microphone setup and recording strategy agreed with sound team</div></li>
+      <li><div class="check-box"></div><div>Camera settings confirmed: resolution, frame rate, colour profile</div></li>
+      <li><div class="check-box"></div><div>Lighting plan sketched for major setups</div></li>
+      <li><div class="check-box"></div><div>Data management plan in place: cards, backup drives, file naming convention</div></li>
+    </ul>
+    <p style="font-size:12px; color:var(--muted); font-style:italic;">Check items off as you complete them — they reset when you refresh the page.</p>
+  </div>
+
+  <!-- ── POST-PRODUCTION CHECKLIST ── -->
+  <div class="ref-pane" id="tab-postprod">
+    <p>Post-production begins the moment you wrap your last shooting day. Follow this workflow: ingest → assembly cut → rough cut → fine cut → picture lock → sound → colour → export.</p>
+    <div class="ref-note"><strong>3-2-1 Backup Rule:</strong> 3 copies of your footage, on 2 different media types, with 1 copy off-site. Lose your footage, lose your film. Back up before you do anything else.</div>
+    <ul class="checklist" id="checklist-post">
+      <span class="checklist-group">Ingest & Organisation</span>
+      <li><div class="check-box"></div><div><strong>All footage ingested and backed up to at least two drives</strong></div></li>
+      <li><div class="check-box"></div><div>Files organised in folders or bins by scene and camera</div></li>
+      <li><div class="check-box"></div><div>Project settings confirmed: frame rate, resolution, and codec match camera</div></li>
+      <span class="checklist-group">Editing</span>
+      <li><div class="check-box"></div><div>Assembly cut completed — all selected takes in rough script order</div></li>
+      <li><div class="check-box"></div><div>Rough cut reviewed with supervisor or trusted collaborator</div></li>
+      <li><div class="check-box"></div><div>Fine cut completed — shot-by-shot timing and performance choices finalised</div></li>
+      <li><div class="check-box"></div><div><strong>Picture locked</strong> — no further changes to cut after this point</div></li>
+      <span class="checklist-group">Sound</span>
+      <li><div class="check-box"></div><div>Dialogue cleaned: pops, mouth sounds, and room tone inconsistencies addressed</div></li>
+      <li><div class="check-box"></div><div>Room tone / ambience laid under all dialogue scenes</div></li>
+      <li><div class="check-box"></div><div>Sound effects and foley layers added</div></li>
+      <li><div class="check-box"></div><div>Music temp track replaced with cleared / licensed / original music</div></li>
+      <li><div class="check-box"></div><div>Final sound mix: dialogue, music, and SFX balanced — -23 LUFS for broadcast, -16 LUFS for web</div></li>
+      <span class="checklist-group">Colour & Titles</span>
+      <li><div class="check-box"></div><div>Colour correction: exposure and white balance consistent across all scenes</div></li>
+      <li><div class="check-box"></div><div>Colour grade applied and approved</div></li>
+      <li><div class="check-box"></div><div>Opening titles and end credits formatted correctly</div></li>
+      <span class="checklist-group">Export & Delivery</span>
+      <li><div class="check-box"></div><div>Exported to required delivery format (H.264 or ProRes for most submissions)</div></li>
+      <li><div class="check-box"></div><div>Export reviewed on a second screen or device — not just your edit monitor</div></li>
+      <li><div class="check-box"></div><div>File named correctly per submission requirements</div></li>
+    </ul>
+    <p style="font-size:12px; color:var(--muted); font-style:italic;">Check items off as you complete them — they reset when you refresh the page.</p>
+  </div>
+
+  <!-- ── GLOSSARY ── -->
+  <div class="ref-pane" id="tab-glossary">
+    <p>Key terms you will encounter in TVP102 and on any film set. If you hear a word you don't recognise on set, this is your first stop.</p>
+    <div class="glossary-grid">
+      <div class="gloss-item"><div class="gloss-term">1st AD</div><div class="gloss-def">1st Assistant Director. Runs the set day-to-day. Manages schedule, safety, and communication between departments.</div></div>
+      <div class="gloss-item"><div class="gloss-term">ADR</div><div class="gloss-def">Automated Dialogue Replacement. Re-recording dialogue in post to replace unusable location audio.</div></div>
+      <div class="gloss-item"><div class="gloss-term">Aperture</div><div class="gloss-def">The size of the lens iris opening, measured in f-stops. Controls depth of field and how much light hits the sensor.</div></div>
+      <div class="gloss-item"><div class="gloss-term">Call Sheet</div><div class="gloss-def">Daily document listing call times, scenes, cast, crew, and location. Distributed the evening before each shoot day.</div></div>
+      <div class="gloss-item"><div class="gloss-term">Coverage</div><div class="gloss-def">The range of shots used to cover a scene: master + singles + inserts. Good coverage protects you in the edit.</div></div>
+      <div class="gloss-item"><div class="gloss-term">Depth of Field</div><div class="gloss-def">The range of distances in front of the camera that appear sharp. Shallow DoF = subject sharp, background blurred. Controlled by aperture.</div></div>
+      <div class="gloss-item"><div class="gloss-term">DP / DoP</div><div class="gloss-def">Director of Photography. Responsible for all visual and lighting decisions on set.</div></div>
+      <div class="gloss-item"><div class="gloss-term">Foley</div><div class="gloss-def">Custom sound effects created in post by performers mimicking actions — footsteps, fabric, props.</div></div>
+      <div class="gloss-item"><div class="gloss-term">Frame Rate</div><div class="gloss-def">Frames captured per second. 24fps = cinematic feel. 25fps = European broadcast standard. Use consistently throughout your project.</div></div>
+      <div class="gloss-item"><div class="gloss-term">Gaffer</div><div class="gloss-def">Chief lighting technician. Executes the DP's lighting plan with the electrical team.</div></div>
+      <div class="gloss-item"><div class="gloss-term">ISO</div><div class="gloss-def">Sensor sensitivity to light. Higher ISO = more sensitivity = more digital grain/noise. Shoot at base ISO where possible.</div></div>
+      <div class="gloss-item"><div class="gloss-term">Key Light</div><div class="gloss-def">The primary light source illuminating the subject. The dominant light in any lighting setup.</div></div>
+      <div class="gloss-item"><div class="gloss-term">Locked Script</div><div class="gloss-def">Final version of the screenplay. No story changes occur after this point — pre-production begins in earnest from here.</div></div>
+      <div class="gloss-item"><div class="gloss-term">Logline</div><div class="gloss-def">One-to-two sentence summary of a film: protagonist + goal + conflict + stakes.</div></div>
+      <div class="gloss-item"><div class="gloss-term">NLE</div><div class="gloss-def">Non-Linear Editor. Video editing software such as Premiere Pro, Final Cut Pro, or DaVinci Resolve.</div></div>
+      <div class="gloss-item"><div class="gloss-term">Picture Lock</div><div class="gloss-def">The point in post-production when the edit is final. No further cuts are made. Sound and colour begin here.</div></div>
+      <div class="gloss-item"><div class="gloss-term">Recce / Tech Scout</div><div class="gloss-def">Pre-shoot visit to a location to plan camera positions, lighting, sound, and logistics.</div></div>
+      <div class="gloss-item"><div class="gloss-term">Room Tone</div><div class="gloss-def">The ambient sound of a location recorded without dialogue. Always record 30–60 seconds. Used in editing to fill gaps.</div></div>
+      <div class="gloss-item"><div class="gloss-term">Script Breakdown</div><div class="gloss-def">Systematic analysis of each scene to identify all required elements: cast, props, locations, costumes, SFX, VFX.</div></div>
+      <div class="gloss-item"><div class="gloss-term">Shot List</div><div class="gloss-def">Document listing every planned shot: size, movement, subject, lens, and notes. The operational companion to the storyboard.</div></div>
+      <div class="gloss-item"><div class="gloss-term">Shutter Speed</div><div class="gloss-def">How long each frame is exposed. Film rule: set to 2× your frame rate (25fps → 1/50 shutter) for natural motion blur.</div></div>
+      <div class="gloss-item"><div class="gloss-term">Storyboard</div><div class="gloss-def">Panel-by-panel visual representation of the film showing framing, composition, and action before shooting begins.</div></div>
+      <div class="gloss-item"><div class="gloss-term">Sync Sound</div><div class="gloss-def">Audio recorded at the same time as picture on set, as opposed to ADR or library sound.</div></div>
+      <div class="gloss-item"><div class="gloss-term">Treatment</div><div class="gloss-def">Prose description of a film from beginning to end, 1–5 pages. Written before the screenplay — used for development and approval.</div></div>
+      <div class="gloss-item"><div class="gloss-term">White Balance</div><div class="gloss-def">Camera setting that defines what "white" looks like in a given light source. Incorrect white balance makes footage look orange or blue.</div></div>
+      <div class="gloss-item"><div class="gloss-term">Wrap</div><div class="gloss-def">Official end of shooting — for the day ("that's a wrap on today") or for the entire production ("that's a series wrap").</div></div>
+    </div>
+  </div>
+
+</div>
+<!-- end #ref-panel -->
   <span class="filter-label">Filter:</span>
   <button class="filter-btn active" data-filter="all">All</button>
   <div class="search-wrap">
