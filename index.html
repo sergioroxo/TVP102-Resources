@@ -86,7 +86,6 @@ header h1 em { font-style: normal; color: var(--rust); }
 .bFREE { background: var(--sage-light); color: var(--sage); }
 .bFREETIER { background: #e8f0e8; color: var(--sage); }
 .bACADEMIC { background: #dde4f0; color: var(--navy); }
-.bTOOL { background: #f0ead6; color: var(--gold); }
 .bPAID { background: #eee; color: #555; }
 .bCOMMUNITY { background: #f0e0da; color: var(--rust); }
 .card h3 { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; line-height: 1.3; }
@@ -380,6 +379,16 @@ const RESOURCES = [
   url:"https://ccmixter.org",
   description:"Community platform for CC music. Good source for ambient and atmospheric tracks. Attribution usually required — always check licence before festival submission." },
 
+        { category:"sound", badge:"FREE", source:"Transom.org",
+        title:"Transom — Field Recording & Audio Production",
+        url:"https://transom.org",
+        description:"The definitive resource for location sound recording. Articles, tools, and technique guides from professional radio and documentary sound practitioners. Invaluable for boom technique and mic placement." },
+
+        { category:"sound", badge:"FREE", source:"StudioBinder",
+        title:"The Complete Guide to Recording Film Sound",
+        url:"https://www.studiobinder.com/blog/sound-recording/",
+        description:"Covers boom technique, lavalier placement, location sound challenges, and post-production audio workflow. Good companion to on-set audio practice." },
+
 // ── POST-PRODUCTION ────────────────────────────────────
 { category:"postproduction", badge:"ACADEMIC", source:"University of Toronto",
   title:"Adobe Premiere Pro Guide (UofT)",
@@ -464,10 +473,7 @@ const RESOURCES = [
   description:"Built by a creative director with 20+ years in TV and film. Covers ideation, research, script writing, shot list, and performance tracking. Developed from real industry workflows." },
 
 // ── SOFTWARE ──────────────────────────────────────────
-{ category:"software", badge:"FREE", source:"Blackmagic Design",
-  title:"DaVinci Resolve — Free NLE",
-  url:"https://www.blackmagicdesign.com/products/davinciresolve",
-  description:"Free, professional-grade editing, colour, audio, and VFX in one application. No watermarks, no subscription. Recommended as the primary NLE for TVP102 students." },
+
 
 { category:"software", badge:"FREE", source:"Kdenlive",
   title:"Kdenlive — Open Source Video Editor",
@@ -564,7 +570,43 @@ const RESOURCES = [
 { category:"youtube", badge:"FREE", source:"YouTube",
   title:"Corridor Crew",
   url:"https://www.youtube.com/@CorridorCrew",
-  description:"Professional VFX artists break down visual effects in film and television. Builds critical visual awareness of how images are actually constructed on different budgets." }
+  description:"Professional VFX artists break down visual effects in film and television. Builds critical visual awareness of how images are actually constructed on different budgets." },
+
+        // ── DOCUMENTARY & NON-FICTION ──────────────────────────
+        { category:"documentary", badge:"FREE", source:"Documentary Storm",
+        title:"Documentary Storm — Free Full-Length Documentaries",
+        url:"https://www.documentarystorm.com",
+        description:"Large archive of free, legally available documentaries organised by topic. Good for studying documentary forms — observational, participatory, essay film — across genres." },
+
+        { category:"documentary", badge:"FREE", source:"NFB Canada",
+        title:"National Film Board — Free Documentary Archive",
+        url:"https://www.nfb.ca/subjects/documentary/",
+        description:"Hundreds of free documentaries from the NFB, one of the world's most respected documentary institutions. Includes Grierson, Varda-influenced work, and contemporary Canadian docs." },
+
+        { category:"documentary", badge:"FREE", source:"Filmmaker IQ",
+        title:"The History and Theory of Documentary Film",
+        url:"https://www.filmmakeriq.com/lessons/the-history-and-theory-of-documentary-film/",
+        description:"Comprehensive video lesson covering Grierson, cinéma vérité, direct cinema, mockumentary, and essay film. Strong foundation for TVP104 documentary students." },
+
+        { category:"documentary", badge:"FREE", source:"StudioBinder",
+        title:"What is a Documentary Film? Modes and Styles Explained",
+        url:"https://www.studiobinder.com/blog/what-is-a-documentary-film/",
+        description:"Covers Nichols' six documentary modes — poetic, expository, observational, participatory, reflexive, performative. Essential vocabulary for documentary pre-production and analysis." },
+
+        { category:"documentary", badge:"FREE", source:"YouTube / PBS",
+        title:"Errol Morris — On Making Documentaries",
+        url:"https://www.youtube.com/watch?v=OmWBCJHTIFk",
+        description:"Director of The Thin Blue Line and The Fog of War discusses his approach to interview technique, the Interrotron, and why he believes documentaries can reveal truth." },
+
+        { category:"documentary", badge:"FREE", source:"YouTube / Vox",
+        title:"How Documentaries Use Music to Manipulate You",
+        url:"https://www.youtube.com/watch?v=xJNrSN4Gf4o",
+        description:"Video essay on the ethics and craft of sound design in documentary film. Useful for understanding how non-fiction filmmakers shape audience perception." },
+
+        { category:"documentary", badge:"ACADEMIC", source:"MIT OpenCourseWare",
+        title:"Documentary Film and Video — MIT OpenCourseWare",
+        url:"https://ocw.mit.edu/courses/21a-550j-documentary-film-and-video-fall-2004/",
+        description:"Full university course on documentary film. Includes reading lists, discussion questions, and assignment briefs. Covers aesthetics, ethics, and politics of non-fiction filmmaking." }
 
 ]; // ← END OF RESOURCES — add new entries above this line
 
@@ -583,7 +625,8 @@ const SECTIONS = [
   { id:"notion",         label:"Notion & Digital Workspaces",       color:"#6B4F8A", sub:"Templates for organising your production" },
   { id:"software",       label:"Open Source & Free Software",       color:"#2A6B5C", sub:"Free tools for every stage of production" },
   { id:"stock",          label:"Stock Footage & Inclusive Media",   color:"#8A3A5C", sub:"Free footage and diverse representation resources" },
-  { id:"youtube",        label:"Video Essays & YouTube",            color:"#CC0000", sub:"Essential channels and essays for film students" }
+  { id:"youtube",        label:"Video Essays & YouTube",            color:"#CC0000", sub:"Essential channels and essays for film students" },
+  { id:"documentary",    label:"Documentary & Non-Fiction",         color:"#4A7C59", sub:"Observational, interview, essay film — free resources and full docs" }
 ];
 
 // ── RENDER ────────────────────────────────────────────

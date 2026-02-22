@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>TVP102 — Field Guide</title>
+<title>UiB Film — Field Guide</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -146,7 +146,7 @@
   /* ── SHOT CARD ── */
   .shot-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     gap: 10px;
     margin-bottom: 28px;
   }
@@ -513,7 +513,7 @@
 
 <header class="site-header">
   <div class="header-left">
-    <span class="header-course">TVP102 · UiB</span>
+    <span class="header-course">UiB Film · Field Guide</span>
     <span class="header-title">Field Guide</span>
   </div>
   <div style="display:flex;align-items:center;gap:10px;">
@@ -529,8 +529,15 @@
   <button class="tab-btn" data-tab="commands">Commands</button>
   <button class="tab-btn" data-tab="exposure">Exposure</button>
   <button class="tab-btn" data-tab="lighting">Lighting</button>
+  <button class="tab-btn" data-tab="flicker">Flicker &amp; WB</button>
+  <button class="tab-btn" data-tab="sensors">Sensors</button>
+  <button class="tab-btn" data-tab="audio">Audio Levels</button>
   <button class="tab-btn" data-tab="continuity">Continuity</button>
-  <button class="tab-btn" data-tab="formats">Formats</button>
+  <button class="tab-btn" data-tab="formats">Formats &amp; Visuals</button>
+  <button class="tab-btn" data-tab="manuals">Manuals</button>
+  <button class="tab-btn" data-tab="documentary">Documentary</button>
+  <button class="tab-btn" data-tab="prepday">Shoot Day Prep</button>
+  <button class="tab-btn" data-tab="directing">Directing Tips</button>
 </nav>
 
 <!-- ═══════════════════════════════════════ SHOTS ══ -->
@@ -726,6 +733,8 @@
   </div>
 </div>
 
+
+
 <!-- ═══════════════════════════════════════ MOVEMENT ══ -->
 <div class="panel" id="panel-movement">
   <div class="section-title">Camera Movement</div>
@@ -811,7 +820,7 @@
   <div class="section-sub">Who does what — and who answers to whom</div>
 
   <div class="info-box">
-    <p><strong>Chain of command:</strong> On a TVP102 set, every crew member takes direction from their department head. Don't give notes across departments — that's the Director and 1st AD's job. If something is wrong, tell your department head first.</p>
+    <p><strong>Chain of command:</strong> On set, every crew member takes direction from their department head. Don't give notes across departments — that's the Director and 1st AD's job. If something is wrong, tell your department head first.</p>
   </div>
 
   <div class="dept-label">DIRECTION</div>
@@ -1213,86 +1222,1157 @@
 </div>
 
 <!-- ═══════════════════════════════════════ FORMATS ══ -->
-<div class="panel" id="panel-formats">
-  <div class="section-title">Formats & Specs</div>
-  <div class="section-sub">Aspect ratios, frame rates, and delivery specifications</div>
 
-  <div class="subhead">Aspect Ratios</div>
-  <div class="ratio-grid">
-    <div class="ratio-card">
-      <div class="ratio-visual" style="width:80px;height:45px;"></div>
-      <span class="ratio-label">1.78:1</span>
-      <span class="ratio-desc">16:9 — Standard HD television and streaming. Most cameras' default.</span>
+<!-- ══════════════════════════════════ FLICKER & WB ══ -->
+<div class="panel" id="panel-flicker">
+  <div class="section-title">Flicker &amp; White Balance</div>
+  <div class="section-sub">The two most common technical disasters in student films — both 100% preventable</div>
+
+  <div class="subhead">Why Flicker Happens</div>
+  <div class="info-box" style="border-color:rgba(224,60,42,0.4);background:rgba(224,60,42,0.08);">
+    <p><strong style="color:#E03C2A;">The problem:</strong> Artificial lights (LED, fluorescent, tungsten) cycle on and off with the electrical mains — 50 times per second in Norway and Europe (50Hz). If your shutter speed doesn't divide evenly into 50, the camera catches the light at different points in its cycle from frame to frame. In the edit, this looks like a slow or fast pulsing flicker that is <strong>impossible to fix in post.</strong></p>
+  </div>
+
+  <div class="subhead">The Fix — Norway/Europe (50Hz Mains)</div>
+  <div class="movement-list">
+    <div class="movement-row">
+      <span class="movement-name" style="color:var(--green);font-size:16px;min-width:120px;">SAFE ✓</span>
+      <div>
+        <div class="movement-desc">Use shutter speeds that divide cleanly into 50: <strong style="color:var(--text);">1/50, 1/100, 1/200, 1/500, 1/1000</strong></div>
+        <div class="movement-tip">↳ 1/50 is your everyday setting at 25fps. 1/100 for slow-motion at 50fps.</div>
+      </div>
     </div>
-    <div class="ratio-card">
-      <div class="ratio-visual" style="width:88px;height:46px;"></div>
-      <span class="ratio-label">1.85:1</span>
-      <span class="ratio-desc">Flat — Standard US theatrical widescreen. Very common for short films.</span>
-    </div>
-    <div class="ratio-card">
-      <div class="ratio-visual" style="width:96px;height:41px;"></div>
-      <span class="ratio-label">2.39:1</span>
-      <span class="ratio-desc">Scope / Anamorphic — Ultra-wide cinematic. Dramatic, epic, expansive.</span>
-    </div>
-    <div class="ratio-card">
-      <div class="ratio-visual" style="width:67px;height:50px;"></div>
-      <span class="ratio-label">4:3</span>
-      <span class="ratio-desc">Academy — Vintage feel. Used stylistically by Wes Anderson, others.</span>
-    </div>
-    <div class="ratio-card">
-      <div class="ratio-visual" style="width:54px;height:54px;"></div>
-      <span class="ratio-label">1:1</span>
-      <span class="ratio-desc">Square — Uncommon. Strong stylistic statement. Instagram-native.</span>
-    </div>
-    <div class="ratio-card">
-      <div class="ratio-visual" style="width:42px;height:54px;"></div>
-      <span class="ratio-label">9:16</span>
-      <span class="ratio-desc">Vertical — Mobile-native. Occasionally used for vertical film formats.</span>
+    <div class="movement-row">
+      <span class="movement-name" style="color:var(--red);font-size:16px;min-width:120px;">DANGER ✗</span>
+      <div>
+        <div class="movement-desc">Avoid: <strong style="color:#E03C2A;">1/48, 1/60, 1/125, 1/250</strong> — these do not divide into 50 and will cause flicker under artificial lights.</div>
+        <div class="movement-tip">↳ 1/48 is common in US camera defaults (for 24fps NTSC). Check your camera menu.</div>
+      </div>
     </div>
   </div>
 
-  <div class="subhead">Frame Rates</div>
+  <div class="subhead">Camera Settings — Flicker &amp; Shutter</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin-bottom:24px;">
+
+    <div class="light-card" style="border-color:rgba(245,166,35,0.3);">
+      <div class="light-name" style="color:var(--amber);font-size:15px;">Canon C300 Mark II / III</div>
+      <div class="light-desc" style="margin-top:8px;">
+        <strong style="color:var(--text);display:block;margin-bottom:4px;">Recommended settings (Norway):</strong>
+        Frame Rate: <strong style="color:var(--amber);">25fps</strong><br>
+        Shutter: <strong style="color:var(--amber);">1/50</strong> (Angle: 180°)<br>
+        Flicker Reduction: Menu → Camera Setup → Flicker Reduction → <strong style="color:var(--amber);">Enable</strong><br>
+        <span style="color:var(--text-muted);font-size:11px;margin-top:6px;display:block;">C300 also has Auto Flicker Reduction — turn it on as a safety net, but still set manual shutter.</span>
+      </div>
+    </div>
+
+    <div class="light-card" style="border-color:rgba(245,166,35,0.3);">
+      <div class="light-name" style="color:var(--amber);font-size:15px;">Canon EOS R6 (Mark I &amp; II)</div>
+      <div class="light-desc" style="margin-top:8px;">
+        <strong style="color:var(--text);display:block;margin-bottom:4px;">Recommended settings (Norway):</strong>
+        Frame Rate: <strong style="color:var(--amber);">25fps</strong><br>
+        Shutter: <strong style="color:var(--amber);">1/50</strong><br>
+        Anti-flicker: Menu → Shoot → Anti-flicker Shoot → <strong style="color:var(--amber);">Enable</strong><br>
+        <span style="color:var(--text-muted);font-size:11px;margin-top:6px;display:block;">R6 anti-flicker is designed for stills but still helps video. Manual shutter is the real fix.</span>
+      </div>
+    </div>
+
+    <div class="light-card" style="border-color:rgba(245,166,35,0.3);">
+      <div class="light-name" style="color:var(--amber);font-size:15px;">iPhone (14, 15, 16 series)</div>
+      <div class="light-desc" style="margin-top:8px;">
+        <strong style="color:var(--text);display:block;margin-bottom:4px;">Recommended settings (Norway):</strong>
+        Settings → Camera → Record Video: <strong style="color:var(--amber);">25fps</strong><br>
+        Settings → Camera → PAL: <strong style="color:var(--amber);">On</strong> (if available — forces 25/50fps)<br>
+        Cinematic mode: <strong style="color:var(--amber);">25fps only</strong><br>
+        <span style="color:var(--text-muted);font-size:11px;margin-top:6px;display:block;">iPhone auto-exposes. Use <strong style="color:var(--text);">Filmic Pro</strong> or <strong style="color:var(--text);">Camera app → lock exposure</strong> for shutter control. Lock icon appears after holding down on screen.</span>
+      </div>
+    </div>
+
+    <div class="light-card" style="border-color:rgba(74,175,106,0.3);">
+      <div class="light-name" style="color:var(--green);font-size:15px;">General Rule</div>
+      <div class="light-desc" style="margin-top:8px;">
+        <strong style="color:var(--text);display:block;margin-bottom:6px;">Norway / Europe = 50Hz mains</strong>
+        Always shoot at <strong style="color:var(--green);">25fps + 1/50 shutter</strong> indoors.<br><br>
+        If you need slow motion: shoot <strong style="color:var(--amber);">50fps + 1/100 shutter</strong>, play back at 25fps = 2× slow motion.<br><br>
+        <span style="color:var(--text-muted);font-size:11px;">USA/Canada = 60Hz. If collaborating with US footage, their safe shutters are 1/60, 1/120. Different country = different rule.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="subhead">LED Flickering (High-Speed &amp; PWM)</div>
+  <div class="info-box">
+    <p>Modern LED lights (including cheap panel LEDs on location) often use <strong>Pulse Width Modulation (PWM)</strong> to dim — they flicker at very high frequencies invisible to the eye but visible at higher shutter speeds. If you see banding in your footage even with correct shutter: <strong>dim your LEDs less, or raise your LED's frequency</strong> if it has that setting. Cheap LEDs at 50% brightness flicker more than the same LED at full power.</p>
+  </div>
+
+  <div class="subhead" style="margin-top:32px;">White Balance — The Rules</div>
+  <div class="info-box" style="border-color:rgba(74,143,212,0.4);background:rgba(74,143,212,0.08);">
+    <p><strong style="color:#4A8FD4;">Never use Auto White Balance (AWB) during a shoot.</strong> AWB recalculates continuously — it will drift between takes, making shots cut together look like different times of day. One take will look warm, the next cool, and it's extremely difficult to match in the colour grade.</p>
+  </div>
+
   <div class="movement-list">
     <div class="movement-row">
-      <span class="movement-name" style="font-size:18px;min-width:80px;">24 fps</span>
-      <span class="movement-desc">The cinematic standard. The motion blur and cadence of 24fps is what audiences associate with "film". Used by default for narrative short films worldwide.</span>
+      <span class="movement-name" style="font-size:14px;min-width:130px;color:var(--green);">STEP 1</span>
+      <div>
+        <div class="movement-desc"><strong style="color:var(--text);">Identify your dominant light source</strong> — is the scene primarily daylight (window), tungsten (warm household bulbs), or LED/fluorescent? You're setting WB to match the main source.</div>
+      </div>
     </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:14px;min-width:130px;color:var(--green);">STEP 2</span>
+      <div>
+        <div class="movement-desc"><strong style="color:var(--text);">Set a manual Kelvin value</strong> or use a preset. Daylight: 5500K. Overcast: 6500K. Tungsten: 3200K. LED varies — start at 5000K and adjust.</div>
+        <div class="movement-tip">↳ C300: WB button → Custom → point at grey card → Set. R6: Q menu → WB → Custom.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:14px;min-width:130px;color:var(--green);">STEP 3</span>
+      <div>
+        <div class="movement-desc"><strong style="color:var(--text);">Lock it and don't touch it</strong> for the duration of that lighting setup. When you move to a different location or the light changes significantly, repeat steps 1–2.</div>
+        <div class="movement-tip">↳ On iPhone: tap and hold to lock AE/AF, then adjust exposure wheel. WB is auto but locking exposure helps consistency.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:14px;min-width:130px;color:var(--amber);">PRO TIP</span>
+      <div>
+        <div class="movement-desc"><strong style="color:var(--text);">Shoot a grey card at the start of each setup.</strong> Hold a grey card in front of the camera for 3 seconds before the first take. In DaVinci Resolve you can use this to auto-correct WB in post with one click.</div>
+        <div class="movement-tip">↳ No grey card? A white piece of paper works at a pinch. Even a grey hoodie. The goal is a known neutral reference.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subhead">Mixed Lighting — What to Do</div>
+  <div class="info-box">
+    <p>The hardest situation: a room with a window (daylight, ~5500K) and ceiling lights (tungsten or LED, ~3200K). You can't set WB to match both. <strong>Solutions in order of preference:</strong> (1) turn off the ceiling lights and use only window light, (2) gel the window with CTO to warm it to match indoor lights, (3) gel indoor lights with CTB to cool them to match daylight, (4) set WB to match the dominant source and accept a colour cast on the other — you can partially correct in grade. Never leave it on AWB.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ AUDIO ══ -->
+<div class="panel" id="panel-audio">
+  <div class="section-title">Audio Levels</div>
+  <div class="section-sub">Get this wrong and no amount of post-production will save you</div>
+
+  <div class="info-box" style="border-color:rgba(224,60,42,0.4);background:rgba(224,60,42,0.08);">
+    <p><strong style="color:#E03C2A;">The cardinal rule:</strong> Bad audio cannot be fixed. Bad picture can sometimes be saved. Always monitor audio through headphones during recording — never guess.</p>
+  </div>
+
+  <div class="subhead">The Level Meter — What You're Reading</div>
+  <!-- Horizontal audio level scale — pure CSS, no canvas needed -->
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:16px 18px;margin-bottom:16px;">
+    <div style="position:relative;height:34px;border-radius:3px;overflow:hidden;margin-bottom:10px;background:linear-gradient(to right,#4AAF6A 0%,#4AAF6A 55%,#F5A623 70%,#E03C2A 88%,#cc0000 100%);">
+      <!-- Tick marks at key levels -->
+      <div style="position:absolute;left:0;top:0;bottom:0;width:2px;background:rgba(0,0,0,0.4);"></div>
+      <div style="position:absolute;left:55%;top:0;bottom:0;width:2px;background:rgba(0,0,0,0.3);"></div>
+      <div style="position:absolute;left:70%;top:0;bottom:0;width:2px;background:rgba(0,0,0,0.3);"></div>
+      <div style="position:absolute;left:88%;top:0;bottom:0;width:2px;background:rgba(0,0,0,0.4);"></div>
+      <!-- Labels inside bar -->
+      <span style="position:absolute;left:1%;top:50%;transform:translateY(-50%);font-family:'DM Mono',monospace;font-size:10px;color:rgba(0,0,0,0.7);">-40</span>
+      <span style="position:absolute;left:45%;top:50%;transform:translate(-50%,-50%);font-family:'DM Mono',monospace;font-size:10px;color:rgba(0,0,0,0.7);">-18 TARGET</span>
+      <span style="position:absolute;left:62%;top:50%;transform:translate(-50%,-50%);font-family:'DM Mono',monospace;font-size:10px;color:rgba(0,0,0,0.6);">-12</span>
+      <span style="position:absolute;left:79%;top:50%;transform:translate(-50%,-50%);font-family:'DM Mono',monospace;font-size:10px;color:rgba(255,255,255,0.9);">-6</span>
+      <span style="position:absolute;right:2px;top:50%;transform:translateY(-50%);font-family:'DM Mono',monospace;font-size:10px;color:#fff;font-weight:700;">0 CLIP</span>
+    </div>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;">
+      <span style="font-family:'DM Mono',monospace;font-size:10px;color:#4AAF6A;">■ Safe: below -12 dBFS</span>
+      <span style="font-family:'DM Mono',monospace;font-size:10px;color:#F5A623;">■ Caution: -12 to -6 dBFS</span>
+      <span style="font-family:'DM Mono',monospace;font-size:10px;color:#E03C2A;">■ Danger: above -6 / Clip: 0 dBFS</span>
+    </div>
+  </div>
+
+  <div class="movement-list" style="margin-bottom:24px;">
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:15px;min-width:110px;color:var(--green);">-18 dBFS</span>
+      <div>
+        <div class="movement-desc"><strong style="color:var(--text);">Target level for dialogue.</strong> Average speech should peak around here. This gives you 18dB of headroom before clipping. European broadcast standard for dialogue.</div>
+        <div class="movement-tip">↳ Also written as -18 dBu or 0 VU in older equipment. They mean the same reference point.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:15px;min-width:110px;color:var(--amber);">-12 dBFS</span>
+      <div>
+        <div class="movement-desc"><strong style="color:var(--text);">Maximum average for loud moments</strong> — shouting, emotional peaks. Occasional transients can go higher briefly, but sustained levels here mean your dialogue is too loud.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:15px;min-width:110px;color:var(--amber);">-6 dBFS</span>
+      <div>
+        <div class="movement-desc"><strong style="color:var(--text);">Warning zone.</strong> Peaks here occasionally are acceptable, but if your meter is consistently hitting -6 you are too loud and will clip on loud transients.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:15px;min-width:110px;color:var(--red);">0 dBFS</span>
+      <div>
+        <div class="movement-desc"><strong style="color:#E03C2A;">Clipping. Distortion. Cannot be fixed.</strong> Digital audio that hits 0 dBFS creates square-wave clipping — a harsh crackling distortion that is permanent. Set your levels before recording. Never let peaks reach 0.</div>
+        <div class="movement-tip">↳ If in doubt, record 6dB quieter. Noise is fixable. Clipping is not.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subhead">Equipment Settings — Gain &amp; Levels</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin-bottom:24px;">
+
+    <div class="light-card" style="border-color:rgba(245,166,35,0.3);">
+      <div class="light-name" style="color:var(--amber);font-size:15px;">Canon C300 — Audio Setup</div>
+      <div class="light-desc" style="margin-top:8px;">
+        Menu → Audio → Audio Input → select CH1/CH2<br>
+        Set <strong style="color:var(--amber);">Manual</strong> gain (not Auto)<br>
+        Target average: <strong style="color:var(--green);">-18 to -12 dBFS</strong><br>
+        Enable headphone monitoring — plug in before every take<br>
+        <span style="color:var(--text-muted);font-size:11px;margin-top:6px;display:block;">The C300's built-in mic is poor. Always use an external boom or lavalier into the XLR inputs.</span>
+      </div>
+    </div>
+
+    <div class="light-card" style="border-color:rgba(245,166,35,0.3);">
+      <div class="light-name" style="color:var(--amber);font-size:15px;">Canon R6 — Audio Setup</div>
+      <div class="light-desc" style="margin-top:8px;">
+        Menu → Shoot → Sound recording → <strong style="color:var(--amber);">Manual</strong><br>
+        Rec. level: adjust so peaks hit <strong style="color:var(--green);">-18 to -12 dBFS</strong><br>
+        Wind filter: On (outdoors)<br>
+        <span style="color:var(--text-muted);font-size:11px;margin-top:6px;display:block;">R6 has a 3.5mm mic input — use a directional shotgun mic. The onboard mic is only for sync reference.</span>
+      </div>
+    </div>
+
+    <div class="light-card" style="border-color:rgba(245,166,35,0.3);">
+      <div class="light-name" style="color:var(--amber);font-size:15px;">iPhone — Audio Setup</div>
+      <div class="light-desc" style="margin-top:8px;">
+        iPhone mics are actually good — use them as backup only<br>
+        For production audio: <strong style="color:var(--amber);">DJI Mic or Rode Wireless GO</strong> into Lightning/USB-C<br>
+        Filmic Pro shows dBFS meters — target <strong style="color:var(--green);">-18 to -12</strong><br>
+        <span style="color:var(--text-muted);font-size:11px;margin-top:6px;display:block;">Never use iPhone as primary sound if a proper recorder is available. Always record a second track on the sound recordist's device.</span>
+      </div>
+    </div>
+
+    <div class="light-card" style="border-color:rgba(74,175,106,0.3);">
+      <div class="light-name" style="color:var(--green);font-size:15px;">Sound Recorder (Zoom H5/H6)</div>
+      <div class="light-desc" style="margin-top:8px;">
+        Set gain so speech averages <strong style="color:var(--green);">-18 dBFS</strong> on the meters<br>
+        Enable <strong style="color:var(--amber);">Dual Recording</strong> (records a backup track 12dB quieter — saves you if levels clip)<br>
+        Sample rate: <strong style="color:var(--amber);">48kHz / 24-bit</strong><br>
+        <span style="color:var(--text-muted);font-size:11px;margin-top:6px;display:block;">48kHz is the broadcast and post-production standard. 44.1kHz is for music. Always 48kHz for film.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="subhead">Common Audio Disasters — Prevention</div>
+  <div class="movement-list">
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:13px;min-width:130px;color:var(--red);">CLIPPING</span>
+      <div>
+        <div class="movement-desc"><strong style="color:var(--text);">Cause:</strong> Gain too high. Loud moment sends signal above 0 dBFS. <strong style="color:var(--text);">Fix:</strong> Lower gain. Enable dual recording. Test levels before rolling.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:13px;min-width:130px;color:var(--red);">NO SYNC</span>
+      <div>
+        <div class="movement-desc"><strong style="color:var(--text);">Cause:</strong> Forgot to clap the board. Sound and picture don't align. <strong style="color:var(--text);">Fix:</strong> Always slate every take. If you forget: clap hands visibly in front of the camera at the start or end of the take as an emergency sync point.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:13px;min-width:130px;color:var(--red);">HANDLING NOISE</span>
+      <div>
+        <div class="movement-desc"><strong style="color:var(--text);">Cause:</strong> Boom operator moves, cable rustles, hand rubs mic. <strong style="color:var(--text);">Fix:</strong> Hold the boom steady. Use a proper shock mount. Dress cables so they don't rub clothing.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:13px;min-width:130px;color:var(--red);">ROOM REVERB</span>
+      <div>
+        <div class="movement-desc"><strong style="color:var(--text);">Cause:</strong> Bare room with hard surfaces — bathrooms, kitchens, empty offices. <strong style="color:var(--text);">Fix:</strong> Add soft furnishings, hang blankets off-camera, get the boom closer to the actor. You cannot remove reverb in post.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:13px;min-width:130px;color:var(--amber);">NO ROOM TONE</span>
+      <div>
+        <div class="movement-desc"><strong style="color:var(--text);">Cause:</strong> Forgetting to record room tone at the end of each location. <strong style="color:var(--text);">Fix:</strong> At the end of every location, record 30–60 seconds of silence. This is the ambient sound of the room. Editors cannot live without it.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════ FORMATS panel — replace with visual version ══ -->
+<div class="panel" id="panel-formats">
+  <div class="section-title">Formats &amp; Visual Guides</div>
+  <div class="section-sub">Interactive comparisons — tap to see how settings affect the image</div>
+
+  <!-- ── ASPECT RATIO SIMULATOR ── -->
+  <div class="subhead">Aspect Ratio — Visual Comparison</div>
+  <div class="info-box">
+    <p>Select a ratio to see how it frames the same image. The black bars show what gets cropped. Short fiction and documentary: <strong>1.85:1 or 16:9 (1.78:1)</strong> are most common.</p>
+  </div>
+
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;" id="ratio-btns">
+    <button class="fb active" data-ratio="1.78" onclick="setRatio(this,1.78,'16:9 — Standard HD')">16:9</button>
+    <button class="fb" data-ratio="1.85" onclick="setRatio(this,1.85,'1.85:1 — Flat / US Theatrical')">1.85:1</button>
+    <button class="fb" data-ratio="2.39" onclick="setRatio(this,2.39,'2.39:1 — Anamorphic Scope')">2.39:1</button>
+    <button class="fb" data-ratio="1.33" onclick="setRatio(this,1.33,'4:3 — Academy / Vintage')">4:3</button>
+    <button class="fb" data-ratio="1.0" onclick="setRatio(this,1.0,'1:1 — Square')">1:1</button>
+  </div>
+
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:8px;position:relative;" id="ratio-container">
+    <canvas id="ratio-canvas" style="display:block;width:100%;"></canvas>
+  </div>
+  <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--amber);margin-bottom:24px;" id="ratio-label">16:9 — Standard HD</div>
+
+  <!-- ── DEPTH OF FIELD SIMULATOR ── -->
+  <div class="subhead">Aperture &amp; Depth of Field — Visual Comparison</div>
+  <div class="info-box">
+    <p>Drag the slider to change aperture. Watch how the background sharpness changes. The subject (•) stays in focus — it's the <em>depth</em> of the focus zone that changes.</p>
+  </div>
+
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:10px;">
+    <canvas id="dof-canvas" style="display:block;width:100%;height:180px;"></canvas>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px;">
+    <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--amber);min-width:40px;">f/1.4</span>
+    <input type="range" id="aperture-slider" min="1" max="16" step="0.5" value="2.8"
+      style="flex:1;accent-color:var(--amber);cursor:pointer;">
+    <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--amber);min-width:40px;text-align:right;">f/16</span>
+  </div>
+  <div style="display:flex;justify-content:space-between;font-family:'DM Mono',monospace;font-size:10px;color:var(--text-muted);margin-bottom:6px;">
+    <span>← Shallow — cinematic bokeh</span>
+    <span>Deep focus — everything sharp →</span>
+  </div>
+  <div style="font-family:'DM Mono',monospace;font-size:12px;color:var(--amber);text-align:center;margin-bottom:24px;" id="aperture-label">f/2.8 — Shallow depth of field. Subject sharp, background blurred.</div>
+
+  <!-- ── FRAME RATES ── -->
+  <div class="subhead">Frame Rates</div>
+  <div class="movement-list" style="margin-bottom:20px;">
     <div class="movement-row">
       <span class="movement-name" style="font-size:18px;min-width:80px;">25 fps</span>
-      <span class="movement-desc">European broadcast standard (PAL). Very close to 24fps visually. Set shutter to 1/50. The correct default for TVP102 films intended for Norwegian broadcast or streaming.</span>
+      <div>
+        <div class="movement-desc"><strong style="color:var(--text);">Your default.</strong> European standard — matches Norway's 50Hz mains perfectly. Set shutter to 1/50. The cadence of European cinema and broadcast.</div>
+        <div class="movement-tip">↳ All Canon cameras and iPhones support this. Always confirm it is set before recording.</div>
+      </div>
     </div>
     <div class="movement-row">
-      <span class="movement-name" style="font-size:18px;min-width:80px;">30 fps</span>
-      <span class="movement-desc">US broadcast standard (NTSC). Looks slightly more "video" than 24/25fps. Used for news, sports, some web content.</span>
+      <span class="movement-name" style="font-size:18px;min-width:80px;">24 fps</span>
+      <div>
+        <div class="movement-desc">The cinematic standard in the US and international festivals. Almost identical look to 25fps but requires shutter 1/50 (not 1/48!) in Norway to avoid flicker.</div>
+        <div class="movement-tip">↳ Use if you are submitting to international festivals and want the "film" look. Check with your supervisor or course requirements first.</div>
+      </div>
     </div>
     <div class="movement-row">
-      <span class="movement-name" style="font-size:18px;min-width:80px;">48–120 fps</span>
-      <span class="movement-desc">High frame rates. Used for slow-motion playback. Record at 60fps or 120fps to play back at 25fps for 2.4× or 4.8× slow motion respectively.</span>
-    </div>
-  </div>
-
-  <div class="subhead">Codec & Delivery Quick Reference</div>
-  <div class="movement-list">
-    <div class="movement-row">
-      <span class="movement-name" style="font-size:14px;min-width:110px;">H.264 / H.265</span>
-      <span class="movement-desc">Compressed delivery codecs. Small file sizes, widely compatible. Use for online submission, streaming delivery, and any format where file size matters.</span>
+      <span class="movement-name" style="font-size:18px;min-width:80px;">50 fps</span>
+      <div>
+        <div class="movement-desc">Double speed for 2× slow motion. Shutter: 1/100. Play back at 25fps in your NLE for smooth slow motion.</div>
+      </div>
     </div>
     <div class="movement-row">
-      <span class="movement-name" style="font-size:14px;min-width:110px;">ProRes 422</span>
-      <span class="movement-desc">Apple's editing and delivery codec. Large files but excellent quality. Use for intermediate editing or when delivering to a broadcast platform.</span>
-    </div>
-    <div class="movement-row">
-      <span class="movement-name" style="font-size:14px;min-width:110px;">RAW</span>
-      <span class="movement-desc">Unprocessed sensor data. Maximum post-production flexibility but very large files. Requires more processing power in the edit. Used when colour grade is a priority.</span>
-    </div>
-    <div class="movement-row">
-      <span class="movement-name" style="font-size:14px;min-width:110px;">DCP</span>
-      <span class="movement-desc">Digital Cinema Package — the format used for theatrical projection. If submitting to a film festival with cinema screening, you may need to create a DCP from your master file.</span>
+      <span class="movement-name" style="font-size:18px;min-width:80px;">100+ fps</span>
+      <div>
+        <div class="movement-desc">High-speed for strong slow motion. C300 supports up to 120fps (Canon Log). iPhone supports 240fps in Slo-Mo mode. Shutter: always 2× frame rate.</div>
+      </div>
     </div>
   </div>
 
   <div class="info-box">
-    <p><strong>TVP102 delivery note:</strong> Unless specified otherwise by your supervisor, deliver your exam film as an H.264 .mp4 at 1920×1080 (1080p), 25fps, with stereo audio at -3dB peak. Keep your original project files and master export until after grades are confirmed.</p>
+    <p><strong>Standard delivery:</strong> H.264 .mp4 · 1920×1080 · 25fps · Stereo audio at –3dBFS peak · Keep originals until grades confirmed. Always confirm the exact spec with your course requirements.</p>
+  </div>
+</div>
+
+
+<!-- script moved to end -->
+
+
+<!-- ═══════════════════════════════ SENSORS & CROP ══ -->
+<div class="panel" id="panel-sensors">
+  <div class="section-title">Sensor Sizes & Crop Factors</div>
+  <div class="section-sub">Why the same lens looks different on different cameras — and on your phone</div>
+
+  <div class="info-box">
+    <p><strong>The reference point:</strong> All crop factors are measured against <strong>Full Frame (35mm)</strong> — the size of a 35mm film frame (36 × 24 mm). A crop factor of 1.5× means a 50mm lens behaves like a 75mm lens would on a full-frame camera. You see <em>less</em> of the scene, but the perspective is identical.</p>
+  </div>
+
+  <div class="subhead">Sensor Sizes — Department Cameras</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-bottom:24px;">
+
+    <div class="light-card" style="border-color:rgba(245,166,35,0.4);">
+      <div class="light-name" style="color:var(--amber);font-size:15px;">Canon C300 Mark II &amp; III</div>
+      <div style="display:flex;align-items:center;gap:8px;margin:8px 0;">
+        <div style="background:#C04A2A;height:18px;border-radius:2px;" id="c300-bar"></div>
+        <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--amber);">Super 35mm</span>
+      </div>
+      <div class="light-desc">
+        Sensor: <strong style="color:var(--text);">26.2 × 13.8 mm</strong><br>
+        Crop factor: <strong style="color:var(--amber);">≈ 1.46–1.53×</strong> (varies by recording resolution)<br>
+        <span style="color:var(--text-muted);font-size:11px;margin-top:6px;display:block;">Super 35 is the cinema standard — the same as a 4-perf 35mm film frame. Your 24mm lens behaves like ~35mm full frame. Your 50mm behaves like ~73mm. Very close to APS-C but with a cinematic pedigree.</span>
+      </div>
+    </div>
+
+    <div class="light-card" style="border-color:rgba(74,143,212,0.4);">
+      <div class="light-name" style="color:#4A8FD4;font-size:15px;">Canon EOS R, R6, R6 Mark II, EOS R5 IV</div>
+      <div style="display:flex;align-items:center;gap:8px;margin:8px 0;">
+        <div style="background:#4A8FD4;height:28px;border-radius:2px;width:100%;max-width:200px;"></div>
+        <span style="font-family:'DM Mono',monospace;font-size:11px;color:#4A8FD4;">Full Frame</span>
+      </div>
+      <div class="light-desc">
+        Sensor: <strong style="color:var(--text);">35.9 × 23.9 mm</strong><br>
+        Crop factor: <strong style="color:#4A8FD4;">1.0× (no crop)</strong><br>
+        <span style="color:var(--text-muted);font-size:11px;margin-top:6px;display:block;">Full frame = the reference. A 50mm is a 50mm. Widest field of view, shallowest depth of field per f-stop, best low-light performance. When using EF-S lenses, the camera auto-crops to 1.6× APS-C mode — avoid this for narrative work as it dramatically reduces resolution.</span>
+      </div>
+    </div>
+
+    <div class="light-card" style="border-color:rgba(245,166,35,0.3);">
+      <div class="light-name" style="color:var(--amber);font-size:15px;">Canon EOS 6D &amp; 6D Mark II</div>
+      <div style="display:flex;align-items:center;gap:8px;margin:8px 0;">
+        <div style="background:#4A8FD4;height:28px;border-radius:2px;width:100%;max-width:200px;"></div>
+        <span style="font-family:'DM Mono',monospace;font-size:11px;color:#4A8FD4;">Full Frame</span>
+      </div>
+      <div class="light-desc">
+        Sensor: <strong style="color:var(--text);">35.8 × 23.9 mm</strong><br>
+        Crop factor: <strong style="color:#4A8FD4;">1.0× (no crop)</strong><br>
+        <span style="color:var(--text-muted);font-size:11px;margin-top:6px;display:block;">Full frame DSLR — same field of view as the R-series. Uses EF lenses natively. Video is limited to 1080p (no 4K). Good for stills reference shots and B-camera roles. The 6D Mark II adds Dual Pixel AF which helps with video focus.</span>
+      </div>
+    </div>
+
+    <div class="light-card" style="border-color:rgba(74,175,106,0.3);">
+      <div class="light-name" style="color:var(--green);font-size:15px;">iPhone 14 / 15 / 16 (all models)</div>
+      <div style="display:flex;align-items:center;gap:8px;margin:8px 0;">
+        <div style="background:#4AAF6A;height:6px;border-radius:2px;width:30%;"></div>
+        <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--green);">1/1.28" sensor</span>
+      </div>
+      <div class="light-desc">
+        Sensor: <strong style="color:var(--text);">≈ 9.8 × 7.3 mm</strong> (main camera)<br>
+        Crop factor: <strong style="color:var(--green);">≈ 3.5–4.0×</strong> vs full frame<br>
+        <span style="color:var(--text-muted);font-size:11px;margin-top:6px;display:block;">Apple reports focal lengths in full-frame equivalent — so "24mm" on iPhone is already the equivalent view. The <em>physical</em> lens is ~6.8mm. Depth of field is very deep even wide open — near-impossible to get shallow focus. Compensate with close proximity to subject and strong background separation in framing.</span>
+      </div>
+    </div>
+
+    <div class="light-card" style="border-color:rgba(155,111,212,0.3);">
+      <div class="light-name" style="color:var(--purple);font-size:15px;">Drones (DJI Mini 4 Pro / Air 3)</div>
+      <div style="display:flex;align-items:center;gap:8px;margin:8px 0;">
+        <div style="background:var(--purple);height:8px;border-radius:2px;width:35%;"></div>
+        <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--purple);">1/1.3" sensor</span>
+      </div>
+      <div class="light-desc">
+        Sensor: <strong style="color:var(--text);">≈ 9.4 × 7.1 mm</strong><br>
+        Crop factor: <strong style="color:var(--purple);">≈ 3.7× vs full frame</strong><br>
+        <span style="color:var(--text-muted);font-size:11px;margin-top:6px;display:block;">Drone sensors are close to iPhone in size. Small sensor = very deep depth of field = everything in focus = cinematic look requires different tools (movement, altitude change, framing). Always fly at 25fps/1/50 shutter in Norway. D-Log M colour profile gives more grading flexibility.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="subhead">Visual Comparison — Sensor Size Scale</div>
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:20px 16px;margin-bottom:20px;">
+    <div style="position:relative;height:120px;display:flex;align-items:flex-end;gap:0;justify-content:flex-start;">
+      <!-- Full frame reference -->
+      <div style="position:relative;background:rgba(74,143,212,0.25);border:1.5px solid #4A8FD4;width:180px;height:120px;border-radius:2px;flex-shrink:0;display:flex;align-items:flex-start;justify-content:flex-start;">
+        <span style="font-family:'DM Mono',monospace;font-size:9px;color:#4A8FD4;position:absolute;top:4px;left:6px;">Full Frame</span>
+        <span style="font-family:'DM Mono',monospace;font-size:9px;color:rgba(74,143,212,0.7);position:absolute;bottom:4px;right:6px;">36×24mm</span>
+        <!-- Super 35 inside -->
+        <div style="position:absolute;right:6px;top:12px;width:130px;height:68px;background:rgba(192,74,42,0.2);border:1.5px solid #C04A2A;border-radius:2px;display:flex;align-items:flex-start;justify-content:flex-start;">
+          <span style="font-family:'DM Mono',monospace;font-size:8px;color:#C04A2A;padding:2px 4px;">Super 35 (C300)</span>
+          <span style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(192,74,42,0.7);position:absolute;bottom:2px;right:4px;">26×14mm</span>
+          <!-- iPhone inside -->
+          <div style="position:absolute;right:4px;bottom:4px;width:49px;height:36px;background:rgba(74,175,106,0.25);border:1.5px solid #4AAF6A;border-radius:2px;display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'DM Mono',monospace;font-size:7px;color:#4AAF6A;text-align:center;line-height:1.2;">iPhone<br>9.8×7mm</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p style="font-size:11px;color:var(--text-muted);margin-top:10px;font-style:italic;">To scale: the same 24mm lens has a different field of view on each sensor. The blue (Full Frame / EOS R6) sees the most. The red (Super 35 / C300) sees slightly less. The green (iPhone) sees the least.</p>
+  </div>
+
+  <div class="subhead">Practical Impact — Lens Behaviour</div>
+  <div class="movement-list" style="margin-bottom:24px;">
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:13px;min-width:130px;color:var(--amber);">50mm EF lens</span>
+      <div>
+        <div class="movement-desc">
+          <strong style="color:#4A8FD4;">EOS R6 (Full Frame):</strong> Behaves as 50mm — classic "standard" field of view, close to human eye<br>
+          <strong style="color:#C04A2A;">C300 (Super 35):</strong> Behaves as ≈73mm — short telephoto, good for close-up dialogue<br>
+          <strong style="color:#4AAF6A;">iPhone:</strong> Not applicable (fixed lenses)
+        </div>
+        <div class="movement-tip">↳ A 50mm on the C300 is already portrait-length. Plan your focal lengths for each body.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:13px;min-width:130px;color:var(--amber);">24mm EF lens</span>
+      <div>
+        <div class="movement-desc">
+          <strong style="color:#4A8FD4;">EOS R6 (Full Frame):</strong> Wide angle — good for interiors, establishing shots, environmental portraits<br>
+          <strong style="color:#C04A2A;">C300 (Super 35):</strong> Behaves as ≈35mm — slightly wider than normal, not wide
+        </div>
+        <div class="movement-tip">↳ If you want wide shots on the C300, you need the 14mm or 16-35mm lens from the kit.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:13px;min-width:130px;color:var(--amber);">85mm EF lens</span>
+      <div>
+        <div class="movement-desc">
+          <strong style="color:#4A8FD4;">EOS R6 (Full Frame):</strong> Classic portrait lens — flattering compression, nice background separation<br>
+          <strong style="color:#C04A2A;">C300 (Super 35):</strong> Behaves as ≈124mm — long telephoto. You'll need to stand very far back. Good for compressed scenes.
+        </div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:13px;min-width:130px;color:var(--green);">iPhone</span>
+      <div>
+        <div class="movement-desc">
+          Main camera: <strong style="color:var(--text);">24mm equivalent</strong> (fixed). 2× mode: 48mm. Ultra-wide: 13mm. Telephoto (Pro): 77mm or 120mm.<br>
+          All depths of field are very deep — almost everything stays in focus.
+        </div>
+        <div class="movement-tip">↳ To create separation on iPhone: get very close to subject, use the 77mm/120mm telephoto if available, keep background far away.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subhead">Depth of Field — Sensor Size Effect</div>
+  <div class="info-box">
+    <p>Larger sensors produce shallower depth of field at the same equivalent field of view and aperture. This is why the C300 or R6 at f/2.8 blurs backgrounds more than an iPhone at "f/1.8" — the iPhone's physical aperture is very small relative to its sensor. <strong>For the cinematic background-blur look, use the C300 or R6 with fast lenses (f/1.4–f/2.8) and keep some distance between subject and background.</strong></p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ MANUALS & GEAR ══ -->
+<div class="panel" id="panel-manuals">
+  <div class="section-title">Equipment Manuals &amp; Gear Guide</div>
+  <div class="section-sub">Official documentation and practical tips for the department's equipment</div>
+
+  <div class="subhead">Camera Manuals</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-bottom:24px;">
+
+    <div class="light-card" style="border-color:rgba(245,166,35,0.3);">
+      <div class="light-name" style="color:var(--amber);">Canon EOS C300 Mark II</div>
+      <div class="light-desc" style="margin-top:6px;">Super 35 Cinema EOS. 4K XF-AVC. PL or EF mount.</div>
+      <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;">
+        <a href="https://www.usa.canon.com/support/p/eos-c300-mark-ii" target="_blank" rel="noopener" class="clink" style="font-size:10px;">Official Support &rarr;</a>
+        <a href="https://www.manualslib.com/manual/994675/Canon-Eos-C300-Mark-Ii.html" target="_blank" rel="noopener" class="clink" style="font-size:10px;">Full Manual &rarr;</a>
+      </div>
+      <div class="light-desc" style="margin-top:8px;color:var(--text-muted);font-size:11px;">Key settings: Menu &rarr; Camera Setup &rarr; Flicker Reduction. WB button for custom white balance. Shutter: Speed or Angle mode — use Angle 180° for automatic 1/50 at 25fps.</div>
+    </div>
+
+    <div class="light-card" style="border-color:rgba(245,166,35,0.3);">
+      <div class="light-name" style="color:var(--amber);">Canon EOS C300 Mark III</div>
+      <div class="light-desc" style="margin-top:6px;">Super 35 DGO sensor. 4K 120fps. EF/PL/EF Cinema Lock mount.</div>
+      <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;">
+        <a href="https://www.usa.canon.com/support/p/eos-c300-mark-iii" target="_blank" rel="noopener" class="clink" style="font-size:10px;">Official Support &rarr;</a>
+      </div>
+      <div class="light-desc" style="margin-top:8px;color:var(--text-muted);font-size:11px;">New: Clear Scan shutter mode reduces LED wall flicker. Assignable buttons — set one to sensor mode toggle (Super 35 / Super 16). Canon Log 2 gives maximum dynamic range.</div>
+    </div>
+
+    <div class="light-card" style="border-color:rgba(74,143,212,0.3);">
+      <div class="light-name" style="color:#4A8FD4;">Canon EOS R6 Mark II</div>
+      <div class="light-desc" style="margin-top:6px;">Full frame. 4K 60fps no crop. 40fps burst. Excellent AF.</div>
+      <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;">
+        <a href="https://cam.start.canon/en/C012/manual/html/index.html" target="_blank" rel="noopener" class="clink" style="font-size:10px;">Online Manual &rarr;</a>
+        <a href="https://www.usa.canon.com/support/p/eos-r6-mark-ii" target="_blank" rel="noopener" class="clink" style="font-size:10px;">Official Support &rarr;</a>
+      </div>
+      <div class="light-desc" style="margin-top:8px;color:var(--text-muted);font-size:11px;">Video settings: Menu &rarr; Shoot &rarr; Movie rec. quality. Set to 4K 25P. Sound recording: Manual. Anti-flicker: Shoot menu. C-Log3 for log footage. Use RF or EF lenses with EF adapter — avoid EF-S (forces APS-C crop).</div>
+    </div>
+
+    <div class="light-card" style="border-color:rgba(74,143,212,0.3);">
+      <div class="light-name" style="color:#4A8FD4;">Canon EOS R (Mark I)</div>
+      <div class="light-desc" style="margin-top:6px;">Full frame. 4K (cropped to 1.74×). Uses EF lenses via adapter.</div>
+      <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;">
+        <a href="https://cam.start.canon/en/C004/manual/html/index.html" target="_blank" rel="noopener" class="clink" style="font-size:10px;">Online Manual &rarr;</a>
+      </div>
+      <div class="light-desc" style="margin-top:8px;color:var(--text-muted);font-size:11px;">Warning: EOS R 4K video applies a 1.74× crop — your 24mm becomes ~42mm. Shoot 1080p for no crop. Consider using the R6 when 4K wide shots are required.</div>
+    </div>
+
+    <div class="light-card" style="border-color:rgba(74,143,212,0.3);">
+      <div class="light-name" style="color:#4A8FD4;">Canon EOS 6D / 6D Mark II</div>
+      <div class="light-desc" style="margin-top:6px;">Full frame DSLR. 1080p video only. Dual Pixel AF on Mark II.</div>
+      <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;">
+        <a href="https://www.usa.canon.com/support/p/eos-6d-mark-ii" target="_blank" rel="noopener" class="clink" style="font-size:10px;">Official Support &rarr;</a>
+      </div>
+      <div class="light-desc" style="margin-top:8px;color:var(--text-muted);font-size:11px;">Uses EF lenses natively. Best used as B-camera or for stills documentation. Set Movie servo AF if available. Headphone monitoring not available — monitor audio separately on recorder.</div>
+    </div>
+  </div>
+
+  <div class="subhead">Audio Equipment</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-bottom:24px;">
+
+    <div class="light-card" style="border-color:rgba(74,175,106,0.3);">
+      <div class="light-name" style="color:var(--green);">Sound Devices MixPre-10 II / MixPre-6</div>
+      <div class="light-desc" style="margin-top:6px;">Primary field recorders. 8-channel (10 II) or 4-channel (6). V-mount battery.</div>
+      <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;">
+        <a href="https://www.sounddevices.com/product/mixpre-10-ii/" target="_blank" rel="noopener" class="clink" style="font-size:10px;">Product Page &rarr;</a>
+        <a href="https://cdn.sounddevices.com/wp-content/uploads/2019/09/MixPre-User-Guide-Rev-F.pdf" target="_blank" rel="noopener" class="clink" style="font-size:10px;">User Guide PDF &rarr;</a>
+      </div>
+      <div class="light-desc" style="margin-top:8px;color:var(--text-muted);font-size:11px;">Enable Dual Recording (Safety Track at -12dB) before every shoot. Set sample rate to 48kHz, 24-bit. Dialogue target: -18 dBFS average. Use tone generator for level sync with camera.</div>
+    </div>
+
+    <div class="light-card" style="border-color:rgba(74,175,106,0.3);">
+      <div class="light-name" style="color:var(--green);">Zoom H5 / H6</div>
+      <div class="light-desc" style="margin-top:6px;">Portable recorders with XLR inputs. Great for solo operators.</div>
+      <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;">
+        <a href="https://zoomcorp.com/en/us/handheld-recorders/handheld-recorders/h6/" target="_blank" rel="noopener" class="clink" style="font-size:10px;">H6 Manual &rarr;</a>
+        <a href="https://zoomcorp.com/en/us/handheld-recorders/handheld-recorders/h5/" target="_blank" rel="noopener" class="clink" style="font-size:10px;">H5 Manual &rarr;</a>
+      </div>
+      <div class="light-desc" style="margin-top:8px;color:var(--text-muted);font-size:11px;">48kHz / 24-bit. Enable Auto Record Safety to capture a backup track 12dB lower. Phantom power (48V) required for condenser mics — check before going to set.</div>
+    </div>
+
+    <div class="light-card" style="border-color:rgba(74,175,106,0.3);">
+      <div class="light-name" style="color:var(--green);">Sennheiser MKH416</div>
+      <div class="light-desc" style="margin-top:6px;">The industry-standard short shotgun. Supercardioid + lobar pattern. Excellent off-axis rejection.</div>
+      <div style="margin-top:10px;">
+        <a href="https://en-us.sennheiser.com/mkh-416" target="_blank" rel="noopener" class="clink" style="font-size:10px;">Product Info &rarr;</a>
+      </div>
+      <div class="light-desc" style="margin-top:8px;color:var(--text-muted);font-size:11px;">Requires phantom power (48V). Point at mouth from above — keep out of frame. The MKH416N is reserved for TVP audio students only. Handle with care.</div>
+    </div>
+
+    <div class="light-card" style="border-color:rgba(74,175,106,0.3);">
+      <div class="light-name" style="color:var(--green);">Røde NTG-5</div>
+      <div class="light-desc" style="margin-top:6px;">Lightweight short shotgun. Very low self-noise. Excellent for quiet interiors.</div>
+      <div style="margin-top:10px;">
+        <a href="https://rode.com/en/microphones/shotgun/ntg5" target="_blank" rel="noopener" class="clink" style="font-size:10px;">Product Info &rarr;</a>
+      </div>
+      <div class="light-desc" style="margin-top:8px;color:var(--text-muted);font-size:11px;">Comes with pistol grip. Requires phantom power. Lighter than the MKH416 — preferred for long boom days. Excellent frequency response with minimal handling noise.</div>
+    </div>
+
+    <div class="light-card" style="border-color:rgba(74,175,106,0.3);">
+      <div class="light-name" style="color:var(--green);">Lavalier Systems (Lark Max / Røde Wireless Go)</div>
+      <div class="light-desc" style="margin-top:6px;">Wireless clip-on microphones. 2-to-1 system (Lark Max) or 1-to-1 (Wireless Go).</div>
+      <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;">
+        <a href="https://rode.com/en/microphones/wireless/wirelessgoii" target="_blank" rel="noopener" class="clink" style="font-size:10px;">Wireless Go II &rarr;</a>
+      </div>
+      <div class="light-desc" style="margin-top:8px;color:var(--text-muted);font-size:11px;">Charge before every shoot day. Clip mic to sternum or under clothing — use gaffer tape to reduce clothing rustle. Use both boom AND lavalier when possible; choose best track in editing.</div>
+    </div>
+  </div>
+
+  <div class="subhead">Lighting Equipment</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-bottom:24px;">
+
+    <div class="light-card" style="border-color:rgba(245,166,35,0.3);">
+      <div class="light-name" style="color:var(--amber);">Nanlite Pavoslim (Bi-Color &amp; RGB)</div>
+      <div class="light-desc" style="margin-top:6px;">Versatile LED panel. Bi-color: adjustable 2700K–6500K. RGB version: full colour.</div>
+      <div style="margin-top:10px;">
+        <a href="https://www.nanlite.com/products/pavoslim" target="_blank" rel="noopener" class="clink" style="font-size:10px;">Product Info &rarr;</a>
+      </div>
+      <div class="light-desc" style="margin-top:8px;color:var(--text-muted);font-size:11px;">At 100% brightness = most flicker-free. Dimming below 50% may introduce PWM flicker — especially visible at higher shutter speeds. Use gel and diffusion rather than heavy dimming.</div>
+    </div>
+
+    <div class="light-card" style="border-color:rgba(245,166,35,0.3);">
+      <div class="light-name" style="color:var(--amber);">Arri 650 / 1000 / 2000 (Tungsten)</div>
+      <div class="light-desc" style="margin-top:6px;">Classic tungsten fresnels. Warm (3200K). Very high output. Get hot quickly.</div>
+      <div class="light-desc" style="margin-top:8px;color:var(--text-muted);font-size:11px;">Warning: handle with care — lenses get extremely hot. Allow cooling time before packing. Tungsten lights are flicker-free at any shutter speed. Set camera WB to 3200K when using as key. Use CTB gel to convert to daylight.</div>
+    </div>
+
+    <div class="light-card" style="border-color:rgba(245,166,35,0.3);">
+      <div class="light-name" style="color:var(--amber);">Rotolight Neo 2 / RL48</div>
+      <div class="light-desc" style="margin-top:6px;">Battery-powered LED lights. Compact and portable. Bi-color with CRI 95+.</div>
+      <div style="margin-top:10px;">
+        <a href="https://rotolight.com/neo2/" target="_blank" rel="noopener" class="clink" style="font-size:10px;">Product Info &rarr;</a>
+      </div>
+      <div class="light-desc" style="margin-top:8px;color:var(--text-muted);font-size:11px;">Good for run-and-gun, interviews, and on-camera fill. Battery life approx 90 min at full power — bring spares. Strobe mode available but flickers in video — keep in Continuous mode.</div>
+    </div>
+
+    <div class="light-card" style="border-color:rgba(245,166,35,0.3);">
+      <div class="light-name" style="color:var(--amber);">Softbox Kits (Chimera / Ianiro / Photoflex)</div>
+      <div class="light-desc" style="margin-top:6px;">40cm softboxes for soft, diffused key and fill light.</div>
+      <div class="light-desc" style="margin-top:8px;color:var(--text-muted);font-size:11px;">Silver interior = harder light, more output. White interior = softer, more even. Position 45° above and to side of subject for classic Rembrandt/three-quarter key. The closer to subject, the softer the light — move it in when possible.</div>
+    </div>
+  </div>
+
+  <div class="subhead">Monitor &amp; Reference Equipment</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-bottom:24px;">
+
+    <div class="light-card" style="border-color:rgba(74,143,212,0.3);">
+      <div class="light-name" style="color:#4A8FD4;">Blackmagic Video Assist 4K (7")</div>
+      <div class="light-desc" style="margin-top:6px;">On-set 4K field monitor with waveform, vectorscope, and false colour.</div>
+      <div style="margin-top:10px;">
+        <a href="https://www.blackmagicdesign.com/products/blackmagicvideoassist" target="_blank" rel="noopener" class="clink" style="font-size:10px;">Product Info &rarr;</a>
+      </div>
+      <div class="light-desc" style="margin-top:8px;color:var(--text-muted);font-size:11px;">Use False Colour overlay to check exposure — zebras show clipped highlights. Waveform gives accurate luminance. Can also record externally via HDMI — useful for ProRes backup from C300.</div>
+    </div>
+
+    <div class="light-card" style="border-color:rgba(74,143,212,0.3);">
+      <div class="light-name" style="color:#4A8FD4;">Atomos Samurai</div>
+      <div class="light-desc" style="margin-top:6px;">External video recorder. Records ProRes or DNxHD from HDMI/SDI output.</div>
+      <div style="margin-top:10px;">
+        <a href="https://www.atomos.com/support" target="_blank" rel="noopener" class="clink" style="font-size:10px;">Atomos Support &rarr;</a>
+      </div>
+      <div class="light-desc" style="margin-top:8px;color:var(--text-muted);font-size:11px;">Records from HDMI out of the C300/R6. Use for high-quality ProRes recording when maximum quality is required. Requires matching SSD. Check disk space before shoot day.</div>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <p><strong>General equipment rule:</strong> Charge batteries the night before. Test every piece of gear in the prep space before going to location. Bring spare cards, spare batteries for every critical item. Return equipment clean and in the same condition you received it — future students depend on it.</p>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════ DOCUMENTARY ══ -->
+<div class="panel" id="panel-documentary">
+  <div class="section-title">Documentary &amp; Interview</div>
+  <div class="section-sub">Non-fiction filmmaking — observational, interview, essay film, vox pop</div>
+
+  <!-- Documentary Modes -->
+  <div class="subhead">Documentary Modes</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin-bottom:24px;">
+
+    <div class="light-card" style="border-color:rgba(74,175,106,0.35);">
+      <div class="light-name" style="color:var(--green);font-size:14px;">Observational</div>
+      <div class="light-desc" style="margin-top:6px;">Camera watches without intervening. No narrator, no direct address. The unplanned moment is the material. Direct cinema tradition — Wiseman, Maysles.</div>
+      <div class="movement-tip" style="margin-top:8px;">↳ Small crew, follow the action, accept imperfection. Presence shapes what you find.</div>
+    </div>
+
+    <div class="light-card" style="border-color:rgba(74,143,212,0.35);">
+      <div class="light-name" style="color:#4A8FD4;font-size:14px;">Participatory / Interview</div>
+      <div class="light-desc" style="margin-top:6px;">Filmmaker asks questions, prompts subjects, sometimes appears on screen. The sit-down interview is the primary structural device.</div>
+      <div class="movement-tip" style="margin-top:8px;">↳ Interview + B-roll cutaways. Ask open questions — "Tell me about…" not yes/no.</div>
+    </div>
+
+    <div class="light-card" style="border-color:rgba(155,111,212,0.35);">
+      <div class="light-name" style="color:var(--purple);font-size:14px;">Essay Film</div>
+      <div class="light-desc" style="margin-top:6px;">First-person voice explores ideas through images and narration. Subjective, associative, question-driven. Varda, Marker, Steyerl.</div>
+      <div class="movement-tip" style="margin-top:8px;">↳ Images don't have to illustrate the narration — they can contradict or rhyme with it.</div>
+    </div>
+
+    <div class="light-card" style="border-color:rgba(245,166,35,0.35);">
+      <div class="light-name" style="color:var(--amber);font-size:14px;">Vox Pop / Street Interview</div>
+      <div class="light-desc" style="margin-top:6px;">Short on-the-street opinion interviews with the public. Fast to shoot. Requires editorial instinct — most material won't be usable.</div>
+      <div class="movement-tip" style="margin-top:8px;">↳ Shoot 6–10 to get 3–4 usable ones. Pick your location before approaching subjects.</div>
+    </div>
+  </div>
+
+  <!-- Interview Framings -->
+  <div class="subhead">Interview Framings</div>
+  <div class="section-sub" style="margin-bottom:14px;">Standard camera setups for sit-down, street, and environmental interviews</div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:16px;">
+
+    <div class="shot-card" style="min-height:0;">
+      <div class="shot-frame" style="height:60px;">
+        <svg viewBox="0 0 120 56" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+          <rect width="120" height="56" fill="#1a1a1a"/>
+          <rect x="8" y="22" width="16" height="22" rx="1" fill="#222"/>
+          <ellipse cx="16" cy="19" rx="6" ry="6" fill="#222"/>
+          <rect x="78" y="18" width="22" height="28" rx="1" fill="#333"/>
+          <ellipse cx="89" cy="14" rx="9" ry="9" fill="#333"/>
+          <line x1="28" y1="19" x2="74" y2="17" stroke="#F5A623" stroke-width="1" stroke-dasharray="3,2"/>
+        </svg>
+      </div>
+      <span class="shot-abbr">OTS INT</span>
+      <span class="shot-name">Interview OTS</span>
+      <span class="shot-desc">Camera behind interviewer. Subject looks slightly off-lens. Feels conversational. Standard documentary framing.</span>
+    </div>
+
+    <div class="shot-card" style="min-height:0;">
+      <div class="shot-frame" style="height:60px;">
+        <svg viewBox="0 0 120 56" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+          <rect width="120" height="56" fill="#1a1a1a"/>
+          <rect x="42" y="16" width="36" height="32" rx="1" fill="#2a2a2a"/>
+          <ellipse cx="60" cy="12" rx="11" ry="11" fill="#333"/>
+          <circle cx="60" cy="12" r="4" fill="#F5A623" opacity="0.5"/>
+          <text x="60" y="52" fill="#F5A623" font-size="7" font-family="monospace" text-anchor="middle" opacity="0.6">direct</text>
+        </svg>
+      </div>
+      <span class="shot-abbr">DIR CAM</span>
+      <span class="shot-name">Direct to Camera</span>
+      <span class="shot-desc">Subject looks into lens. Confessional, essay film, vox pop. Rare in narrative fiction — creates immediacy and intimacy.</span>
+    </div>
+
+    <div class="shot-card" style="min-height:0;">
+      <div class="shot-frame" style="height:60px;">
+        <svg viewBox="0 0 120 56" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+          <rect width="120" height="56" fill="#1a1a1a"/>
+          <rect x="12" y="14" width="26" height="32" rx="1" fill="#2a2a2a"/>
+          <ellipse cx="25" cy="10" rx="9" ry="9" fill="#333"/>
+          <line x1="42" y1="11" x2="108" y2="11" stroke="#F5A623" stroke-width="1" stroke-dasharray="3,2"/>
+          <text x="70" y="24" fill="#F5A623" font-size="7" font-family="monospace" text-anchor="middle" opacity="0.7">eye room</text>
+        </svg>
+      </div>
+      <span class="shot-abbr">EYE RM</span>
+      <span class="shot-name">Eye Room</span>
+      <span class="shot-desc">Subject left or right of frame with space on the side they're looking toward. Always leave eye room in interview framings.</span>
+    </div>
+
+    <div class="shot-card" style="min-height:0;">
+      <div class="shot-frame" style="height:60px;">
+        <svg viewBox="0 0 120 56" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+          <rect width="120" height="56" fill="#1a1a1a"/>
+          <rect x="8" y="18" width="20" height="28" rx="1" fill="#222"/>
+          <ellipse cx="18" cy="14" rx="7" ry="7" fill="#222"/>
+          <rect x="92" y="18" width="20" height="28" rx="1" fill="#222"/>
+          <ellipse cx="102" cy="14" rx="7" ry="7" fill="#222"/>
+          <line x1="30" y1="14" x2="55" y2="18" stroke="#F5A623" stroke-width="0.8" stroke-dasharray="2,2"/>
+          <line x1="90" y1="14" x2="65" y2="18" stroke="#F5A623" stroke-width="0.8" stroke-dasharray="2,2"/>
+        </svg>
+      </div>
+      <span class="shot-abbr">2S INT</span>
+      <span class="shot-name">Two-Shot Interview</span>
+      <span class="shot-desc">Both subjects in frame, looking toward each other. Couple or partner interviews. Keep both faces visible — avoid full profiles.</span>
+    </div>
+
+    <div class="shot-card" style="min-height:0;">
+      <div class="shot-frame" style="height:60px;">
+        <svg viewBox="0 0 120 56" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+          <rect width="120" height="56" fill="#1a1a1a"/>
+          <rect x="30" y="12" width="60" height="36" rx="1" fill="#222"/>
+          <ellipse cx="60" cy="8" rx="8" ry="8" fill="#2a2a2a"/>
+          <rect x="5" y="16" width="18" height="30" fill="#1a1a1a"/>
+          <rect x="97" y="16" width="18" height="30" fill="#1a1a1a"/>
+          <rect x="5" y="16" width="18" height="2" fill="#252525"/>
+          <rect x="5" y="22" width="18" height="2" fill="#252525"/>
+          <rect x="97" y="16" width="18" height="2" fill="#252525"/>
+          <rect x="97" y="22" width="18" height="2" fill="#252525"/>
+        </svg>
+      </div>
+      <span class="shot-abbr">ENV INT</span>
+      <span class="shot-name">Environmental</span>
+      <span class="shot-desc">MS or WS placing subject in their context — office, lab, studio. Background tells the story. Best for documentary subjects where place adds meaning.</span>
+    </div>
+
+    <div class="shot-card" style="min-height:0;">
+      <div class="shot-frame" style="height:60px;">
+        <svg viewBox="0 0 120 56" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+          <rect width="120" height="56" fill="#1a1a1a"/>
+          <rect x="46" y="10" width="24" height="36" rx="1" fill="#2a2a2a"/>
+          <ellipse cx="58" cy="6" rx="8" ry="7" fill="#333"/>
+          <line x1="4" y1="20" x2="36" y2="20" stroke="#2a2a2a" stroke-width="2"/>
+          <line x1="4" y1="28" x2="36" y2="28" stroke="#2a2a2a" stroke-width="2"/>
+          <line x1="4" y1="36" x2="36" y2="36" stroke="#2a2a2a" stroke-width="2"/>
+          <text x="8" y="15" fill="#F5A623" font-size="6" font-family="monospace" opacity="0.6">walk</text>
+        </svg>
+      </div>
+      <span class="shot-abbr">WALK INT</span>
+      <span class="shot-name">Walking Interview</span>
+      <span class="shot-desc">Handheld follows subject while moving. Creates energy, reveals environment. Use wireless lavalier. Good for street documentary and vox pop.</span>
+    </div>
+  </div>
+
+  <div class="info-box" style="margin-bottom:24px;">
+    <p><strong>Eyeline rule:</strong> In a sit-down interview, the subject looks just <em>past</em> the lens — at the interviewer seated directly beside or just behind the camera. Result: not looking at camera (journalistic distance) but engaged with someone (not staring into space). The closer the interviewer is to the lens axis, the more natural the eyeline appears on screen.</p>
+  </div>
+
+  <!-- Interview Setup -->
+  <div class="subhead">Interview Setup — Step by Step</div>
+  <div class="movement-list" style="margin-bottom:24px;">
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:13px;min-width:100px;color:var(--green);">LOCATION</span>
+      <div>
+        <div class="movement-desc"><strong style="color:var(--text);">Choose a location that tells a story.</strong> Where does the subject live, work, or belong? Do a recce first and listen carefully — a humming fridge or open window can ruin audio.</div>
+        <div class="movement-tip">↳ Avoid bare white walls unless intentional. Environment adds meaning.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:13px;min-width:100px;color:var(--green);">FRAMING</span>
+      <div>
+        <div class="movement-desc">MCU or MS. Subject left or right of frame with eye room. Eyes on the upper third. Background slightly soft if possible. Check carefully for anything "growing" out of the subject's head.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:13px;min-width:100px;color:var(--green);">LIGHTING</span>
+      <div>
+        <div class="movement-desc">Window light as key is excellent — supplement with a reflector on the shadow side. Avoid harsh overhead fluorescents. Turn off ceiling lights if possible and let window or LED do the work.</div>
+        <div class="movement-tip">↳ Set a manual white balance to match your dominant source. Don't mix daylight and tungsten uncontrolled.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:13px;min-width:100px;color:var(--green);">AUDIO</span>
+      <div>
+        <div class="movement-desc">Run boom AND lavalier simultaneously. The boom gives natural room tone; the lavalier gives clean close-up when the subject turns their head. Choose in editing — often you'll blend both.</div>
+        <div class="movement-tip">↳ Record one full minute of room tone before and after. You will need it.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:13px;min-width:100px;color:var(--green);">B-ROLL</span>
+      <div>
+        <div class="movement-desc">Shoot B-roll after the interview while the subject is still there. Listen to the transcript and note every noun — that's your B-roll list. You need 3–5× more than you think.</div>
+        <div class="movement-tip">↳ The edit lives and dies on your B-roll. Prioritise activity shots over cutaways of the subject just sitting.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- B-Roll Types -->
+  <div class="subhead">B-Roll — Types</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;margin-bottom:24px;">
+    <div class="command-card">
+      <span class="command-word" style="font-size:15px;min-width:80px;">ACTIVITY</span>
+      <span class="command-def">Subject doing what they're talking about. Most powerful B-roll — action and narration reinforce each other.</span>
+    </div>
+    <div class="command-card">
+      <span class="command-word" style="font-size:15px;min-width:80px;">DETAIL</span>
+      <span class="command-def">Close-ups of hands, tools, textures. Slows pace, creates intimacy. Often the most cinematic B-roll you'll shoot.</span>
+    </div>
+    <div class="command-card">
+      <span class="command-word" style="font-size:15px;min-width:80px;">ESTABLISH</span>
+      <span class="command-def">Wide shots of location, street, building. Grounds the viewer in space. Used at the start of a sequence or to transition.</span>
+    </div>
+    <div class="command-card">
+      <span class="command-word" style="font-size:15px;min-width:80px;">REACTION</span>
+      <span class="command-def">Subject listening, thinking, reacting silently. Cuts over interview audio. Easy to forget — always capture before leaving.</span>
+    </div>
+    <div class="command-card">
+      <span class="command-word" style="font-size:15px;min-width:80px;">ARCHIVAL</span>
+      <span class="command-def">Photos, documents, old footage. Must be cleared for rights. Scan or photograph at the highest resolution possible.</span>
+    </div>
+    <div class="command-card">
+      <span class="command-word" style="font-size:15px;min-width:80px;">ATMOSPHERE</span>
+      <span class="command-def">Weather, crowds, environment, light. Sets emotional tone between sequences. Doesn't need to be directly related to content.</span>
+    </div>
+  </div>
+
+  <!-- Essay Film -->
+  <div class="subhead">Essay Film — Key Concepts</div>
+  <div class="movement-list" style="margin-bottom:24px;">
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:13px;min-width:100px;color:var(--purple);">VOICE</span>
+      <div>
+        <div class="movement-desc">The essay film foregrounds a <strong style="color:var(--text);">subjective voice</strong> — spoken narration (first person) or a strongly implied authorial perspective. The filmmaker is not invisible.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:13px;min-width:100px;color:var(--purple);">ASSOCIATION</span>
+      <div>
+        <div class="movement-desc">Images connect through <strong style="color:var(--text);">association, not causation.</strong> You don't have to show what the narrator describes — you can show something that rhymes with it, questions it, or contradicts it.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:13px;min-width:100px;color:var(--purple);">QUESTION</span>
+      <div>
+        <div class="movement-desc">Essay films <strong style="color:var(--text);">ask questions rather than answer them.</strong> A well-made essay film leaves the viewer with a richer problem, not a solution. Resist the urge to conclude too clearly.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <p><strong>Consent &amp; ethics:</strong> Always be transparent about the project. Get written consent for anyone whose face or voice appears. Be especially careful with vulnerable subjects and anyone filmed in a personal context. When in doubt, check with your supervisor before filming.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ SHOOT DAY PREP ══ -->
+<div class="panel" id="panel-prepday">
+  <div class="section-title">Shoot Day Prep</div>
+  <div class="section-sub">The night before and the morning of — what to check so the day doesn't fall apart</div>
+
+  <div class="info-box" style="border-color:rgba(245,166,35,0.4);background:rgba(245,166,35,0.07);">
+    <p><strong>The rule:</strong> Anything that can go wrong on set was preventable in prep. The shoot day itself is too late to discover a dead battery, a missing lens, or a location that's unavailable. Every item below is something a real production has lost a day to.</p>
+  </div>
+
+  <div class="subhead">The Night Before</div>
+  <div class="movement-list" style="margin-bottom:24px;">
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:13px;min-width:110px;color:var(--amber);">BATTERIES</span>
+      <div>
+        <div class="movement-desc">Charge <strong style="color:var(--text);">everything</strong> — camera batteries (charge all of them, not just one), recorder batteries, wireless transmitters, monitor, follow focus if motorised. Put them on charge before you sleep.</div>
+        <div class="movement-tip">↳ Label batteries with tape so you know which are charged. Dead batteries look identical to charged ones.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:13px;min-width:110px;color:var(--amber);">MEDIA</span>
+      <div>
+        <div class="movement-desc">Format cards and drives the night before — not on set. Confirm you have enough capacity. Calculate: shooting ratio (how many hours of material for each hour of finished film) × your planned shoot time × your codec's data rate.</div>
+        <div class="movement-tip">↳ XF-AVC on the C300 at 4K/25fps ≈ 1 GB/min. A 128GB card = approx 2 hours. Bring more than you think you need.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:13px;min-width:110px;color:var(--amber);">EQUIPMENT</span>
+      <div>
+        <div class="movement-desc">Pack your gear list the night before. Check each item off physically as you pack it. Lenses, cables (XLR, HDMI, power), adapters, memory cards, headphones, boom pole, clapper board, gaffer tape, lens wipes.</div>
+        <div class="movement-tip">↳ Gaffer tape and cable ties solve a surprising percentage of on-set problems. Never leave without them.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:13px;min-width:110px;color:var(--amber);">DOCUMENTS</span>
+      <div>
+        <div class="movement-desc">Print or download to your phone: call sheet, shot list, script with scene breakdowns, location address, cast and crew contact numbers. Phones die. Paper doesn't.</div>
+        <div class="movement-tip">↳ Share the call sheet with every crew member and every cast member the night before — not the morning of.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:13px;min-width:110px;color:var(--amber);">LOCATION</span>
+      <div>
+        <div class="movement-desc">Confirm location access with the owner or contact person. If you need a key, know who has it. Know where to park or where to drop equipment. Know the nearest power outlets.</div>
+        <div class="movement-tip">↳ Walk the location in your head from the call sheet: how do you get in, where does camera go, where does sound set up, where does cast wait?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subhead">Morning of Shoot — Before Crew Arrives</div>
+  <div class="movement-list" style="margin-bottom:24px;">
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:13px;min-width:110px;color:var(--green);">1ST AD</span>
+      <div>
+        <div class="movement-desc">The 1st AD should arrive before the crew to assess the space. Where does everything go? Are there any surprises — locked doors, noise sources, changed furniture? Brief the director before anyone else arrives.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:13px;min-width:110px;color:var(--green);">CAMERA</span>
+      <div>
+        <div class="movement-desc">Build the camera and confirm all settings before the first setup: frame rate (25fps), shutter (1/50), white balance (manual), recording format, audio routing. Do this while crew is setting up lighting — not during a take.</div>
+        <div class="movement-tip">↳ Record a 30-second test clip and play it back. Confirm picture and audio are both recording correctly.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:13px;min-width:110px;color:var(--green);">SOUND</span>
+      <div>
+        <div class="movement-desc">Sound recordist sets up and does a full level check with the boom and each lavalier before the first setup. Confirm phantom power is on for condenser mics. Confirm timecode sync if using a separate recorder.</div>
+        <div class="movement-tip">↳ Do a clap test: record a clap with picture and make sure the transient is visible in the audio waveform in playback.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:13px;min-width:110px;color:var(--green);">BLOCKING</span>
+      <div>
+        <div class="movement-desc">Before lighting, the director walks through the blocking with the actors (or stand-ins) for each setup. DP watches and notes where the camera needs to be. Lighting is planned around the blocking — not the other way around.</div>
+        <div class="movement-tip">↳ Never finalise your lighting before you know exactly where the actors will move.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subhead">Sound File Sync — Camera + Recorder</div>
+  <div class="info-box" style="margin-bottom:16px;">
+    <p>When recording sound to a separate device (Zoom H5/H6, Sound Devices MixPre), you need to sync sound to picture in the edit. The clapper board is your sync point — the visual frame where the clapper closes matches the audio spike of the clap.</p>
+  </div>
+  <div class="movement-list" style="margin-bottom:24px;">
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:13px;min-width:110px;color:var(--blue);">LABELLING</span>
+      <div>
+        <div class="movement-desc">Sound files and camera files need a shared naming system. Convention: <strong style="color:var(--text);">Scene_Shot_Take</strong> on the clapper board matches the folder or file name on the recorder. Example: board reads "S3 SH2 TK4" — recorder file is labelled S3-SH2-TK4.</div>
+        <div class="movement-tip">↳ The script supervisor writes the board information and logs every take. Keep that log — it is the link between picture and sound.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:13px;min-width:110px;color:var(--blue);">SYNC POINT</span>
+      <div>
+        <div class="movement-desc">In your NLE (DaVinci Resolve, Premiere): place the camera clip and sound clip on the timeline. Find the frame where the clapper closes — match it to the spike in the audio waveform. Most NLEs have auto-sync by waveform or timecode.</div>
+        <div class="movement-tip">↳ DaVinci Resolve: right-click clips in the Media Pool → Auto-Sync Audio → Based on Waveform. Works without timecode.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:13px;min-width:110px;color:var(--blue);">MOS SHOTS</span>
+      <div>
+        <div class="movement-desc">MOS = shots recorded without sound (camera movements, B-roll, inserts). Mark them on the board ("MOS") and in the sound log. Do not record to the external recorder for MOS — use only the camera's scratch audio.</div>
+        <div class="movement-tip">↳ MOS stands for "mit out sound" — a phonetic German-English hybrid from early Hollywood. Now universally used.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:13px;min-width:110px;color:var(--blue);">BACKUP</span>
+      <div>
+        <div class="movement-desc">At the end of each shoot day, copy all media to <strong style="color:var(--text);">at least two separate locations</strong> before deleting anything from the cards. One drive can fail. Two drives failing simultaneously is extremely rare.</div>
+        <div class="movement-tip">↳ The 3-2-1 rule: 3 copies, on 2 different media types, with 1 offsite. For student productions: camera card + primary drive + school server covers you.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subhead">Common Day-of Mishaps</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-bottom:20px;">
+    <div class="command-card">
+      <span class="command-word" style="font-size:14px;min-width:0;color:var(--red);">Dead battery</span>
+      <span class="command-def">Always bring more than you think you need. Charge the night before. Rotate batteries — never put a depleted battery back in the bag without marking it.</span>
+    </div>
+    <div class="command-card">
+      <span class="command-word" style="font-size:14px;min-width:0;color:var(--red);">Full card</span>
+      <span class="command-def">Format cards before every shoot. Keep one spare card sealed in the bag — only open it if needed. Label used cards so they don't get reformatted with footage on them.</span>
+    </div>
+    <div class="command-card">
+      <span class="command-word" style="font-size:14px;min-width:0;color:var(--red);">Wrong frame rate</span>
+      <span class="command-def">Camera reset to 30fps or 24fps from previous use. Always check before the first shot of the day. A whole day at 30fps in a 25fps project is painful to fix.</span>
+    </div>
+    <div class="command-card">
+      <span class="command-word" style="font-size:14px;min-width:0;color:var(--red);">No sound</span>
+      <span class="command-def">Forgot to press record on the recorder, or mic wasn't plugged in. Sound recordist calls "speed" when rolling — if you don't hear "speed" before "action", cut and check.</span>
+    </div>
+    <div class="command-card">
+      <span class="command-word" style="font-size:14px;min-width:0;color:var(--red);">Late cast</span>
+      <span class="command-def">Build 30 minutes of buffer into your call times. Schedule lighting setups for the start of the day so camera and lighting can work while cast is in hair/makeup/travel.</span>
+    </div>
+    <div class="command-card">
+      <span class="command-word" style="font-size:14px;min-width:0;color:var(--red);">Running out of time</span>
+      <span class="command-def">The 1st AD tracks time ruthlessly. Know your priority shots — if you fall behind, you drop the least important coverage, not the master shot. Always protect your wide.</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ DIRECTING TIPS ══ -->
+<div class="panel" id="panel-directing">
+  <div class="section-title">Directing Tips</div>
+  <div class="section-sub">Practical tools for communicating with actors and running a set — not a theory course</div>
+
+  <div class="info-box" style="border-color:rgba(74,175,106,0.35);background:rgba(74,175,106,0.06);">
+    <p>These are pragmatic on-set tools, not a substitute for studying acting or directing methodology. The goal here is to help you avoid the most common communication breakdowns between a first-time director and their actors.</p>
+  </div>
+
+  <div class="subhead">How to Give a Note</div>
+  <div class="movement-list" style="margin-bottom:24px;">
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:13px;min-width:120px;color:var(--green);">DO</span>
+      <div>
+        <div class="movement-desc">Give <strong style="color:var(--text);">physical actions and intentions</strong> — what the character is trying to do, achieve, or get from the other person. "You're trying to convince her to stay without letting her see you're scared." This gives the actor something playable.</div>
+        <div class="movement-tip">↳ "What do you want from the other person in this scene?" is one of the most useful questions you can ask an actor before a take.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:13px;min-width:120px;color:var(--red);">AVOID</span>
+      <div>
+        <div class="movement-desc"><strong style="color:#E03C2A;">Result direction</strong> — telling an actor how to feel ("be sadder", "be angrier", "be more nervous"). Emotions are a result of actions, not a starting point. When you direct results, actors push and perform the emotion rather than living it.</div>
+        <div class="movement-tip">↳ "Be sadder" is not playable. "You're realising this is the last time you'll see her" is playable.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:13px;min-width:120px;color:var(--red);">AVOID</span>
+      <div>
+        <div class="movement-desc"><strong style="color:#E03C2A;">Line readings</strong> — saying the line in the way you want it said and asking the actor to copy it. This destroys spontaneity. Instead, describe the subtext: "She's saying it's fine, but what she means is 'I will never forgive you for this'."</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:13px;min-width:120px;color:var(--amber);">ONE NOTE</span>
+      <div>
+        <div class="movement-desc">Give <strong style="color:var(--text);">one note at a time.</strong> If you give an actor three notes before a take, they'll be thinking about all three instead of acting. Prioritise what matters most and give the other notes after the next take if needed.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:13px;min-width:120px;color:var(--amber);">PRIVATE</span>
+      <div>
+        <div class="movement-desc">Give notes <strong style="color:var(--text);">privately</strong> when possible — step away from the crew. Correcting an actor in front of the full set is embarrassing and breaks trust. A good working relationship with your cast is a technical asset, not a soft concern.</div>
+        <div class="movement-tip">↳ Call "holding" and briefly walk to the actor. Two minutes of private conversation is worth 30 minutes of bad takes.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subhead">The Rehearsal on Set</div>
+  <div class="movement-list" style="margin-bottom:24px;">
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:13px;min-width:120px;color:var(--blue);">BLOCKING</span>
+      <div>
+        <div class="movement-desc">Walk through the physical movement of the scene with actors before lighting or rolling. This is for the director and DP to see what they're lighting and framing — not to lock in a perfect performance. Keep it loose.</div>
+        <div class="movement-tip">↳ Let actors find their natural movement first, then adjust for camera if needed. Forced blocking looks forced on screen.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:13px;min-width:120px;color:var(--blue);">TECH RUN</span>
+      <div>
+        <div class="movement-desc">A camera rehearsal with stand-ins (or the actors themselves at lower intensity) to set focus marks, lighting, and framing. Camera and sound crew need this — don't ask actors to give full performance energy during a tech run.</div>
+        <div class="movement-tip">↳ Protect your actors' energy. The performance you want is for the take, not the rehearsal.</div>
+      </div>
+    </div>
+    <div class="movement-row">
+      <span class="movement-name" style="font-size:13px;min-width:120px;color:var(--blue);">FIRST TAKE</span>
+      <div>
+        <div class="movement-desc">Let the first take surprise you — don't over-direct before you've seen what the actor gives you. Sometimes the first take is the best take. You can always adjust, but you can't get that first spontaneous impulse back.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subhead">Common Actor Difficulties — Practical Responses</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin-bottom:24px;">
+
+    <div class="light-card" style="border-color:rgba(74,143,212,0.3);">
+      <div class="light-name" style="color:#4A8FD4;font-size:14px;">Actor is indicating / performing</div>
+      <div class="light-desc" style="margin-top:6px;">They're showing you the emotion rather than living it — you can see the performance. Ask: "What does your character want <em>right now</em> in this moment?" Redirect to a specific, concrete objective rather than an emotional state.</div>
+    </div>
+
+    <div class="light-card" style="border-color:rgba(74,143,212,0.3);">
+      <div class="light-name" style="color:#4A8FD4;font-size:14px;">Actor is inconsistent between takes</div>
+      <div class="light-desc" style="margin-top:6px;">Natural in early takes — don't panic. Note the specific moment that worked best and ask them to repeat it. For blocking consistency: mark key positions on the floor with small tape marks so they hit focus marks reliably.</div>
+    </div>
+
+    <div class="light-card" style="border-color:rgba(74,143,212,0.3);">
+      <div class="light-name" style="color:#4A8FD4;font-size:14px;">Actor is nervous or self-conscious</div>
+      <div class="light-desc" style="margin-top:6px;">Reduce the number of people watching. Send non-essential crew out of eyeline. Give them something physical to do — an action, an object to handle. Nervous energy diminishes when attention is on a task rather than on performing.</div>
+    </div>
+
+    <div class="light-card" style="border-color:rgba(74,143,212,0.3);">
+      <div class="light-name" style="color:#4A8FD4;font-size:14px;">Actor loses lines under pressure</div>
+      <div class="light-desc" style="margin-top:6px;">Keep the script close. Don't make a big deal of it — line drops happen. You can cut and restart, or let them improvise through the moment and see if it works. Never show frustration — it makes it worse.</div>
+    </div>
+
+    <div class="light-card" style="border-color:rgba(74,143,212,0.3);">
+      <div class="light-name" style="color:#4A8FD4;font-size:14px;">Non-professional / first-time actor</div>
+      <div class="light-desc" style="margin-top:6px;">Use simpler, more concrete direction. "Walk to the table and pick up the cup" before "walk to the table." Reduce acting vocabulary — just describe what happens physically. Cast people close to the character — you can't direct someone to be something they're entirely not.</div>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <p><strong>The director's job on set:</strong> You're not just making decisions about the image — you're managing the emotional safety of everyone in the room. A director who is calm, clear, and respectful gets better performances than one who is anxious or impatient, regardless of talent. The set takes its temperature from the director.</p>
   </div>
 </div>
 
@@ -1308,6 +2388,7 @@
       tab.classList.add('active');
       document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (tab.dataset.tab === 'formats') { drawRatioCanvas(); drawDofCanvas(); }
     });
   });
 
@@ -1318,12 +2399,232 @@
       item.querySelector('.check-box').textContent = item.classList.contains('checked') ? '✓' : '';
     });
   });
-
   document.getElementById('reset-checks').addEventListener('click', () => {
     document.querySelectorAll('.check-item').forEach(item => {
       item.classList.remove('checked');
       item.querySelector('.check-box').textContent = '';
     });
+  });
+
+  // ── ASPECT RATIO CANVAS ───────────────────────────────────
+  let currentRatio = 1.78;
+
+  function setRatio(btn, ratio, label) {
+    document.querySelectorAll('#ratio-btns .fb').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentRatio = ratio;
+    document.getElementById('ratio-label').textContent = label;
+    drawRatioCanvas();
+  }
+
+  function drawRatioCanvas() {
+    const canvas = document.getElementById('ratio-canvas');
+    const container = document.getElementById('ratio-container');
+    const W = container.offsetWidth;
+    const baseH = Math.round(W / 1.78); // fixed canvas height = 16:9
+    canvas.width = W;
+    canvas.height = baseH;
+    canvas.style.height = baseH + 'px';
+    const ctx = canvas.getContext('2d');
+
+    // Fill entire canvas with black first
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0, 0, W, baseH);
+
+    // Determine active image area
+    const ratio = currentRatio;
+    let imgX, imgY, imgW, imgH;
+    if (ratio >= 1.78) {
+      // Wider than 16:9 — letterbox (black bars top/bottom)
+      imgW = W;
+      imgH = Math.round(W / ratio);
+      imgX = 0;
+      imgY = Math.round((baseH - imgH) / 2);
+    } else {
+      // Narrower than 16:9 — pillarbox (black bars left/right)
+      imgH = baseH;
+      imgW = Math.round(baseH * ratio);
+      imgX = Math.round((W - imgW) / 2);
+      imgY = 0;
+    }
+
+    // Draw scene inside image area
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(imgX, imgY, imgW, imgH);
+    ctx.clip();
+
+    const grad = ctx.createLinearGradient(imgX, imgY, imgX, imgY + imgH);
+    grad.addColorStop(0, '#1E2A3A');
+    grad.addColorStop(0.55, '#2A3A2A');
+    grad.addColorStop(1, '#1a1a1a');
+    ctx.fillStyle = grad;
+    ctx.fillRect(imgX, imgY, imgW, imgH);
+
+    const cx = imgX + imgW / 2;
+    const cy = imgY + imgH / 2;
+
+    // Horizon
+    ctx.fillStyle = '#2a3a2a';
+    ctx.fillRect(imgX, imgY + imgH * 0.55, imgW, imgH * 0.45);
+
+    // Building silhouettes
+    [[0.1,0.22,0.18,0.35],[0.3,0.18,0.14,0.40],[0.55,0.20,0.16,0.38],[0.73,0.16,0.12,0.42]].forEach(([rx,rw,rh,ry]) => {
+      ctx.fillStyle = '#1a2a1a';
+      ctx.fillRect(imgX + imgW*rx, imgY + imgH*(1-ry-rh), imgW*rw, imgH*rh);
+    });
+
+    // Subject dot + label
+    ctx.beginPath();
+    ctx.arc(cx, cy * 0.85 + imgY * 0.15, Math.min(20, imgH * 0.12), 0, Math.PI*2);
+    ctx.fillStyle = '#C04A2A';
+    ctx.fill();
+    ctx.fillStyle = '#F5A623';
+    ctx.font = `bold ${Math.max(9, Math.round(imgW/35))}px DM Sans, sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('SUBJECT', cx, cy * 0.85 + imgY * 0.15);
+    ctx.restore();
+
+    // Matte bars (drawn on top, solid black)
+    ctx.fillStyle = 'rgba(0,0,0,0.88)';
+    if (ratio >= 1.78) {
+      // Top and bottom letterbox bars
+      if (imgY > 0) {
+        ctx.fillRect(0, 0, W, imgY);
+        ctx.fillRect(0, imgY + imgH, W, baseH - imgY - imgH);
+        // Labels if bars are large enough
+        if (imgY > 12) {
+          ctx.fillStyle = 'rgba(245,166,35,0.5)';
+          ctx.font = `${Math.max(9, Math.round(W/90))}px DM Mono, monospace`;
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText('cropped', W/2, imgY/2);
+          ctx.fillText('cropped', W/2, imgY + imgH + (baseH - imgY - imgH)/2);
+        }
+      }
+    } else {
+      // Left and right pillarbox bars
+      if (imgX > 0) {
+        ctx.fillRect(0, 0, imgX, baseH);
+        ctx.fillRect(imgX + imgW, 0, W - imgX - imgW, baseH);
+        if (imgX > 12) {
+          ctx.save();
+          ctx.fillStyle = 'rgba(245,166,35,0.5)';
+          ctx.font = `${Math.max(9, Math.round(W/90))}px DM Mono, monospace`;
+          ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+          // Rotate text for side bars
+          ctx.translate(imgX/2, baseH/2); ctx.rotate(-Math.PI/2);
+          ctx.fillText('cropped', 0, 0); ctx.restore();
+          ctx.save();
+          ctx.translate(imgX + imgW + (W - imgX - imgW)/2, baseH/2); ctx.rotate(Math.PI/2);
+          ctx.fillStyle = 'rgba(245,166,35,0.5)';
+          ctx.font = `${Math.max(9, Math.round(W/90))}px DM Mono, monospace`;
+          ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+          ctx.fillText('cropped', 0, 0); ctx.restore();
+        }
+      }
+    }
+
+    // Active frame border
+    ctx.strokeStyle = 'rgba(245,166,35,0.55)';
+    ctx.lineWidth = 1.5;
+    ctx.strokeRect(imgX + 0.75, imgY + 0.75, imgW - 1.5, imgH - 1.5);
+  }
+
+  // ── DEPTH OF FIELD CANVAS ─────────────────────────────────
+  function drawDofCanvas() {
+    const canvas = document.getElementById('dof-canvas');
+    const W = canvas.parentElement.offsetWidth;
+    const H = 180;
+    canvas.width = W; canvas.height = H;
+    const ctx = canvas.getContext('2d');
+    const fVal = parseFloat(document.getElementById('aperture-slider').value);
+
+    // Sky
+    const skyGrad = ctx.createLinearGradient(0,0,0,H*0.55);
+    skyGrad.addColorStop(0,'#1E2A3A'); skyGrad.addColorStop(1,'#2A3A4A');
+    ctx.fillStyle = skyGrad; ctx.fillRect(0,0,W,H*0.55);
+    // Ground
+    ctx.fillStyle = '#1a2a1a'; ctx.fillRect(0,H*0.55,W,H);
+
+    // blur amount: inversely proportional to f-stop
+    // f/1.4 = max blur, f/16 = no blur
+    const maxBlur = 18;
+    const blur = Math.max(0, maxBlur * (1 - (fVal - 1) / 15));
+
+    // background elements (blurred based on f-stop)
+    function drawBlurred(drawFn) {
+      if (blur > 0.5) {
+        const off = document.createElement('canvas');
+        off.width = W; off.height = H;
+        const octx = off.getContext('2d');
+        drawFn(octx);
+        ctx.save();
+        ctx.filter = `blur(${blur.toFixed(1)}px)`;
+        ctx.drawImage(off, 0, 0);
+        ctx.restore();
+      } else { drawFn(ctx); }
+    }
+
+    drawBlurred(c => {
+      // Trees / buildings in bg
+      [[0.1,0.05,0.3],[0.25,0.04,0.32],[0.55,0.06,0.28],[0.7,0.05,0.31],[0.85,0.04,0.29]].forEach(([x,w,y]) => {
+        c.fillStyle = '#1a3a1a';
+        c.fillRect(W*x, H*(1-y-0.22), W*w, H*0.22);
+      });
+      // Bg person silhouette
+      c.fillStyle = '#253525';
+      c.beginPath(); c.arc(W*0.78, H*0.42, H*0.08, 0, Math.PI*2); c.fill();
+      c.fillRect(W*0.75, H*0.5, W*0.06, H*0.15);
+    });
+
+    // Subject — always sharp
+    const sx = W*0.42, sy = H*0.42, sr = H*0.1;
+    ctx.beginPath(); ctx.arc(sx, sy, sr, 0, Math.PI*2);
+    ctx.fillStyle = '#C04A2A'; ctx.fill();
+    ctx.fillStyle = '#1a1a1a';
+    ctx.beginPath(); ctx.arc(sx-sr*0.25, sy-sr*0.15, sr*0.2, 0, Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.arc(sx+sr*0.25, sy-sr*0.15, sr*0.2, 0, Math.PI*2); ctx.fill();
+    ctx.strokeStyle='#1a1a1a'; ctx.lineWidth=2;
+    ctx.beginPath(); ctx.arc(sx, sy+sr*0.1, sr*0.4, 0.1*Math.PI, 0.9*Math.PI); ctx.stroke();
+
+    // Focus plane indicator
+    ctx.setLineDash([4,4]);
+    ctx.strokeStyle = 'rgba(245,166,35,0.3)';
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(W*0.32, 0); ctx.lineTo(W*0.32, H); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(W*0.55, 0); ctx.lineTo(W*0.55, H); ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Label
+    ctx.fillStyle = 'rgba(245,166,35,0.7)';
+    ctx.font = `${Math.round(W/60)}px DM Mono, monospace`;
+    ctx.textAlign = 'center';
+    ctx.fillText('← focus zone →', W*0.435, H - 8);
+  }
+
+  const slider = document.getElementById('aperture-slider');
+  const aLabel = document.getElementById('aperture-label');
+
+  function updateAperture() {
+    const f = parseFloat(slider.value);
+    let desc;
+    if (f <= 1.8) desc = 'Very shallow. Extreme bokeh. Background unreadable.';
+    else if (f <= 2.8) desc = 'Shallow depth of field. Subject sharp, background blurred.';
+    else if (f <= 4) desc = 'Moderate. Some background blur. Good for interviews.';
+    else if (f <= 8) desc = 'Deep focus. Most of scene sharp. Good for wide shots.';
+    else desc = 'Maximum depth of field. Everything sharp. Good for landscapes.';
+    aLabel.textContent = 'f/' + f + ' — ' + desc;
+    drawDofCanvas();
+  }
+
+  slider.addEventListener('input', updateAperture);
+
+  // Initial draw when formats tab becomes active
+  window.addEventListener('load', () => {
+    // Small delay to ensure layout is complete
+    setTimeout(() => { drawRatioCanvas(); drawDofCanvas(); }, 100);
   });
 </script>
 </body>
